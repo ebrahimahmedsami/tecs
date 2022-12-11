@@ -1,0 +1,70 @@
+/*================================================================================
+	Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
+	Version: 2.0
+	Author: PIXINVENT
+	Author URL: http://www.themeforest.net/user/pixinvent
+================================================================================
+
+NOTE:
+------
+PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
+WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+.dataTables_filter label input[type="search"]
+{
+    padding: 5px;
+    margin-right: 2px;
+    border-radius: 5px;
+    border: 1px solid #e5e5e5;
+}
+
+.dataTables_length label select{
+    width: 100px;
+    text-align: center;
+    border: 1px solid #e5e5e5;
+}
+
+.dataTables_length{
+    float: left;
+    width: 300px;
+    margin-bottom: 15px;
+}
+
+.dataTables_filter{
+    float: right;
+    width: 300px;
+    margin-bottom: 15px;
+}
+
+.dataTables_paginate {
+    /*float: left !important;*/
+    /*width: 300px !important;*/
+    margin-bottom: 15px !important;
+    /*text-align: left !important;*/
+    text-align: center !important;
+    margin-top: 15px !important;
+
+}
+.dataTables_info{
+    /*float: right !important;*/
+    /*width: 300px !important;*/
+    /*margin-bottom: 15px !important;*/
+    /*padding-top: 0 !important;*/
+    /*text-align: right !important;*/
+    display: none;
+}
+
+.dataTables_paginate  a{
+    background: #eece00;
+    color: #fff;
+    padding: 6px 13px;
+    border-radius: 4px;
+    margin-right: 2px;
+}
+.dataTables_paginate a.disabled
+{
+    text-decoration: line-through;
+}
+.dataTables_paginate a.current{
+    background: #897916 !important;
+    color: #fff!important;
+}

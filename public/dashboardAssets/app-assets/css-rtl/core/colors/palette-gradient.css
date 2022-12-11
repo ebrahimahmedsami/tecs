@@ -1,0 +1,197 @@
+.bg-gradient-white {
+  color : #FFFFFF;
+  background-image : -webkit-linear-gradient(120deg, #FFFFFF, rgba(255, 255, 255, 0.5));
+  background-image :         linear-gradient(-30deg, #FFFFFF, rgba(255, 255, 255, 0.5));
+  background-repeat : repeat-x;
+}
+.bg-gradient-white:hover, .bg-gradient-white:active {
+  color : #FFFFFF;
+}
+
+.gradient-light-white {
+  background : -webkit-linear-gradient(120deg, #FFFFFF 0%, 100%);
+  background :         linear-gradient(-30deg, #FFFFFF 0%, 100%);
+  color : #FFFFFF;
+}
+.gradient-light-white:hover, .gradient-light-white:active {
+  color : #FFFFFF;
+}
+
+.bg-gradient-black {
+  color : #FFFFFF;
+  background-image : -webkit-linear-gradient(120deg, #000000, rgba(0, 0, 0, 0.5));
+  background-image :         linear-gradient(-30deg, #000000, rgba(0, 0, 0, 0.5));
+  background-repeat : repeat-x;
+}
+.bg-gradient-black:hover, .bg-gradient-black:active {
+  color : #FFFFFF;
+}
+
+.gradient-light-black {
+  background : -webkit-linear-gradient(120deg, #000000 0%, 100%);
+  background :         linear-gradient(-30deg, #000000 0%, 100%);
+  color : #FFFFFF;
+}
+.gradient-light-black:hover, .gradient-light-black:active {
+  color : #FFFFFF;
+}
+
+.bg-gradient-dark {
+  background : #640064;
+  color : #FFFFFF;
+  background-image : -webkit-linear-gradient(120deg, #1E1E1E, rgba(30, 30, 30, 0.5));
+  background-image :         linear-gradient(-30deg, #1E1E1E, rgba(30, 30, 30, 0.5));
+  background-repeat : repeat-x;
+}
+.bg-gradient-dark:hover, .bg-gradient-dark:active {
+  color : #FFFFFF;
+}
+
+.gradient-light-dark {
+  background : -webkit-linear-gradient(120deg, #1E1E1E 0%, 100%);
+  background :         linear-gradient(-30deg, #1E1E1E 0%, 100%);
+  color : #FFFFFF;
+}
+.gradient-light-dark:hover, .gradient-light-dark:active {
+  color : #FFFFFF;
+}
+
+.bg-gradient-light {
+  background : #640064;
+  color : #FFFFFF;
+  background-image : -webkit-linear-gradient(120deg, #BABFC7, rgba(186, 191, 199, 0.5));
+  background-image :         linear-gradient(-30deg, #BABFC7, rgba(186, 191, 199, 0.5));
+  background-repeat : repeat-x;
+}
+.bg-gradient-light:hover, .bg-gradient-light:active {
+  color : #FFFFFF;
+}
+
+.gradient-light-light {
+  background : -webkit-linear-gradient(120deg, #BABFC7 0%, 100%);
+  background :         linear-gradient(-30deg, #BABFC7 0%, 100%);
+  color : #FFFFFF;
+}
+.gradient-light-light:hover, .gradient-light-light:active {
+  color : #FFFFFF;
+}
+
+.bg-gradient-primary {
+  background : #640064;
+  color : #FFFFFF;
+  background-image : -webkit-linear-gradient(120deg, #7367F0, rgba(115, 103, 240, 0.5));
+  background-image :         linear-gradient(-30deg, #7367F0, rgba(115, 103, 240, 0.5));
+  background-repeat : repeat-x;
+}
+.bg-gradient-primary:hover, .bg-gradient-primary:active {
+  color : #FFFFFF;
+}
+
+.gradient-light-primary {
+  background : -webkit-linear-gradient(120deg, #7367F0 0%, #CE9FFC 100%);
+  background :         linear-gradient(-30deg, #7367F0 0%, #CE9FFC 100%);
+  color : #FFFFFF;
+}
+.gradient-light-primary:hover, .gradient-light-primary:active {
+  color : #FFFFFF;
+}
+
+.bg-gradient-secondary {
+  background : #640064;
+  color : #FFFFFF;
+  background-image : -webkit-linear-gradient(120deg, #B8C2CC, rgba(184, 194, 204, 0.5));
+  background-image :         linear-gradient(-30deg, #B8C2CC, rgba(184, 194, 204, 0.5));
+  background-repeat : repeat-x;
+}
+.bg-gradient-secondary:hover, .bg-gradient-secondary:active {
+  color : #FFFFFF;
+}
+
+.gradient-light-secondary {
+  background : -webkit-linear-gradient(120deg, #B8C2CC 0%, #DCDEEC 100%);
+  background :         linear-gradient(-30deg, #B8C2CC 0%, #DCDEEC 100%);
+  color : #FFFFFF;
+}
+.gradient-light-secondary:hover, .gradient-light-secondary:active {
+  color : #FFFFFF;
+}
+
+.bg-gradient-success {
+  background : #0064FA;
+  color : #FFFFFF;
+  background-image : -webkit-linear-gradient(120deg, #28C76F, rgba(40, 199, 111, 0.5));
+  background-image :         linear-gradient(-30deg, #28C76F, rgba(40, 199, 111, 0.5));
+  background-repeat : repeat-x;
+}
+.bg-gradient-success:hover, .bg-gradient-success:active {
+  color : #FFFFFF;
+}
+
+.gradient-light-success {
+  background : -webkit-linear-gradient(120deg, #28C76F 0%, #4AE9D3 100%);
+  background :         linear-gradient(-30deg, #28C76F 0%, #4AE9D3 100%);
+  color : #FFFFFF;
+}
+.gradient-light-success:hover, .gradient-light-success:active {
+  color : #FFFFFF;
+}
+
+.bg-gradient-info {
+  background : #640064;
+  color : #FFFFFF;
+  background-image : -webkit-linear-gradient(120deg, #00CFE8, rgba(0, 207, 232, 0.5));
+  background-image :         linear-gradient(-30deg, #00CFE8, rgba(0, 207, 232, 0.5));
+  background-repeat : repeat-x;
+}
+.bg-gradient-info:hover, .bg-gradient-info:active {
+  color : #FFFFFF;
+}
+
+.gradient-light-info {
+  background : -webkit-linear-gradient(120deg, #00CFE8 0%, #2D91FF 100%);
+  background :         linear-gradient(-30deg, #00CFE8 0%, #2D91FF 100%);
+  color : #FFFFFF;
+}
+.gradient-light-info:hover, .gradient-light-info:active {
+  color : #FFFFFF;
+}
+
+.bg-gradient-warning {
+  background : #FAFAFA;
+  color : #FFFFFF;
+  background-image : -webkit-linear-gradient(120deg, #FF9F43, rgba(255, 159, 67, 0.5));
+  background-image :         linear-gradient(-30deg, #FF9F43, rgba(255, 159, 67, 0.5));
+  background-repeat : repeat-x;
+}
+.bg-gradient-warning:hover, .bg-gradient-warning:active {
+  color : #FFFFFF;
+}
+
+.gradient-light-warning {
+  background : -webkit-linear-gradient(120deg, #FF9F43 0%, #FFF487 100%);
+  background :         linear-gradient(-30deg, #FF9F43 0%, #FFF487 100%);
+  color : #FFFFFF;
+}
+.gradient-light-warning:hover, .gradient-light-warning:active {
+  color : #FFFFFF;
+}
+
+.bg-gradient-danger {
+  background : #640064;
+  color : #FFFFFF;
+  background-image : -webkit-linear-gradient(120deg, #EA5455, rgba(234, 84, 85, 0.5));
+  background-image :         linear-gradient(-30deg, #EA5455, rgba(234, 84, 85, 0.5));
+  background-repeat : repeat-x;
+}
+.bg-gradient-danger:hover, .bg-gradient-danger:active {
+  color : #FFFFFF;
+}
+
+.gradient-light-danger {
+  background : -webkit-linear-gradient(120deg, #EA5455 0%, #F9B789 100%);
+  background :         linear-gradient(-30deg, #EA5455 0%, #F9B789 100%);
+  color : #FFFFFF;
+}
+.gradient-light-danger:hover, .gradient-light-danger:active {
+  color : #FFFFFF;
+}

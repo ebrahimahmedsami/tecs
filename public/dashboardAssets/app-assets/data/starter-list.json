@@ -1,0 +1,8 @@
+{
+ "listItems": [
+   {"name":"2-Columns", "url":"sk-layout-2-columns.html","icon":"feather icon-sidebar"},
+   {"name":"Fixed Navbar", "url":"sk-layout-fixed-navbar.html","icon":"feather icon-credit-card"},
+   {"name":"Floating Navbar", "url":"sk-layout-floating-navbar.html","icon":"feather icon-server"},
+   {"name":"Fixed Layout", "url":"sk-layout-fixed.html","icon":"feather icon-layout"}
+ ]
+}

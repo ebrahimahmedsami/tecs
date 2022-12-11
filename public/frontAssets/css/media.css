@@ -1,0 +1,194 @@
+/* *****************************Start Media Query*************************** */
+
+@media (max-width: 479px) {
+
+    h1 { font-size: 30px}
+    
+    .lead { font-size: 15px}
+    
+    #home .btn { padding: 13px }
+
+    h2 { font-size: 18px }
+    
+    .feature .myparagraph { font-size: 11px; font-weight: bold; margin-bottom: 70px; }
+    
+    .feature .row > div { width: 90%; margin-left: 5% ; margin-bottom: 25% }
+    
+    .feature .rtl img { width: 100%; height: 270px }
+    
+    .about .lead { margin-top: 15px ; margin-bottom: 40px }
+    
+    .about .flexslider-parag , .about p { font-size:15px; line-height: 22px ; }
+    
+    .about .flexslider-parag  {;margin-bottom: 70px;font-weight: 600  }
+    
+    .about .list { margin-top: 30px; margin-left: -20px; }
+    
+    .about ul li { font-size: 16px; line-height: 32px; }
+    
+    .vido { min-height: 500px }
+    
+    .vido a { margin-top: 30% }
+    
+    .vido p { font-size: 16px }
+    
+    .menu { padding-bottom: 20px }
+    
+    .menu .menu-parag { margin-bottom: 40px }
+
+    .menu  .media-object { width: 100% }
+    
+    .media > .pull-left { margin-bottom: 15px;margin-left: 10px}
+    
+    .media-body .media-heading , .media-body .lead { margin-left: 10px }
+    
+    .media-body .lead { font-size: 16px}
+    
+    .menu .media { margin-bottom: 50px }
+    
+    .menu .media .inner1, .inner2, .inner3, .inner4, .inner5, .inner6 {left: 5%; padding: 1px 11px }
+    
+    .team img, .team .team-content { margin-bottom: 50px }
+    
+    .team .div5 p , .team .div6 p { font-size: 14px; line-height: 24px; font-weight: 500; margin-left: 15px;margin-right: 15px; }
+    
+    #my-Gallery .tabs-button { margin-left: -18% }
+    
+    #tabs .tabs-button li { font-size: 13px}
+    
+    .Contact p { font-size: 12px }
+    
+}
+
+/* *************************************************************** */ 
+
+
+/* Small devices (landscape phones, 576px and up)  */
+@media (min-width: 480px) and (max-width: 767px) {
+
+    h2 { font-size: 27px}
+    
+    .menu { padding-bottom: 50px}
+    
+    .menu  .media-object { width: 200px;margin-left: 20px}
+    
+    .menu .media .inner1, .inner2, .inner3, .inner4, .inner5, .inner6 { padding: 1px 10px;margin-left: 7%}
+    
+    .menu .lead { margin-top: -6px ;font-size: 16px}
+    
+    .feature .myparagraph { font-size: 14px; margin-bottom: 70px; }
+    
+    #home h1 { font-size: 40px }
+
+    .feature .content { margin-bottom: 90px }
+    
+    .about .rtl .about-parag { text-align: center; margin: 40px 40px 60px 40px }
+    
+    .about .rtl img { width: 80%; height: 245px; margin-left: 10% }
+    
+    .about .flexslider { width: 80%; margin-left: 10% }
+    
+    .about .flexslider-parag { text-align: center; margin: 40px 40px 60px 40px  }
+    
+    .about .last { margin-left: 10%; width: 80% }
+    
+    .about .last h2 { margin-top: 55px }
+    
+    .about .last ul {  margin-top: 20px; margin-left: -20px }
+    
+    .about .last p:first-of-type { margin-top: 35px; }
+    
+    .about .last p:nth-of-type(2) { margin-top: 25px; }
+    
+    .team .div1 , .team .div2 , .team .div3 , .team .div4 , .team .div5 , .team .div6  {
+        margin-bottom: 70px;
+        width: 70%;
+        margin-left: 15%
+    }
+    
+    .team .div5 , .team .div6 { text-align: left }
+    
+    .team  .div5 , .team  .div6 { margin-top: 70px; margin-bottom: 70px }
+    
+    .team .div4 .fa { margin-top: 50px }
+    
+    .team .div4 p { margin-top: 25px }
+    
+    .footer #Scroll-top { right: 0 }
+    
+    .iso-box { margin-bottom: 70px; width: 70%; margin-left: 15% }
+    
+     .gallery-heading { margin-bottom: 66px }
+    
+     .filter-wrapper { margin-bottom: 50px }
+        
+     #my-Gallery .Gallery-thumb .Gallery-overlay { border-radius: 10px }
+    
+}
+
+
+
+
+/*  Medium devices (tablets, 768px and up)  */
+@media (min-width: 768px) and (max-width: 991px) {
+
+    .fancybox-inner .fancybox-stage .fancybox-slide .fancybox-image-wrap  { 
+        transform: translate(22%, 15%); width: 65%;height: 65% ;
+    }
+    
+    #home h1 { font-size: 70px }
+    
+    .feature div .three { margin-top: 70px; }
+    
+    .about .rtl { float: right }
+    
+    .about .rtl .about-parag { margin-top: 60px }
+    
+    .about .rtl img { width: 100%; height: 272px }
+    
+    .about .left { float: right }
+    
+    .about .last h2 { margin-top: 55px }
+    
+    .about .last ul { margin-top: 20px; margin-left: -20px }
+    
+    .about .last p:first-of-type { margin-top: 35px; }
+    
+    .about .last p:nth-of-type(2) { margin-top: 25px;}
+    
+    .team .div1 , .team .div2 { margin-bottom: 70px }
+    
+    .team .div3 , .team .div4 {  margin-bottom: 10px }
+    
+    .team  .div5 , .team  .div6 { margin-top: 60px; margin-bottom: 60px }
+    
+}
+
+
+/*  Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+    /* .about .rtl img { width: 100%; height: 272px } */
+    
+    #home h1 { font-size: 85px }
+    
+    .about .last h2 { margin-top: -5px }
+    
+    .about .last ul { margin-top: 20px; margin-left: -20px }
+    
+    .about .last p:first-of-type { margin-top: 35px; }
+    
+    .about .last p:nth-of-type(2) { margin-top: 25px; }
+    
+    .team { padding-bottom: 40px }
+    
+    .team  .div5 , .team  .div6 { margin-top: 60px; margin-bottom: 60px }
+    
+    .team .different-team1 .lead { margin : 15px 15px 25px 15px }
+       
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { }
+
+/* *****************************End Media Query***************************** */

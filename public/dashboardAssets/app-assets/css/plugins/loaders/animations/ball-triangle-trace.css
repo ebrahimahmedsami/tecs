@@ -1,0 +1,62 @@
+/*========================================================
+        DARK LAYOUT
+=========================================================*/
+@keyframes ball-triangle-path-1 {
+  33% {
+    transform: translate(25px, -50px); }
+  66% {
+    transform: translate(50px, 0px); }
+  100% {
+    transform: translate(0px, 0px); } }
+
+@keyframes ball-triangle-path-2 {
+  33% {
+    transform: translate(25px, 50px); }
+  66% {
+    transform: translate(-25px, 50px); }
+  100% {
+    transform: translate(0px, 0px); } }
+
+@keyframes ball-triangle-path-3 {
+  33% {
+    transform: translate(-50px, 0px); }
+  66% {
+    transform: translate(-25px, -50px); }
+  100% {
+    transform: translate(0px, 0px); } }
+
+.ball-triangle-path {
+  position: relative;
+  transform: translate(-29.994px, -37.50938px); }
+  .ball-triangle-path > div:nth-child(1) {
+    animation-name: ball-triangle-path-1;
+    animation-delay: 0;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite; }
+  .ball-triangle-path > div:nth-child(2) {
+    animation-name: ball-triangle-path-2;
+    animation-delay: 0;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite; }
+  .ball-triangle-path > div:nth-child(3) {
+    animation-name: ball-triangle-path-3;
+    animation-delay: 0;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite; }
+  .ball-triangle-path > div {
+    animation-fill-mode: both;
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    border: 1px solid #b8c2cc; }
+    .ball-triangle-path > div:nth-of-type(1) {
+      top: 50px; }
+    .ball-triangle-path > div:nth-of-type(2) {
+      left: 25px; }
+    .ball-triangle-path > div:nth-of-type(3) {
+      top: 50px;
+      left: 50px; }

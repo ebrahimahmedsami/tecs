@@ -1,0 +1,12 @@
+/*========================================================
+        DARK LAYOUT
+=========================================================*/
+.colors-list li {
+  padding : 0.4rem;
+}
+.colors-list li i {
+  font-size : 1.2rem;
+  top : 2px;
+  position : relative;
+  margin-left : 0.25rem;
+}

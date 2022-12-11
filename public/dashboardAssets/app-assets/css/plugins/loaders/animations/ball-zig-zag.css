@@ -1,0 +1,37 @@
+/*========================================================
+        DARK LAYOUT
+=========================================================*/
+@keyframes ball-zig {
+  33% {
+    transform: translate(-15px, -30px); }
+  66% {
+    transform: translate(15px, -30px); }
+  100% {
+    transform: translate(0, 0); } }
+
+@keyframes ball-zag {
+  33% {
+    transform: translate(15px, 30px); }
+  66% {
+    transform: translate(-15px, 30px); }
+  100% {
+    transform: translate(0, 0); } }
+
+.ball-zig-zag {
+  position: relative;
+  transform: translate(-15px, -15px); }
+  .ball-zig-zag > div {
+    background-color: #b8c2cc;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    margin: 2px;
+    animation-fill-mode: both;
+    position: absolute;
+    margin-left: 15px;
+    top: 4px;
+    left: -7px; }
+    .ball-zig-zag > div:first-child {
+      animation: ball-zig 0.7s 0s infinite linear; }
+    .ball-zig-zag > div:last-child {
+      animation: ball-zag 0.7s 0s infinite linear; }

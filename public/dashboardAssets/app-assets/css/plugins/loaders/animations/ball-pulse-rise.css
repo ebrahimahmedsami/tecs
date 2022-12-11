@@ -1,0 +1,45 @@
+/*========================================================
+        DARK LAYOUT
+=========================================================*/
+@keyframes ball-pulse-rise-even {
+  0% {
+    transform: scale(1.1); }
+  25% {
+    transform: translateY(-30px); }
+  50% {
+    transform: scale(0.4); }
+  75% {
+    transform: translateY(30px); }
+  100% {
+    transform: translateY(0);
+    transform: scale(1); } }
+
+@keyframes ball-pulse-rise-odd {
+  0% {
+    transform: scale(0.4); }
+  25% {
+    transform: translateY(30px); }
+  50% {
+    transform: scale(1.1); }
+  75% {
+    transform: translateY(-30px); }
+  100% {
+    transform: translateY(0);
+    transform: scale(0.75); } }
+
+.ball-pulse-rise > div {
+  background-color: #b8c2cc;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  margin: 2px;
+  animation-fill-mode: both;
+  display: inline-block;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(0.15, 0.46, 0.9, 0.6);
+  animation-iteration-count: infinite;
+  animation-delay: 0; }
+  .ball-pulse-rise > div:nth-child(2n) {
+    animation-name: ball-pulse-rise-even; }
+  .ball-pulse-rise > div:nth-child(2n-1) {
+    animation-name: ball-pulse-rise-odd; }

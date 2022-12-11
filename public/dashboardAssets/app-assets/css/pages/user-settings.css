@@ -1,0 +1,11 @@
+/*========================================================
+        DARK LAYOUT
+=========================================================*/
+.user-form .dropzone {
+  min-height: 200px;
+  width: 200px; }
+  .user-form .dropzone .dz-message {
+    font-size: 1rem;
+    height: auto; }
+    .user-form .dropzone .dz-message:before {
+      font-size: 2rem; }

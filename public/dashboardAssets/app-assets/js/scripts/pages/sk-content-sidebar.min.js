@@ -1,0 +1,1 @@
+$(document).ready(function(){var t,e;$(".sidebar-sticky").length&&(e=$("body").hasClass("content-right-sidebar")||$("body").hasClass("content-left-sidebar")?(t=$(".header-navbar").height(),$("footer.footer").height()):(t=$(".header-navbar").height()+24,$("footer.footer").height()+10),$(".sidebar-sticky").sticky({topSpacing:t,bottomSpacing:e}))});

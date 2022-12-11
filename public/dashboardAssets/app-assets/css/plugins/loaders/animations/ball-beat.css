@@ -1,0 +1,22 @@
+/*========================================================
+        DARK LAYOUT
+=========================================================*/
+@keyframes ball-beat {
+  50% {
+    opacity: 0.2;
+    transform: scale(0.75); }
+  100% {
+    opacity: 1;
+    transform: scale(1); } }
+
+.ball-beat > div {
+  background-color: #b8c2cc;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+  margin: 2px;
+  animation-fill-mode: both;
+  display: inline-block;
+  animation: ball-beat 0.7s 0s infinite linear; }
+  .ball-beat > div:nth-child(2n-1) {
+    animation-delay: -0.35s !important; }

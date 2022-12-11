@@ -1,0 +1,1 @@
+$(document).ready(function(){var a=document.getElementById("small-slider");noUiSlider.create(a,{start:[30,70],behaviour:"drag",connect:!0,range:{min:20,max:80}}),$.fn.raty.defaults.path="../../../app-assets/images/raty/",$("#score-rating").raty({score:3}),$(".sidebar-sticky").sticky()});
