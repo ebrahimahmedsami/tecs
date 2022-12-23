@@ -104,6 +104,7 @@ return [
     'add_specialization' => 'Add Specialization',
     'edit_specialization' => 'Edit Specialization',
     'choose_specialization' => 'Choose Specialization',
+    'error_delete_specialization' => 'Can\'t Delete Specialization Because Has Doctors',
 
     '' => '',
     '' => '',

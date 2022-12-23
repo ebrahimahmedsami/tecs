@@ -57,8 +57,10 @@ class RolesController extends Controller
     {
         $rules = [
             'name' => ['required','string',Rule::unique('roles','name')],
-            'permission.*' => ['numeric',Rule::exists('permissions','id')]
+            'permission' => ['required','array'],
+            'permission.*' => ['required','numeric',Rule::exists('permissions','id')]
         ];
+
         $validator = Validator::make($request->all(),$rules);
         if($validator->fails()){
             return back()->withErrors($validator);

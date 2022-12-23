@@ -26,25 +26,11 @@ class PermissionsSeeder extends Seeder
         DB::table('role_has_permissions')->truncate();
         Schema::enableForeignKeyConstraints();
         $permissions = [
-            ['guard_name' => 'web', 'name' => 'users'],
-            ['guard_name' => 'web', 'name' => 'add user'],
-            ['guard_name' => 'web', 'name' => 'edit user'],
-            ['guard_name' => 'web', 'name' => 'show user'],
-            ['guard_name' => 'web', 'name' => 'delete user'],
             ['guard_name' => 'web', 'name' => 'roles'],
             ['guard_name' => 'web', 'name' => 'add role'],
             ['guard_name' => 'web', 'name' => 'edit role'],
             ['guard_name' => 'web', 'name' => 'show role'],
             ['guard_name' => 'web', 'name' => 'delete role'],
-            ['guard_name' => 'web', 'name' => 'add-permission'],
-//            ['guard_name' => 'web', 'name' => 'categories'],
-//            ['guard_name' => 'web', 'name' => 'add category'],
-//            ['guard_name' => 'web', 'name' => 'edit category'],
-//            ['guard_name' => 'web', 'name' => 'vendors'],
-//            ['guard_name' => 'web', 'name' => 'add vendor'],
-//            ['guard_name' => 'web', 'name' => 'edit vendor'],
-//            ['guard_name' => 'web', 'name' => 'delete vendor'],
-//            ['guard_name' => 'web', 'name' => 'show vendor'],
 
         ];
         $role = Role::create([

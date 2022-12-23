@@ -93,7 +93,11 @@ class SpecilizationsController extends Controller
      */
     public function destroy($id)
     {
-        Specializaition::find($id)->delete();
+        $specialization = Specializaition::find($id);
+        if ($specialization->doctors()->count() > 0){
+            return back()->with(['danger' => __('dashboard.error_delete_specialization')]);
+        }
+        $specialization->delete();
         return back()->with(['success' => __('dashboard.item deleted successfully')]);
     }
 }

@@ -103,6 +103,7 @@ return [
     'add_specialization' => 'إضافة تخصص',
     'edit_specialization' => 'تعديل تخصص',
     'choose_specialization' => 'إختر تخصص',
+    'error_delete_specialization' =>  'لا يمكن مسح التخصص لان عليه دكاترة',
     '' => '' ,
     '' => '' ,
     '' => '' ,
