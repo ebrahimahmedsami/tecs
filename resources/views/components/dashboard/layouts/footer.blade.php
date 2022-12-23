@@ -63,10 +63,10 @@
                        </span>",
         }
     });
-    function remove(id,table){
+    function remove(id,form){
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'هل أنت متأكد؟',
+            text: "لا يمكن التراجع عن الحذف!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -74,7 +74,7 @@
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                $(`.${table}-${id}`).submit();
+                $(`.${form}-${id}`).submit();
             }
         })
     }

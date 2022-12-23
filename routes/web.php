@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\AuthController;
+use App\Http\Controllers\Dashboard\DoctorsController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\RolesController;
 use Illuminate\Support\Facades\Route;
@@ -23,19 +24,23 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         return view('front.home');
     });
 
-    Route::group(['prefix' => 'admin'],function (){
+    Route::group(['prefix' => 'admin','name' => 'admin.'],function (){
         Route::name('admin.')->group(function (){
-
             Route::get('login',[AuthController::class,'index'])->name('login')->middleware('guest');
             Route::post('login', [AuthController::class, 'login'])->name('startSession');
 
+
             Route::group(['middleware' => 'auth'],function (){
+                //Home
                 Route::get('home',[HomeController::class,'index'])->name('home');
                 Route::get('destroy',[AuthController::class,'logout'])->name('logout');
 
-
+                //Roles And Permissions
                 Route::resource('roles', RolesController::class);
                 Route::post('permission/add',[RolesController::class,'add_permission'])->name('add_permission');
+
+                //Doctors
+                Route::resource('doctors', DoctorsController::class);
 
 
             });

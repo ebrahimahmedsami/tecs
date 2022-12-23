@@ -1,3 +1,6 @@
-<div class="alert alert-success alert-dismissible fade show text text-center mt-2 mb-1" role="alert">
+<div class="alert alert-success container mt-1 alert-dismissible fade show" role="alert">
     <strong>{{\Session::get('success')}}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>

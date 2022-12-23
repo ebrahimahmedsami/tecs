@@ -29,6 +29,16 @@
                     </ul>
                 </li>
             @endcan
+
+            {{--     Doctors       --}}
+            <li class=" nav-item"><a href="#"><i class="feather icon-list"></i><span class="menu-title" data-i18n="Data List">{{__('dashboard.doctors')}}</span></a>
+                <ul class="menu-content">
+                    <li class="{{Route::is('admin.doctors.index')? 'active':''}}"><a href="{{route('admin.doctors.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List View">{{__('dashboard.doctors_list')}}</span></a>
+                    </li>
+                    <li class="{{Route::is('admin.doctors.create')? 'active':''}}"><a href="{{route('admin.doctors.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Thumb View">{{__('dashboard.add_doctor')}}</span></a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>
