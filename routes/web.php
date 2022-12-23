@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\AuthController;
+use App\Http\Controllers\Dashboard\ClinicsController;
 use App\Http\Controllers\Dashboard\DoctorsController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\RolesController;
@@ -45,6 +46,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
                 //Specializations
                 Route::resource('specializations', SpecilizationsController::class);
+
+                //Clinics
+                Route::resource('clinics', ClinicsController::class);
 
 
             });

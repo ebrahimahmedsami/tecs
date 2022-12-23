@@ -33,7 +33,6 @@ class SpecilizationsController extends Controller
     public function create()
     {
         return view('dashboard.specializations.add');
-
     }
 
     /**
