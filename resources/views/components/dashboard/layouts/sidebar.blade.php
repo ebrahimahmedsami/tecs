@@ -39,6 +39,17 @@
                     </li>
                 </ul>
             </li>
+
+            {{--     Specializations       --}}
+            <li class=" nav-item"><a href="#"><i class="feather icon-list"></i><span class="menu-title" data-i18n="Data List">{{__('dashboard.specializations')}}</span></a>
+                <ul class="menu-content">
+                    <li class="{{Route::is('admin.specializations.index')? 'active':''}}"><a href="{{route('admin.specializations.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List View">{{__('dashboard.specializations_list')}}</span></a>
+                    </li>
+                    <li class="{{Route::is('admin.specializations.create')? 'active':''}}"><a href="{{route('admin.specializations.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Thumb View">{{__('dashboard.add_specialization')}}</span></a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
     </div>
 </div>

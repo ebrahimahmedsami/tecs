@@ -2,17 +2,23 @@
 
 namespace App\Models;
 
+use App\Traits\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Doctor extends Model
 {
-    use HasFactory;
+    use HasFactory,Models;
     protected $fillable = ['name_en','name_ar','phone','email'];
-    protected $appends = ['name'];
+    protected $appends = ['name','specializations_name'];
 
+    public function getSpecializationsNameAttribute(){
+        if ($this->specilizations()){
+            return $this->specilizations()->pluck('name_'.app()->getLocale());
+        }
+    }
 
-    public function getNameAttribute(){
-        return app()->getLocale() == 'ar' ? $this->name_ar : $this->name_en;
+    public function specilizations(){
+        return $this->belongsToMany(Specializaition::class, 'doctor_specilization', 'doctor_id', 'specializaition_id');
     }
 }

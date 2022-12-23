@@ -99,6 +99,12 @@ return [
     'edit_doctor' => 'Edit Doctor',
     'name_ar' => 'Name Arabic',
     'name_en' => 'Name English',
+    'specializations' => 'Specializations',
+    'specializations_list' => 'Specializations List',
+    'add_specialization' => 'Add Specialization',
+    'edit_specialization' => 'Edit Specialization',
+    'choose_specialization' => 'Choose Specialization',
+
     '' => '',
     '' => '',
     '' => '',

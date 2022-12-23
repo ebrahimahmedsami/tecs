@@ -4,6 +4,7 @@ use App\Http\Controllers\Dashboard\AuthController;
 use App\Http\Controllers\Dashboard\DoctorsController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\RolesController;
+use App\Http\Controllers\Dashboard\SpecilizationsController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -41,6 +42,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
                 //Doctors
                 Route::resource('doctors', DoctorsController::class);
+
+                //Specializations
+                Route::resource('specializations', SpecilizationsController::class);
 
 
             });

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\DoctorsRequest;
+use App\Http\Requests\SpecializationsRequest;
 use App\Models\Doctor;
 use App\Models\Specializaition;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
-class DoctorsController extends Controller
+class SpecilizationsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,12 +19,10 @@ class DoctorsController extends Controller
     public function index()
     {
         if (\request()->ajax()) {
-            $data =Doctor::orderBy('id','desc')
-                ->with('specilizations')
-                ->get();
+            $data =Specializaition::orderBy('id','desc')->get();
             return Datatables::of($data)->make(true);
         }
-        return view('dashboard.doctors.list');
+        return view('dashboard.specializations.list');
     }
 
     /**
@@ -34,8 +32,8 @@ class DoctorsController extends Controller
      */
     public function create()
     {
-        $specialzations = Specializaition::all();
-        return view('dashboard.doctors.add',compact('specialzations'));
+        return view('dashboard.specializations.add');
+
     }
 
     /**
@@ -44,12 +42,10 @@ class DoctorsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DoctorsRequest $request)
+    public function store(SpecializationsRequest $request)
     {
-        $doctor = Doctor::create($request->validated());
-        $doctor->specilizations()->attach($request->specilizations);
-        return redirect()->route('admin.doctors.index')->with(['success' => __('dashboard.item added successfully')]);
-
+        Specializaition::create($request->validated());
+        return redirect()->route('admin.specializations.index')->with(['success' => __('dashboard.item added successfully')]);
     }
 
     /**
@@ -71,9 +67,8 @@ class DoctorsController extends Controller
      */
     public function edit($id)
     {
-        $all_specialzations = Specializaition::all();
-        $doctor = Doctor::whereId($id)->with('specilizations')->first();
-        return view('dashboard.doctors.edit',compact('doctor','all_specialzations'));
+        $specialization = Specializaition::findOrFail($id);
+        return view('dashboard.specializations.edit',compact('specialization'));
     }
 
     /**
@@ -83,12 +78,11 @@ class DoctorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(DoctorsRequest $request, $id)
+    public function update(SpecializationsRequest $request, $id)
     {
-       $doctor = Doctor::find($id);
-       $doctor->update($request->validated());
-        $doctor->specilizations()->sync($request->specilizations);
-        return redirect()->route('admin.doctors.index')->with(['success' => __('dashboard.item updated successfully')]);
+        $specialization = Specializaition::find($id);
+        $specialization->update($request->validated());
+        return redirect()->route('admin.specializations.index')->with(['success' => __('dashboard.item updated successfully')]);
     }
 
     /**
@@ -97,10 +91,9 @@ class DoctorsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Doctor $doctor)
+    public function destroy($id)
     {
-        $doctor->specilizations()->detach();
-        $doctor->delete();
+        Specializaition::find($id)->delete();
         return back()->with(['success' => __('dashboard.item deleted successfully')]);
     }
 }

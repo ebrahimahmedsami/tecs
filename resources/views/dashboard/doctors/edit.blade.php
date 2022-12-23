@@ -55,6 +55,18 @@
                                             @enderror
                                         </label>
                                     </div>
+                                    <div class="form-group col-sm-3">
+                                        <label style="width: 100%" for="specilizations">{{__('dashboard.specializations')}}
+                                            <select multiple class="form-control select2 specilizations" name="specilizations[]">
+                                                @foreach($all_specialzations as $value)
+                                                    <option @if(in_array($value->id,$doctor->specilizations->pluck('id')->toArray())) selected @endif value="{{$value->id}}">{{$value->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('specilizations')
+                                            <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
+                                            @enderror
+                                        </label>
+                                    </div>
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-primary mr-1 mb-1">{{__('dashboard.edit')}}</button>
                                     </div>
@@ -66,4 +78,15 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function () {
+            $('.specilizations').select2(
+                {
+                    placeholder: "{{__('dashboard.choose_specialization')}}",
+                }
+            )
+        })
+    </script>
 @endsection
