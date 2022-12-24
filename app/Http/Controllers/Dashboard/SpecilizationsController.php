@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SpecializationsRequest;
+use App\Models\Clinic;
 use App\Models\Doctor;
 use App\Models\Specializaition;
 use Illuminate\Http\Request;

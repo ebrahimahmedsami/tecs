@@ -31,4 +31,11 @@ class Clinic extends Model
     public function reservations(){
         return $this->hasMany(Reservation::class,'clinic_id');
     }
+
+    public function doctor(){
+        return $this->belongsTo(Doctor::class,'doctor_id');
+    }
+
+
+
 }

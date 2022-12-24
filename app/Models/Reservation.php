@@ -9,11 +9,17 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
     use HasFactory;
-    protected $fillable = ['patient_id','clinic_id','date','type'];
-    protected $appends = ['type_text'];
+    protected $fillable = ['patient_id','clinic_id','date','type','specialization_id','status'];
+    protected $appends = ['type_text','specialization','status_text'];
 
     public function  getTypeTextAttribute(){
         return $this->type == 0 ? __('dashboard.reserve_type_select') :  __('dashboard.discovery_type_select');
+    }
+    public function  getStatusTextAttribute(){
+        return reservation_status()[$this->status];
+    }
+    public function getSpecializationAttribute(){
+        return Specializaition::where('id',$this->specialization_id)->first()->name;
     }
 
     public function patient(){

@@ -26,6 +26,7 @@ class ReservationssRequest extends FormRequest
     {
         return [
             'date' => ['required','date'],
+            'specialization_id' => ['required'],
             'type' => ['required','in:0,1'],
             'clinic_id' => ['required',Rule::exists('clinics','id')],
             'patient_id' => ['required',Rule::exists('patients','id')],

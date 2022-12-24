@@ -117,6 +117,19 @@ class ReservationsController extends Controller
             return Datatables::of($todayReservations)->make(true);
         }
         return view('dashboard.reservations.today_reservations');
+    }
 
+    public function get_clinic_specializations(Request $request){
+        $clinic = Clinic::where('id',$request->id)->first();
+        $specializations = optional($clinic->doctor)->specilizations;
+        return response()->json(['data' => $specializations,200]);
+    }
+
+    public function change_status(Request $request){
+        $reservation = Reservation::where('id',$request->id)->first();
+        if ($reservation){
+            $reservation->update(['status' => $request->status]);
+        }
+        return response()->json(['data' => 'status changed',200]);
     }
 }

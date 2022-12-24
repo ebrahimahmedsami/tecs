@@ -61,6 +61,12 @@
 @yield('script')
 
 <script>
+    $(document).ready(function (){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
 
     $.extend(true, $.fn.dataTable.defaults, {
         language: {
@@ -70,19 +76,22 @@
                        </span>",
         }
     });
-    function remove(id,form){
-        Swal.fire({
-            title: 'هل أنت متأكد؟',
-            text: "لا يمكن التراجع عن الحذف!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $(`.${form}-${id}`).submit();
-            }
-        })
-    }
+    function remove(id,form)
+        {
+            Swal.fire({
+                title: 'هل أنت متأكد؟',
+                text: "لا يمكن التراجع عن الحذف!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $(`.${form}-${id}`).submit();
+                }
+            })
+        }
+        });
+
 </script>

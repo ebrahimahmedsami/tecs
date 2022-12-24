@@ -18,4 +18,15 @@ if (!function_exists('reservation_types')){
             1 => __('dashboard.discovery_type_select')
         ];
     }
+
+    if (!function_exists('reservation_status')) {
+        function reservation_status()
+        {
+            return [
+                0 => __('dashboard.pending'),
+                1 => __('dashboard.finished'),
+                2 => __('dashboard.canceled'),
+            ];
+        }
+    }
 }

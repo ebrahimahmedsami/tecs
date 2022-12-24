@@ -66,6 +66,16 @@
                                             @enderror
                                         </label>
                                     </div>
+                                    <div class="form-group col-sm-3">
+                                        <label style="width: 100%" for="specialization_id">{{__('dashboard.specializations')}}
+                                            <select class="form-control select2 specialization_id" name="specialization_id">
+                                                <option disabled selected>{{__('dashboard.choose_specialization')}}</option>
+                                            </select>
+                                            @error('clinic_id')
+                                            <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
+                                            @enderror
+                                        </label>
+                                    </div>
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-primary mr-1 mb-1">{{__('dashboard.edit')}}</button>
                                     </div>
@@ -81,6 +91,7 @@
 @section('script')
     <script>
         $(document).ready(function () {
+            getSpecializations("{{$reservation->specialization_id}}")
             $('.clinic').select2(
                 {
                     placeholder: "{{__('dashboard.choose_clinic')}}",
@@ -96,6 +107,37 @@
                     placeholder: "{{__('dashboard.choose_reserve')}}",
                 }
             )
+
+            $('.specialization_id').select2(
+                {
+                    placeholder: "{{__('dashboard.choose_specialization')}}",
+                }
+            )
+
+            function getSpecializations(selectedID = null){
+                $('.specialization_id').empty().append('<option disabled selected>{{__('dashboard.choose_specialization')}}</option>')
+                let clinicId = $('.clinic').val()
+                let url = '/admin/get_clinic_specializations'
+                $.ajax({
+                    url: url,
+                    method: 'get',
+                    data: {
+                        id: clinicId,
+                    },
+                    success: function(result){
+                        let data = result.data;
+                        if(data.length > 0){
+                            data.map((item) => {
+                                $('.specialization_id').append(`
+                                    <option ${selectedID && selectedID == item.id ? 'selected' : ''} value="${item.id}">${item.name}</option>
+                                `)
+                            })
+                        }
+                    }});
+            }
+            $('.clinic').on('change',function (){
+                getSpecializations()
+            });
         })
     </script>
 @endsection

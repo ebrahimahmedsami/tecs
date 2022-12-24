@@ -5,6 +5,7 @@
     <meta name="description" content="tecs">
     <meta name="keywords" content="tecs">
     <meta name="author" content="tecs">
+    <meta name="_token" content="{{csrf_token()}}">
     <title>@yield('title')</title>
     <link rel="apple-touch-icon" href="{{asset('dashboardAssets/app-assets/images/logo/main-logo-black.jpeg')}}">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('dashboardAssets/app-assets/images/logo/main-logo-black.jpeg')}}">
