@@ -27,7 +27,7 @@ class ClinicsRequest extends FormRequest
         return [
             'name_ar' => ['required','max:255'],
             'name_en' => ['required','max:255'],
-            'phone' => ['required','max:255'],
+            'phone' => ['required','max:255',Rule::unique('clinics','phone')->ignore($this->id)],
             'email' => ['nullable','email'],
             'doctor' => ['required',Rule::exists('doctors','id')],
             'disclosure_price' => ['required','numeric'],
@@ -36,7 +36,7 @@ class ClinicsRequest extends FormRequest
             'time_form' => ['required'],
             'time_to' => ['required'],
             'address' => ['nullable','max:255'],
-            'password' => ['required','max:100','min:6','confirmed'],
+            'password' => [request()->method() == 'POST' ? 'required' : 'nullable','max:100','min:6','confirmed'],
         ];
     }
 }

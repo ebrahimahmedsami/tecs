@@ -48,21 +48,13 @@ class ClinicsController extends Controller
     {
         $exception = DB::transaction(function() use ($request) {
 
-            $user = User::create([
-                'name' => $request->name_en,
-                'email' => $request->email,
-                'password' => bcrypt($request->password),
-            ]);
-
-            if ($user){
                 $clinic = Clinic::create([
-                   'user_id' => $user->id,
                    'doctor_id' => $request->doctor,
                    'name_en' => $request->name_en,
                    'name_ar' => $request->name_ar,
                    'phone' => $request->phone,
                    'address' => $request->address,
-                   'email' => $user->email,
+                   'email' => $request->email,
                    'disclosure_price' => $request->disclosure_price,
                    'rediscovery_price' => $request->rediscovery_price,
                    'today_capacity' => $request->today_capacity,
@@ -70,7 +62,16 @@ class ClinicsController extends Controller
                    'time_to' => $request->time_to,
                    'is_blocked' => isset($request->is_blocked) && $request->is_blocked == "on" ? '1' : '0',
                 ]);
-            }
+
+                if ($clinic){
+                    User::create([
+                        'name' => $clinic->name_en,
+                        'email' => $clinic->email,
+                        'password' => bcrypt($request->password),
+                        'type_type' => 'App\\Models\\Clinic',
+                        'type_id' => $clinic->id
+                    ]);
+                }
 
 
         });
@@ -96,7 +97,9 @@ class ClinicsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $clinic = Clinic::where('id',$id)->with('user')->first();
+        $doctors = Doctor::all();
+        return view('dashboard.clinics.edit',compact('clinic','doctors'));
     }
 
     /**
@@ -106,9 +109,41 @@ class ClinicsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ClinicsRequest $request, $id)
     {
-        //
+        $exception = DB::transaction(function() use ($request,$id) {
+
+            $clinic = Clinic::find($id);
+            $clinic->update([
+                'doctor_id' => $request->doctor,
+                'name_en' => $request->name_en,
+                'name_ar' => $request->name_ar,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'email' => $request->email,
+                'disclosure_price' => $request->disclosure_price,
+                'rediscovery_price' => $request->rediscovery_price,
+                'today_capacity' => $request->today_capacity,
+                'time_form' => $request->time_form,
+                'time_to' => $request->time_to,
+                'is_blocked' => isset($request->is_blocked) && $request->is_blocked == "on" ? '1' : '0',
+            ]);
+
+            if ($clinic){
+                $clinic->user->update([
+                    'name' => $clinic->name_en,
+                    'email' => $clinic->email,
+                ]);
+                if ($request->has('password')){
+                    $clinic->user->update([
+                        'password' => bcrypt($request->password),
+                    ]);
+                }
+            }
+
+        });
+        return redirect()->route('admin.clinics.index')->with(['success' => __('dashboard.item updated successfully')]);
+
     }
 
     /**
@@ -119,6 +154,12 @@ class ClinicsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $clinic = Clinic::where('id',$id)->with('reservations')->first();
+        if ($clinic->reservations()->count() > 0){
+            return back()->with(['danger' => __('dashboard.error_delete_clinic')]);
+        }
+        $clinic->user()->delete();
+        $clinic->delete();
+        return back()->with(['success' => __('dashboard.item deleted successfully')]);
     }
 }

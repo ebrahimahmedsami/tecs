@@ -60,6 +60,28 @@
                 </ul>
             </li>
 
+            {{--     Patients       --}}
+            <li class=" nav-item"><a href="#"><i class="feather icon-list"></i><span class="menu-title" data-i18n="Data List">{{__('dashboard.patients')}}</span></a>
+                <ul class="menu-content">
+                    <li class="{{Route::is('admin.patients.index')? 'active':''}}"><a href="{{route('admin.patients.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List View">{{__('dashboard.patients_list')}}</span></a>
+                    </li>
+                    <li class="{{Route::is('admin.patients.create')? 'active':''}}"><a href="{{route('admin.patients.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Thumb View">{{__('dashboard.add_patient')}}</span></a>
+                    </li>
+                </ul>
+            </li>
+
+            {{--     Reservations       --}}
+            <li class=" nav-item"><a href="#"><i class="feather icon-list"></i><span class="menu-title" data-i18n="Data List">{{__('dashboard.reserve')}}</span></a>
+                <ul class="menu-content">
+                    <li class="{{Route::is('admin.reservations.index')? 'active':''}}"><a href="{{route('admin.reservations.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List View">{{__('dashboard.reserve_list')}}</span></a>
+                    </li>
+                    <li class="{{Route::is('admin.reservations.create')? 'active':''}}"><a href="{{route('admin.reservations.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Thumb View">{{__('dashboard.add_reserve')}}</span></a>
+                    </li>
+                    <li class="{{Route::is('admin.today_reservations')? 'active':''}}"><a href="{{route('admin.today_reservations')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Thumb View">{{__('dashboard.today_reservations')}}</span></a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
     </div>
 </div>

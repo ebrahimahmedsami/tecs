@@ -103,4 +103,9 @@ class User extends Authenticatable
 //        dd(asset('dashboardAssets/images/'.$this->selecetFolder($this->type).'/'.$value));
         return asset('dashboardAssets/images/users'.$this->selecetFolder($this->type).$value);
     }
+
+
+    public function type(){
+        return $this->morphTo();
+    }
 }

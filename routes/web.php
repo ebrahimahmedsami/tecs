@@ -4,6 +4,8 @@ use App\Http\Controllers\Dashboard\AuthController;
 use App\Http\Controllers\Dashboard\ClinicsController;
 use App\Http\Controllers\Dashboard\DoctorsController;
 use App\Http\Controllers\Dashboard\HomeController;
+use App\Http\Controllers\Dashboard\PatientsController;
+use App\Http\Controllers\Dashboard\ReservationsController;
 use App\Http\Controllers\Dashboard\RolesController;
 use App\Http\Controllers\Dashboard\SpecilizationsController;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +51,14 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
                 //Clinics
                 Route::resource('clinics', ClinicsController::class);
+
+                //Patients
+                Route::resource('patients', PatientsController::class);
+
+                //Reservations
+                Route::resource('reservations', ReservationsController::class);
+                Route::get('today_reservations', [ReservationsController::class,'today_reservations'])->name('today_reservations');
+
 
 
             });
