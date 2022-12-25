@@ -20,4 +20,8 @@ class Patient extends Model
     public function reservations(){
         return $this->hasMany(Reservation::class,'patient_id');
     }
+
+    public function clinics(){
+        return $this->belongsToMany(Clinic::class, 'clinic_patients', 'patient_id', 'clinic_id');
+    }
 }

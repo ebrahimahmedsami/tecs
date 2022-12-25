@@ -21,7 +21,11 @@ class ReservationsController extends Controller
     public function index()
     {
         if (\request()->ajax()) {
-            $data =Reservation::orderBy('id','desc')->with(['patient','clinic'])->get();
+            if (auth()->user()->clinic){
+                $data = optional(optional(auth()->user())->clinic)->reservations->load(['patient','clinic']);
+            }else{
+                $data =Reservation::orderBy('id','desc')->with(['patient','clinic'])->get();
+            }
             return Datatables::of($data)->make(true);
         }
         return view('dashboard.reservations.list');
@@ -34,8 +38,13 @@ class ReservationsController extends Controller
      */
     public function create()
     {
-        $patients = Patient::all();
-        $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
+        if (auth()->user()->clinic){
+            $patients = auth()->user()->clinic->patients;
+            $clinics = auth()->user()->clinic;
+        }else{
+            $patients = Patient::all();
+            $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
+        }
         return view('dashboard.reservations.add',compact('clinics','patients'));
     }
 
@@ -71,8 +80,13 @@ class ReservationsController extends Controller
     public function edit($id)
     {
         $reservation = Reservation::where('id',$id)->first();
-        $patients = Patient::all();
-        $clinics = Clinic::all();
+        if (auth()->user()->clinic){
+            $patients = auth()->user()->clinic->patients;
+            $clinics = auth()->user()->clinic;
+        }else{
+            $patients = Patient::all();
+            $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
+        }
         return view('dashboard.reservations.edit',compact('clinics','patients','reservation'));
 
     }
@@ -112,7 +126,14 @@ class ReservationsController extends Controller
 
     public function today_reservations(Request $request){
         $today = Carbon::today()->format('Y-m-d');
-        $todayReservations = Reservation::ofGetReservationsToday($request->get('date') ?? $today)->with(['patient','clinic'])->get();
+        if (auth()->user()->clinic){
+            $todayReservations = optional(optional(auth()->user())->clinic)
+                ->reservations()
+                ->ofGetReservationsToday($request->get('date') ?? $today)
+                ->with(['patient','clinic'])->get();
+        }else{
+            $todayReservations = Reservation::ofGetReservationsToday($request->get('date') ?? $today)->with(['patient','clinic'])->get();
+        }
         if (\request()->ajax()) {
             return Datatables::of($todayReservations)->make(true);
         }
@@ -121,8 +142,9 @@ class ReservationsController extends Controller
 
     public function get_clinic_specializations(Request $request){
         $clinic = Clinic::where('id',$request->id)->first();
-        $specializations = optional($clinic->doctor)->specilizations;
-        return response()->json(['data' => $specializations,200]);
+        $data['patients'] = $clinic->patients;
+        $data['specializations'] = optional($clinic->doctor)->specilizations;
+        return response()->json(['data' => $data,200]);
     }
 
     public function change_status(Request $request){

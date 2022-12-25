@@ -164,6 +164,54 @@ $(window).on("load", function () {
 
   orderChart.render();
 
+    var orderChart2 = new ApexCharts(
+        document.querySelector("#orders-received-chart2"),
+        orderChartoptions
+    );
+
+    orderChart2.render();
+
+    var orderChart3 = new ApexCharts(
+        document.querySelector("#orders-received-chart3"),
+        orderChartoptions
+    );
+
+    orderChart3.render();
+
+    var orderChart4 = new ApexCharts(
+        document.querySelector("#orders-received-chart4"),
+        orderChartoptions
+    );
+
+    orderChart4.render();
+
+    var orderChart6 = new ApexCharts(
+        document.querySelector("#orders-received-chart6"),
+        orderChartoptions
+    );
+
+    orderChart6.render();
+
+    var orderChart7 = new ApexCharts(
+        document.querySelector("#orders-received-chart7"),
+        orderChartoptions
+    );
+
+    orderChart7.render();
+
+    var orderChart8 = new ApexCharts(
+        document.querySelector("#orders-received-chart8"),
+        orderChartoptions
+    );
+
+    orderChart8.render();
+
+    var orderChart9 = new ApexCharts(
+        document.querySelector("#orders-received-chart9"),
+        orderChartoptions
+    );
+
+    orderChart9.render();
   // Orders Received Chart ends //
 
 

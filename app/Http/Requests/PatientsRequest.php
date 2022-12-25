@@ -24,7 +24,6 @@ class PatientsRequest extends FormRequest
      */
     public function rules()
     {
-//        dd(request()->all());
         return [
             'name_ar' => ['required','max:255'],
             'name_en' => ['required','max:255'],
@@ -32,6 +31,7 @@ class PatientsRequest extends FormRequest
             'age' => ['required','numeric'],
             'address' => ['required','max:255'],
             'gender' => ['required','in:0,1'],
+            'clinic_id' => ['required'],
             'national_id' => ['required','max:20',Rule::unique('patients','national_id')->ignore($this->id)],
         ];
     }

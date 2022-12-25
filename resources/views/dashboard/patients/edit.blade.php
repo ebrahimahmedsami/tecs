@@ -21,6 +21,7 @@
                             <form class="form form-vertical" method="POST" action="{{route('admin.patients.update',$patient->id)}}" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
+                                <input type="hidden" name="id" value="{{$patient->id}}">
                                 <div class="row">
                                     <div class="form-group col-sm-3">
                                         <label for="name_ar">{{__('dashboard.name_ar')}}
@@ -71,6 +72,23 @@
                                                 @endforeach
                                             </select>
                                             @error('gender')
+                                            <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
+                                            @enderror
+                                        </label>
+                                    </div>
+                                    <div class="form-group col-sm-3">
+                                        <label style="width: 100%" for="clinic_id">{{__('dashboard.clinics')}}
+                                            <select class="form-control" name="clinic_id">
+                                                @if(is_countable($clinics) && count($clinics) > 0)
+                                                    <option disabled selected>{{__('dashboard.choose_clinic')}}</option>
+                                                    @foreach($clinics as $value)
+                                                        <option @if(in_array($value->id,$patient->clinics->pluck('id')->toArray())) selected @endif value="{{$value->id}}">{{$value->name}}</option>
+                                                    @endforeach
+                                                @else
+                                                    <option selected value="{{$clinics->id}}">{{$clinics->name}}</option>
+                                                @endif
+                                            </select>
+                                            @error('clinic_id')
                                             <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
                                             @enderror
                                         </label>

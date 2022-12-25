@@ -19,6 +19,8 @@ class CreateReservationsTable extends Migration
             $table->unsignedBigInteger('clinic_id');
             $table->date('date');
             $table->enum('type',[0,1])->default(0)->comment('0=>reserve,1=>discovery');
+            $table->unsignedBigInteger('specialization_id');
+            $table->tinyInteger('status')->default(0)->comment('0=>pending');
             $table->timestamps();
         });
     }

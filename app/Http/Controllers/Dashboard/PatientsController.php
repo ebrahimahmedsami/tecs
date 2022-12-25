@@ -18,8 +18,13 @@ class PatientsController extends Controller
      */
     public function index()
     {
+
         if (\request()->ajax()) {
-            $data =Patient::orderBy('id','desc')->get();
+            if (auth()->user()->clinic){
+                $data = optional(auth()->user()->clinic)->patients;
+            }else{
+                $data =Patient::orderBy('id','desc')->get();
+            }
             return Datatables::of($data)->make(true);
         }
         return view('dashboard.patients.list');
@@ -32,7 +37,12 @@ class PatientsController extends Controller
      */
     public function create()
     {
-        return view('dashboard.patients.add');
+        if (auth()->user()->clinic){
+            $clinics = auth()->user()->clinic;
+        }else{
+            $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
+        }
+        return view('dashboard.patients.add',compact('clinics'));
     }
 
     /**
@@ -43,8 +53,9 @@ class PatientsController extends Controller
      */
     public function store(PatientsRequest $request)
     {
-
-        Patient::create($request->validated());
+        $patient = Patient::create($request->validated());
+        $request->clinic_id = is_array($request->clinic_id) ? $request->clinic_id : [$request->clinic_id];
+        $patient->clinics()->sync($request->clinic_id);
         return redirect()->route('admin.patients.index')->with(['success' => __('dashboard.item added successfully')]);
 
     }
@@ -68,8 +79,13 @@ class PatientsController extends Controller
      */
     public function edit($id)
     {
+        if (auth()->user()->clinic){
+            $clinics = auth()->user()->clinic;
+        }else{
+            $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
+        }
         $patient = Patient::where('id',$id)->first();
-        return view('dashboard.patients.edit',compact('patient'));
+        return view('dashboard.patients.edit',compact('patient','clinics'));
     }
 
     /**
@@ -84,6 +100,8 @@ class PatientsController extends Controller
         $patient = Patient::where('id',$id)->first();
         if ($patient){
             $patient->update($request->validated());
+            $request->clinic_id = is_array($request->clinic_id) ? $request->clinic_id : [$request->clinic_id];
+            $patient->clinics()->sync($request->clinic_id);
         }
         return redirect()->route('admin.patients.index')->with(['success' => __('dashboard.item updated successfully')]);
 

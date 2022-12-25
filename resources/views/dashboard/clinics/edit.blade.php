@@ -69,6 +69,19 @@
                                         </label>
                                     </div>
                                     <div class="form-group col-sm-3">
+                                        <label style="width: 100%" for="role_id">{{__('dashboard.roles')}}
+                                            <select class="form-control select2 role_id" name="role_id">
+                                                <option disabled selected>{{__('dashboard.choose_role')}}</option>
+                                                @foreach($roles as $value)
+                                                    <option value="{{$value->id}}">{{$value->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('role_id')
+                                            <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
+                                            @enderror
+                                        </label>
+                                    </div>
+                                    <div class="form-group col-sm-3">
                                         <label for="disclosure_price">{{__('dashboard.disclosure_price')}}
                                             <input type="number" class="form-control" name="disclosure_price" placeholder="{{__('dashboard.disclosure_price')}}" value="{{$clinic->disclosure_price}}" />
                                             @error('disclosure_price')
@@ -162,6 +175,7 @@
                     placeholder: "{{__('dashboard.choose_doctor')}}",
                 }
             )
+            $('.role_id').select2({placeholder: "{{__('dashboard.choose_role')}}",})
         })
     </script>
 @endsection

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddStatusToReservationsTable extends Migration
+class CreateClinicPatientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddStatusToReservationsTable extends Migration
      */
     public function up()
     {
-        Schema::table('reservations', function (Blueprint $table) {
-            $table->tinyInteger('status')->default(0)->comment('0=>pending');
+        Schema::create('clinic_patients', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('patient_id');
+            $table->unsignedBigInteger('clinic_id');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddStatusToReservationsTable extends Migration
      */
     public function down()
     {
-        Schema::table('reservations', function (Blueprint $table) {
-            $table->dropColumn('status');
-        });
+        Schema::dropIfExists('clinic_patients');
     }
 }

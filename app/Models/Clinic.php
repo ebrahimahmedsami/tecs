@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Traits\Models;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,8 +34,36 @@ class Clinic extends Model
         return $this->hasMany(Reservation::class,'clinic_id');
     }
 
+    public function today_reservations(){
+        $today = Carbon::today()->format('Y-m-d');
+        return $this->hasMany(Reservation::class,'clinic_id')->ofGetReservationsToday($today);
+    }
+
     public function doctor(){
         return $this->belongsTo(Doctor::class,'doctor_id');
+    }
+
+
+    public function patients(){
+        return $this->belongsToMany(Patient::class, 'clinic_patients', 'clinic_id', 'patient_id');
+    }
+
+    public function scopeOfStats(){
+        return $this->withCount(['patients'])
+            ->withCount([
+                'reservations',
+                'reservations as disclosure_count' => function ($query) {
+                    $query->where('type', (string)0);
+                },'reservations as discovery_count' => function ($query) {
+                    $query->where('type', (string)1);
+                }])
+            ->withCount([
+                'today_reservations',
+                'today_reservations as disclosure_today_count' => function ($query) {
+                    $query->where('type', (string)0);
+                },'today_reservations as discovery_today_count' => function ($query) {
+                    $query->where('type', (string)1);
+                }]);
     }
 
 

@@ -9,6 +9,7 @@ use App\Models\Doctor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 use Yajra\DataTables\Facades\DataTables;
 
 class ClinicsController extends Controller
@@ -35,7 +36,8 @@ class ClinicsController extends Controller
     public function create()
     {
         $doctors = Doctor::all();
-        return view('dashboard.clinics.add',compact('doctors'));
+        $roles = Role::where('name','!=','super_admin')->get();
+        return view('dashboard.clinics.add',compact('doctors','roles'));
     }
 
     /**
@@ -47,7 +49,7 @@ class ClinicsController extends Controller
     public function store(ClinicsRequest $request)
     {
         $exception = DB::transaction(function() use ($request) {
-
+            $role = Role::where('id',$request->role_id)->first();
                 $clinic = Clinic::create([
                    'doctor_id' => $request->doctor,
                    'name_en' => $request->name_en,
@@ -64,13 +66,14 @@ class ClinicsController extends Controller
                 ]);
 
                 if ($clinic){
-                    User::create([
+                    $user = User::create([
                         'name' => $clinic->name_en,
                         'email' => $clinic->email,
                         'password' => bcrypt($request->password),
                         'type_type' => 'App\\Models\\Clinic',
                         'type_id' => $clinic->id
                     ]);
+                    $user->assignRole($role);
                 }
 
 
@@ -99,7 +102,8 @@ class ClinicsController extends Controller
     {
         $clinic = Clinic::where('id',$id)->with('user')->first();
         $doctors = Doctor::all();
-        return view('dashboard.clinics.edit',compact('clinic','doctors'));
+        $roles = Role::where('name','!=','super_admin')->get();
+        return view('dashboard.clinics.edit',compact('clinic','doctors','roles'));
     }
 
     /**
@@ -112,7 +116,6 @@ class ClinicsController extends Controller
     public function update(ClinicsRequest $request, $id)
     {
         $exception = DB::transaction(function() use ($request,$id) {
-
             $clinic = Clinic::find($id);
             $clinic->update([
                 'doctor_id' => $request->doctor,
@@ -134,10 +137,14 @@ class ClinicsController extends Controller
                     'name' => $clinic->name_en,
                     'email' => $clinic->email,
                 ]);
-                if ($request->has('password')){
+                if ($request->has('password') && !empty($request->password)){
                     $clinic->user->update([
                         'password' => bcrypt($request->password),
                     ]);
+                }
+                if ($request->has('role_id') && !empty($request->role_id)){
+                    $role = Role::where('id',$request->role_id)->first();
+                    $clinic->user->assignRole($role);
                 }
             }
 

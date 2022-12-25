@@ -34,7 +34,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             Route::post('login', [AuthController::class, 'login'])->name('startSession');
 
 
-            Route::group(['middleware' => 'auth'],function (){
+            Route::group(['middleware' => ['auth','ckeckBlocked']],function (){
                 //Home
                 Route::get('home',[HomeController::class,'index'])->name('home');
                 Route::get('destroy',[AuthController::class,'logout'])->name('logout');

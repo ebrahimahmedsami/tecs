@@ -31,56 +31,89 @@
             @endcan
 
             {{--     Doctors       --}}
+            @can('doctors')
             <li class=" nav-item"><a href="#"><i class="feather icon-list"></i><span class="menu-title" data-i18n="Data List">{{__('dashboard.doctors')}}</span></a>
                 <ul class="menu-content">
+                    @can('doctors')
                     <li class="{{Route::is('admin.doctors.index')? 'active':''}}"><a href="{{route('admin.doctors.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List View">{{__('dashboard.doctors_list')}}</span></a>
                     </li>
+                    @endcan
+                    @can('add doctors')
                     <li class="{{Route::is('admin.doctors.create')? 'active':''}}"><a href="{{route('admin.doctors.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Thumb View">{{__('dashboard.add_doctor')}}</span></a>
                     </li>
+                        @endcan
                 </ul>
             </li>
+            @endcan
 
             {{--     Specializations       --}}
+            @can('specialization')
             <li class=" nav-item"><a href="#"><i class="feather icon-list"></i><span class="menu-title" data-i18n="Data List">{{__('dashboard.specializations')}}</span></a>
                 <ul class="menu-content">
+                    @can('specialization')
                     <li class="{{Route::is('admin.specializations.index')? 'active':''}}"><a href="{{route('admin.specializations.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List View">{{__('dashboard.specializations_list')}}</span></a>
                     </li>
+                    @endcan
+                    @can('add specialization')
                     <li class="{{Route::is('admin.specializations.create')? 'active':''}}"><a href="{{route('admin.specializations.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Thumb View">{{__('dashboard.add_specialization')}}</span></a>
                     </li>
+                        @endcan
                 </ul>
             </li>
+            @endcan
 
             {{--     Clinics       --}}
+            @can('clinics')
             <li class=" nav-item"><a href="#"><i class="feather icon-list"></i><span class="menu-title" data-i18n="Data List">{{__('dashboard.clinics')}}</span></a>
                 <ul class="menu-content">
+                    @can('clinics')
                     <li class="{{Route::is('admin.clinics.index')? 'active':''}}"><a href="{{route('admin.clinics.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List View">{{__('dashboard.clinics_list')}}</span></a>
                     </li>
+                    @endcan
+                    @can('add clinics')
                     <li class="{{Route::is('admin.clinics.create')? 'active':''}}"><a href="{{route('admin.clinics.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Thumb View">{{__('dashboard.add_clinic')}}</span></a>
                     </li>
+                        @endcan
                 </ul>
             </li>
+            @endcan
 
             {{--     Patients       --}}
+            @can('patients')
             <li class=" nav-item"><a href="#"><i class="feather icon-list"></i><span class="menu-title" data-i18n="Data List">{{__('dashboard.patients')}}</span></a>
                 <ul class="menu-content">
+                    @can('patients')
                     <li class="{{Route::is('admin.patients.index')? 'active':''}}"><a href="{{route('admin.patients.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List View">{{__('dashboard.patients_list')}}</span></a>
                     </li>
+                    @endcan
+                    @can('add patients')
                     <li class="{{Route::is('admin.patients.create')? 'active':''}}"><a href="{{route('admin.patients.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Thumb View">{{__('dashboard.add_patient')}}</span></a>
                     </li>
+                        @endcan
                 </ul>
             </li>
+            @endcan
 
             {{--     Reservations       --}}
+            @can('reservations')
             <li class=" nav-item"><a href="#"><i class="feather icon-list"></i><span class="menu-title" data-i18n="Data List">{{__('dashboard.reserve')}}</span></a>
                 <ul class="menu-content">
+                    @can('reservations')
                     <li class="{{Route::is('admin.reservations.index')? 'active':''}}"><a href="{{route('admin.reservations.index')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List View">{{__('dashboard.reserve_list')}}</span></a>
                     </li>
+                    @endcan
+                    @can('add reservations')
                     <li class="{{Route::is('admin.reservations.create')? 'active':''}}"><a href="{{route('admin.reservations.create')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Thumb View">{{__('dashboard.add_reserve')}}</span></a>
                     </li>
-                    <li class="{{Route::is('admin.today_reservations')? 'active':''}}"><a href="{{route('admin.today_reservations')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Thumb View">{{__('dashboard.today_reservations')}}</span></a>
+                        @endcan
+                        @can('show today reservations')
+
+                        <li class="{{Route::is('admin.today_reservations')? 'active':''}}"><a href="{{route('admin.today_reservations')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Thumb View">{{__('dashboard.today_reservations')}}</span></a>
                     </li>
+                        @endcan
                 </ul>
             </li>
+                @endcan
 
         </ul>
     </div>
