@@ -42,7 +42,6 @@
         <div class="masthead-subheading">Welcome To Our TECS!</div>
         <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
         <a class="btn btn-primary btn-xl text-uppercase" id="reserve-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">{{__('home.reserve with us')}}</a>
-
     </div>
 </header>
 
