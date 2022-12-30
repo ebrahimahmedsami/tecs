@@ -116,7 +116,7 @@
                 @endcan
 
             {{--     Settings       --}}
-{{--            @can('reservations')--}}
+            @can('update settings')
                 <li class=" nav-item"><a href="#"><i class="feather icon-list"></i><span class="menu-title" data-i18n="Data List">{{__('dashboard.settings')}}</span></a>
                     <ul class="menu-content">
                         <li class="{{Route::is('admin.settings.main-section')? 'active':''}}"><a href="{{route('admin.settings.main-section')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List View">{{__('dashboard.main_section')}}</span></a>
@@ -124,7 +124,7 @@
 
                     </ul>
                 </li>
-{{--            @endcan--}}
+            @endcan
         </ul>
     </div>
 </div>
