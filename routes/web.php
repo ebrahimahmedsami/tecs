@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\PatientsController;
 use App\Http\Controllers\Dashboard\ReservationsController;
 use App\Http\Controllers\Dashboard\RolesController;
+use App\Http\Controllers\Dashboard\SettingsController;
 use App\Http\Controllers\Dashboard\SpecilizationsController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -62,6 +63,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 Route::post('/reservations/change_status', [ReservationsController::class,'change_status'])->name('change_status');
 
 
+                //Settings
+                Route::get('settings/main-section', [SettingsController::class,'main_section'])->name('settings.main-section');
+                Route::post('settings/main-section/update', [SettingsController::class,'main_section_update'])->name('settings.main-section.update');
 
             });
         });

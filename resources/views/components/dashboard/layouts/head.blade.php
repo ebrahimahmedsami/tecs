@@ -88,4 +88,5 @@
     <link rel="stylesheet" type="text/css" href="{{asset('dashboardAssets/app-assets/vendors/css/tables/datatable/datatables.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('dashboardAssets/app-assets/css/pickers/pickadate/pickadate.css')}}">
 
+    @yield('styles')
 </head>
