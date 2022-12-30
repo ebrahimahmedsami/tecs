@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -23,8 +24,26 @@ class PermissionsSeeder extends Seeder
         DB::table('model_has_permissions')->truncate();
         DB::table('roles')->truncate();
         DB::table('users')->truncate();
+        DB::table('settings')->truncate();
         DB::table('role_has_permissions')->truncate();
         Schema::enableForeignKeyConstraints();
+
+        # Clinic Permissions
+        $clinicsRPermissions = [
+            'patients',
+            'add patients',
+            'edit patients',
+            'show patients',
+            'delete patients',
+            'reservations',
+            'add reservations',
+            'edit reservations',
+            'show reservations',
+            'delete reservations',
+            'show today reservations',
+        ];
+
+        # Admin Permissions
         $permissions = [
             ['guard_name' => 'web', 'name' => 'roles'],
             ['guard_name' => 'web', 'name' => 'add role'],
@@ -63,10 +82,23 @@ class PermissionsSeeder extends Seeder
             ['guard_name' => 'web', 'name' => 'delete reservations'],
             ['guard_name' => 'web', 'name' => 'show today reservations'],
 
+            ['guard_name' => 'web', 'name' => 'update settings'],
         ];
+
+        # Admin Role
         $role = Role::create([
             'name' => 'super_admin'
         ]);
+
+
+
+        # Create First Settings
+        Setting::create([
+           'header' => 'welcome in tecs',
+           'about' => 'about tecs',
+        ]);
+
+        # Admin User
         $user = User::create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
@@ -76,7 +108,21 @@ class PermissionsSeeder extends Seeder
             'type_id' => 0,
         ]);
         Permission::insert($permissions);
-        $role->syncPermissions(Permission::all());
+        $allPermissions = Permission::all();
+        $role->syncPermissions($allPermissions);
         $user->assignRole($role);
+
+
+        # Clinic Role
+        $clinicRole = Role::create([
+            'name' => 'clinic'
+        ]);
+        $resultCollection = [];
+        $allPermissions->map(function ($permission) use ($clinicsRPermissions,&$resultCollection){
+            if (in_array($permission->name, $clinicsRPermissions)){
+                $resultCollection[] = $permission;
+            }
+        });
+        $clinicRole->syncPermissions($resultCollection);
     }
 }
