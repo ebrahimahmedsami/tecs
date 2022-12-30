@@ -163,4 +163,6 @@ class ReservationsController extends Controller
         }
         return response()->json(['data' => 'status changed',200]);
     }
+
+
 }

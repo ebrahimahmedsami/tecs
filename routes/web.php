@@ -68,6 +68,12 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 Route::post('settings/main-section/update', [SettingsController::class,'main_section_update'])->name('settings.main-section.update');
 
             });
+
+
         });
+
     });
+
+    //home routes
+    Route::get('checkPatientExistence',[\App\Http\Controllers\Front\ReservationsController::class,'checkPatientExistence'])->name('home.checkPatientExistence');
 });
