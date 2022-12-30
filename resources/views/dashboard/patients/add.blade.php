@@ -77,13 +77,13 @@
                                     <div class="form-group col-sm-3">
                                         <label style="width: 100%" for="clinic_id">{{__('dashboard.clinics')}}
                                             <select class="form-control" name="clinic_id">
-                                                @if(is_countable($clinics) && count($clinics) > 0)
+                                                @if(auth()->user()->hasRole('clinic'))
+                                                    <option selected value="{{$clinics->id}}">{{$clinics->name}}</option>
+                                                @else
                                                     <option disabled selected>{{__('dashboard.choose_clinic')}}</option>
-                                                @foreach($clinics as $value)
+                                                    @foreach($clinics as $value)
                                                         <option value="{{$value->id}}">{{$value->name}}</option>
                                                     @endforeach
-                                                @else
-                                                    <option selected value="{{$clinics->id}}">{{$clinics->name}}</option>
                                                 @endif
                                             </select>
                                             @error('clinic_id')
