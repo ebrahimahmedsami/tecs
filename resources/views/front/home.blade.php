@@ -41,9 +41,17 @@
     <div class="container">
         <div class="masthead-subheading">Welcome To Our TECS!</div>
         <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-        <a class="btn btn-primary btn-xl text-uppercase" href="#services">Tell Me More</a>
+{{--        <a class="btn btn-primary btn-xl text-uppercase" id="reserve-modal" data-toggle="modal" data-target="#inlineForm">{{__('home.reserve with us')}}</a>--}}
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Launch demo modal
+        </button>
     </div>
 </header>
+
+<!-- start modal-->
+
+<!-- end modal-->
 <!-- Services-->
 <section class="page-section" id="services">
     <div class="container">
@@ -80,6 +88,7 @@
     </div>
 </section>
 <!-- Portfolio Grid-->
+
 <section class="page-section bg-light" id="portfolio">
     <div class="container">
         <div class="text-center">
@@ -597,6 +606,7 @@
         </div>
     </div>
 </div>
+<x-reserve-component_modal />
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->

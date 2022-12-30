@@ -37,4 +37,8 @@ class Reservation extends Model
         }
         $builder->whereDate('date',$value);
     }
+    public function scopeOfStatus(Builder $builder,$value){
+        $value = is_array($value) ? $value : [$value];
+        $builder->whereIn('status',$value);
+    }
 }
