@@ -58,10 +58,8 @@
 <script src="{{asset('dashboardAssets/app-assets/js/scripts/pickers/pickadate/legacy.js')}}"></script>
 <script src="{{asset('dashboardAssets/app-assets/js/scripts/pickers/pickers/dateTime/pick-a-datetime.js')}}"></script>
 
-@yield('script')
 
 <script>
-    $(document).ready(function (){
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -92,6 +90,5 @@
                 }
             })
         }
-        });
-
 </script>
+@yield('script')

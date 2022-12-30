@@ -60,7 +60,7 @@ class ReservationsController extends Controller
         if (!$clinic)
             return redirect()->route('admin.reservations.index')->with(['success' =>__('dashboard.there is no such this data')]);
 
-        $todayCapacity = $clinic->reservations->ofGetReservationsToday($request->date)->ofStatus([0,1])->count();
+        $todayCapacity = $clinic->reservations()->ofGetReservationsToday($request->date)->ofStatus([0,1])->count();
 
         if ($todayCapacity >= $clinic->today_capacity)
             return redirect()->route('admin.reservations.index')->with(['success' =>__('dashboard.number of reservations exceeded')]);

@@ -9,18 +9,18 @@ $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
                 <h5 class="modal-title" id="exampleModalLabel">{{__('home.reserve with us')}}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form  method="POST" id="modal-reserve-form">
-                @csrf
-
+            <form id="modal-reserve-form">
                 <div class="modal-body">
                     <div class="row">
                         <div class="mb-2">
                             <h5 class="modal-title" id="exampleModalLabel">{{__('home.reservation data')}}</h5>
+                            <div class="alert alert-danger capacity_error" style="display: none;"></div>
+                            <div class="alert alert-success reservation_success" style="display: none;"></div>
                         </div>
                         <div class="form-group col-6">
-                            <label for="first-name-icon" class="mb-1">{{__('home.national_id')}}</label>
+                            <label for="modal_national_id" class="mb-1">{{__('home.national_id')}}</label>
                             <div class="position-relative has-icon-left">
-                                <input type="number" id="modal-national_id"  class="form-control" name="national_id" placeholder="{{__('home.national_id')}}"
+                                <input type="number" id="modal_national_id"  class="form-control" name="modal_national_id" placeholder="{{__('home.national_id')}}"
                                        pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==14) return false;" min="11111111111111">
 
                                 <div class="form-control-position">
@@ -28,154 +28,129 @@ $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
                                 </div>
                                 <span class="text text-danger" id="alert-length"></span>
                             </div>
-                            @error('national_id')
-                            <span class="text text-danger">{{$message}}</span>
-                            @enderror
+                            <span class="text text-danger national_id_error"></span>
                         </div>
 
                         <div class="form-group col-6">
-                            <label for="first-name-icon" class="mb-1">{{__('home.date')}}</label>
+                            <label for="modal_date" class="mb-1">{{__('home.date')}}</label>
                             <div class="position-relative has-icon-left">
-                                <input type="date" id="modal-date" class="form-control" name="date" placeholder="{{__('home.date')}}" min="{{date('Y-m-d')}}">
+                                <input type="date" id="modal_date" class="form-control" name="modal_date" placeholder="{{__('home.date')}}" min="{{date('Y-m-d')}}">
                                 <div class="form-control-position">
                                     <i class="feather icon-grid"></i>
                                 </div>
                             </div>
-                            @error('date')
-                            <span class="text text-danger">{{$message}}</span>
-                            @enderror
+                            <span class="text text-danger date_error"></span>
                         </div>
 
                         <div class="form-group col-6">
                             <label
-                                for="first-name-icon" class="mb-1">{{__('home.reserve_type')}}</label>
-                            <select name="type" id="type"
+                                for="modal_type" class="mb-1">{{__('home.reserve_type')}}</label>
+                            <select name="modal_type" id="modal_type"
                                     class="select2 form-control">
-                                <optgroup label="{{__('home.choose one')}}">
+                                <option selected disabled>{{__('home.choose one')}}</option>
                                     @foreach(reservation_types() as $key=>$type)
                                         <option value="{{$key}}">{{$type}}</option>
                                     @endforeach
-                                </optgroup>
                             </select>
-                            @error('type')
-                            <span class="text text-danger">{{$message}}</span>
-                            @enderror
+                            <span class="text text-danger type_error"></span>
                         </div>
 
                         <div class="form-group col-6">
-                            <label
-                                for="first-name-icon" class="mb-1">{{__('home.clinic')}}</label>
-                            <select name="clinic_id" id="clinic_id"
-                                    class="select2 form-control clinic_id">
-                                <optgroup label="{{__('home.choose one')}}">
-                                    <option value="" disabled selected>{{__('home.choose one')}}</option>
-                                    @foreach($clinics as $clinic)
-                                        <option value="{{$clinic->id}}">{{$clinic->name}}</option>
-                                    @endforeach
-                                </optgroup>
+                            <label for="modal_clinic_id" class="mb-1">{{__('home.clinic')}}</label>
+                            <select name="modal_clinic_id" id="modal_clinic_id" class="select2 form-control clinic_id">
+                                <option value="" disabled selected>{{__('home.choose one')}}</option>
+                                @foreach($clinics as $clinic)
+                                    <option value="{{$clinic->id}}">{{$clinic->name}}</option>
+                                @endforeach
                             </select>
-                            @error('clinic_id')
-                            <span class="text text-danger">{{$message}}</span>
-                            @enderror
+                            <span class="text text-danger clinic_id_error"></span>
                         </div>
 
                         <div class="form-group col-12 mb-5" id="specialization">
-                            <label
-                                for="first-name-icon" class="mb-1">{{__('home.specialization')}}</label>
-                            <select name="specialization_id" id="specialization_id"
-                                    class="select2 form-control">
-                                <optgroup label="{{__('home.choose one')}}" id="specialization_id">
-                                </optgroup>
+                            <label for="specialization_id" class="mb-1">{{__('home.specialization')}}</label>
+                            <select name="modal_specialization_id" id="specialization_id" class="select2 form-control">
                             </select>
+                            <span class="text text-danger specialization_id_error"></span>
                         </div>
 
-                        <div class="mb-2 mt-2 modal-patient-data row">
-                            <h5 class="modal-title" id="exampleModalLabel">{{__('home.patient data')}}</h5>
+                        {{--       New Patient         --}}
+                        <div style="display: none" class="mb-2 mt-5 modal-patient-data row">
+                            <h5 class="modal-title">{{__('home.patient data')}}</h5>
+                            <span class="text-danger mb-2">({{__('home.new_patient')}})</span>
                             <div class="form-group col-6">
-                                <label for="first-name-icon" class="mb-1">{{__('home.name ar')}}</label>
+                                <label for="modal_name_ar" class="mb-1">{{__('home.name ar')}}</label>
                                 <div class="position-relative has-icon-left">
-                                    <input type="text" id="modal-name_ar" class="form-control" name="name_ar" placeholder="{{__('home.name ar')}}">
+                                    <input type="text" id="modal_name_ar" class="form-control" name="name_ar" placeholder="{{__('home.name ar')}}">
                                     <div class="form-control-position">
                                         <i class="feather icon-grid"></i>
                                     </div>
                                 </div>
-                                @error('name_ar')
-                                <span class="text text-danger">{{$message}}</span>
-                                @enderror
+                                <span class="text text-danger name_ar_error"></span>
                             </div>
 
                             <div class="form-group col-6">
-                                <label for="first-name-icon" class="mb-1">{{__('home.name en')}}</label>
+                                <label for="modal_name_en" class="mb-1">{{__('home.name en')}}</label>
                                 <div class="position-relative has-icon-left">
-                                    <input type="text" id="modal-name_en" class="form-control" name="name_en" placeholder="{{__('home.name en')}}">
+                                    <input type="text" id="modal_name_en" class="form-control" name="name_en" placeholder="{{__('home.name en')}}">
                                     <div class="form-control-position">
                                         <i class="feather icon-grid"></i>
                                     </div>
                                 </div>
-                                @error('name_en')
-                                <span class="text text-danger">{{$message}}</span>
-                                @enderror
+                                <span class="text text-danger name_en_error"></span>
                             </div>
 
                             <div class="form-group col-6">
-                                <label for="first-name-icon" class="mb-1">{{__('home.phone')}}</label>
+                                <label for="modal_phone" class="mb-1">{{__('home.phone')}}</label>
                                 <div class="position-relative has-icon-left">
-                                    <input type="number" id="modal-phone" class="form-control" name="phone" placeholder="{{__('home.phone')}}">
+                                    <input type="number" id="modal_phone" class="form-control" name="phone" placeholder="{{__('home.phone')}}">
                                     <div class="form-control-position">
                                         <i class="feather icon-grid"></i>
                                     </div>
                                 </div>
-                                @error('phone')
-                                <span class="text text-danger">{{$message}}</span>
-                                @enderror
+                                <span class="text text-danger phone_error"></span>
                             </div>
 
                             <div class="form-group col-6">
-                                <label for="first-name-icon" class="mb-1">{{__('home.address')}}</label>
+                                <label for="modal_address" class="mb-1">{{__('home.address')}}</label>
                                 <div class="position-relative has-icon-left">
-                                    <input type="text" id="modal-address" class="form-control" name="address" placeholder="{{__('home.address')}}">
+                                    <input type="text" id="modal_address" class="form-control" name="address" placeholder="{{__('home.address')}}">
                                     <div class="form-control-position">
                                         <i class="feather icon-grid"></i>
                                     </div>
                                 </div>
-                                @error('address')
-                                <span class="text text-danger">{{$message}}</span>
-                                @enderror
+                                <span class="text text-danger address_error"></span>
                             </div>
 
                             <div class="form-group col-6">
-                                <label for="first-name-icon" class="mb-1">{{__('home.age')}}</label>
+                                <label for="modal_age" class="mb-1">{{__('home.age')}}</label>
                                 <div class="position-relative has-icon-left">
-                                    <input type="number" id="modal-age" class="form-control" name="age" placeholder="{{__('home.age')}}">
+                                    <input type="number" id="modal_age" class="form-control" name="age" placeholder="{{__('home.age')}}">
                                     <div class="form-control-position">
                                         <i class="feather icon-grid"></i>
                                     </div>
                                 </div>
-                                @error('age')
-                                <span class="text text-danger">{{$message}}</span>
-                                @enderror
+                                <span class="text text-danger age_error"></span>
                             </div>
 
                             <div class="form-group col-6">
                                 <label
-                                    for="first-name-icon" class="mb-1">{{__('home.gender')}}</label>
-                                <select name="gender" id="type"
+                                    for="modal_gender" class="mb-1">{{__('home.gender')}}</label>
+                                <select name="gender" id="modal_gender"
                                         class="select2 form-control">
-                                    <optgroup label="{{__('home.choose one')}}">
+                                    <option selected disabled>{{__('home.choose one')}}</option>
                                         @foreach(gender() as $key=>$gender)
                                             <option value="{{$key}}">{{$gender}}</option>
                                         @endforeach
-                                    </optgroup>
                                 </select>
-                                @error('gender')
-                                <span class="text text-danger">{{$message}}</span>
-                                @enderror
+                                <span class="text text-danger gender_error"></span>
                             </div>
+                        </div>
+                        <div style="display: none" class="mb-2 mt-5 modal-patient-old-data row">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary send-reservation">
                         {{__('home.save')}}</button>
                 </div>
             </form>
@@ -186,14 +161,17 @@ $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
     <script>
         $(document).ready(function (){
             $('#specialization').hide();
-            $('.modal-patient-data').hide();
-            $('#clinic_id').on('change',function (){
-                getSpecializations($('#clinic_id').val());
+            $('#modal_date').attr('disabled',true)
+            $('#modal_type').attr('disabled',true)
+            $('#modal_clinic_id').attr('disabled',true)
+            $('#modal_clinic_id').on('change',function (){
+                getSpecializations($('#modal_clinic_id').val());
             });
 
+            // Get Clinic Specializations
             function getSpecializations(selectedID = null){
                 $('#specialization_id').empty()
-                let clinicId = $('#clinic_id').val();
+                let clinicId = $('#modal_clinic_id').val();
                 let url = '/admin/get_clinic_specializations'
                 $.ajax({
                     url: url,
@@ -214,12 +192,21 @@ $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
                     }});
             }
 
-            $('#modal-national_id').focusout(function (){
+            // Check If patient Exist
+            $('#modal_national_id').focusout(function (){
                 let nationalId = $(this).val()
                 if(nationalId.length != 14){
+                    $('#modal_date').prop('disabled',true)
+                    $('#modal_type').prop('disabled',true)
+                    $('#modal_clinic_id').prop('disabled',true)
                     $('#alert-length').show().text("{{__('home.length must be equal 14')}}");
+                    $('.modal-patient-data').hide()
+                    $('.modal-patient-old-data').hide()
                     return false;
                 }
+                $('#modal_date').prop("disabled", false);
+                $('#modal_type').prop("disabled", false);
+                $('#modal_clinic_id').prop("disabled", false);
                 $('#alert-length').empty().hide();
                 $.ajax({
                     url: "{{route('home.checkPatientExistence')}}",
@@ -228,11 +215,79 @@ $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
                         national_id: nationalId,
                     },
                     success: function(result){
-                       // if (result.flag){
-                       //
-                       // }
+                       if (result.flag){
+                           $('.modal-patient-data').hide()
+                           $('.modal-patient-old-data').empty().show()
+                               .append('<h5 class="modal-title">{{__('home.patient data')}}</h5>')
+                               .append('<span class="text-success mb-2">({{__('home.old_patient')}})</span>')
+                               .append(result.data)
+                       }else{
+                           $('.modal-patient-data').show()
+                           $('.modal-patient-old-data').hide()
+                       }
                     }});
             });
+
+            // Start Reservation
+            $('.send-reservation').on('click',function (e){
+                e.preventDefault();
+                $('.capacity_error').hide().empty()
+                $('.reservation_success').hide().empty()
+                $('.national_id_error').empty()
+                $('.date_error').empty()
+                $('.type_error').empty()
+                $('.clinic_id_error').empty()
+                $('.specialization_id_error').empty()
+                $('.name_ar_error').empty()
+                $('.name_en_error').empty()
+                $('.phone_error').empty()
+                $('.address_error').empty()
+                $('.age_error').empty()
+                $('.gender_error').empty()
+                $.ajax({
+                    url: "{{route('home.storeReservation')}}",
+                    headers:{'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
+                    method: 'post',
+                    data: {
+                        data: $('#modal-reserve-form').serialize(),
+                    },
+                    success: function(result){
+                        $('.reservation_success').show().text(result.success)
+                        setTimeout(function (){
+                            location.reload()
+                        },1000)
+                    },
+                    error: function (err){
+                        let errors = err.responseJSON.errors;
+                        if(errors) {
+                            if (errors.modal_national_id)
+                                $('.national_id_error').text(errors.modal_national_id[0])
+                            if (errors.modal_date)
+                                $('.date_error').text(errors.modal_date[0])
+                            if (errors.modal_type)
+                                $('.type_error').text(errors.modal_type[0])
+                            if (errors.modal_clinic_id)
+                                $('.clinic_id_error').text(errors.modal_clinic_id[0])
+                            if (errors.modal_specialization_id)
+                                $('.specialization_id_error').text(errors.modal_specialization_id[0])
+                            if (errors.name_ar)
+                                $('.name_ar_error').text(errors.name_ar[0])
+                            if (errors.name_en)
+                                $('.name_en_error').text(errors.name_en[0])
+                            if (errors.phone)
+                                $('.phone_error').text(errors.phone[0])
+                            if (errors.address)
+                                $('.address_error').text(errors.address[0])
+                            if (errors.age)
+                                $('.age_error').text(errors.age[0])
+                            if (errors.gender)
+                                $('.gender_error').text(errors.gender[0])
+                        }
+                        if(err.responseJSON.error_capacity)
+                            $('.capacity_error').show().text(err.responseJSON.error_capacity)
+                    }
+                });
+            })
         });
     </script>
 @endsection
