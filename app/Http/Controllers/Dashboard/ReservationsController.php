@@ -56,6 +56,15 @@ class ReservationsController extends Controller
      */
     public function store(ReservationssRequest $request)
     {
+        $clinic = Clinic::find($request->clinic_id);
+        if (!$clinic)
+            return redirect()->route('admin.reservations.index')->with(['success' =>__('dashboard.there is no such this data')]);
+
+        $todayCapacity = $clinic->reservations->where('date',$request->date)->count();
+
+        if ($todayCapacity >= $clinic->today_capacity)
+            return redirect()->route('admin.reservations.index')->with(['success' =>__('dashboard.number of reservations exceeded')]);
+
         Reservation::create($request->validated());
         return redirect()->route('admin.reservations.index')->with(['success' => __('dashboard.item added successfully')]);
     }
