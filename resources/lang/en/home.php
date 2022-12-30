@@ -68,7 +68,7 @@ return [
     'reserve_type_select' => 'reserve_type_select',
     'discovery_type_select' => 'discovery_type_select',
     'clinic' => 'clinic' ,
-    '' => '',
+    'specialization' => 'specialization',
     '' => '',
     '' => '',
     '' => '',

@@ -41,11 +41,8 @@
     <div class="container">
         <div class="masthead-subheading">Welcome To Our TECS!</div>
         <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
-{{--        <a class="btn btn-primary btn-xl text-uppercase" id="reserve-modal" data-toggle="modal" data-target="#inlineForm">{{__('home.reserve with us')}}</a>--}}
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Launch demo modal
-        </button>
+        <a class="btn btn-primary btn-xl text-uppercase" id="reserve-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">{{__('home.reserve with us')}}</a>
+
     </div>
 </header>
 

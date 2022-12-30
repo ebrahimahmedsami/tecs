@@ -60,6 +60,7 @@ return[
     'reserve_type_select' => 'حجز' ,
     'discovery_type_select' => 'إعادة' ,
     'clinic' => 'العيادة' ,
+    'specialization' => 'التخصص',
     '' => '',
     '' => '',
     '' => '',
