@@ -83,6 +83,8 @@ class PermissionsSeeder extends Seeder
             ['guard_name' => 'web', 'name' => 'show today reservations'],
 
             ['guard_name' => 'web', 'name' => 'update settings'],
+            ['guard_name' => 'web', 'name' => 'contact us list'],
+            ['guard_name' => 'web', 'name' => 'contact us delete'],
         ];
 
         # Admin Role

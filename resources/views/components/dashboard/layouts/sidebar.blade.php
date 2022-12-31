@@ -126,7 +126,7 @@
             @endcan
 
             {{--     Contact Us       --}}
-            @can('update settings')
+            @can('contact us list')
                 <li class=" nav-item"><a href="#"><i class="feather icon-list"></i><span class="menu-title" data-i18n="Data List">{{__('dashboard.contact_us')}}</span></a>
                     <ul class="menu-content">
                         <li class="{{Route::is('admin.contactUs.contact-us-view')? 'active':''}}"><a href="{{route('admin.contactUs.contact-us-view')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List View">{{__('dashboard.contact_us')}}</span></a>

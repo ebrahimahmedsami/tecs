@@ -86,12 +86,14 @@
                                 <button class="btn btn-flat-dark dropdown-toggle mr-1 mb-1" type="button" id="dropdownMenuButton700" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {{__('dashboard.actions')}}
                             </button>
+                            @can('contact us delete')
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton700">
                                 <form action='${deleting}' method='POST' class="contactUs-${data}">
                                 @csrf
                                 </form>
                                 <button class="dropdown-item" onClick="remove(${data},'contactUs')"><i class="fa fa-trash mr-1"></i>{{__('dashboard.delete')}}</button>
                             </div>
+                            @endcan
                             </div>
                         </div>`;
                         }
