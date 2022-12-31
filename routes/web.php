@@ -77,4 +77,5 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     //home routes
     Route::get('checkPatientExistence',[\App\Http\Controllers\Front\ReservationsController::class,'checkPatientExistence'])->name('home.checkPatientExistence');
     Route::post('storeReservation',[\App\Http\Controllers\Front\ReservationsController::class,'storeReservation'])->name('home.storeReservation');
+    Route::post('send-contact-us',[\App\Http\Controllers\Dashboard\ContactsController::class,'save_contact_us'])->name('home.send-contact-us');
 });

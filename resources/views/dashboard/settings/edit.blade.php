@@ -24,55 +24,107 @@
                     @endif
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form form-vertical" method="POST" action="{{route('admin.settings.main-section.update')}}" enctype="multipart/form-data">
-                                @csrf
+
+                            <section id="nav-filled">
                                 <div class="row">
-                                    <input type="hidden" name="id" value="{{isset($settings->id) ? $settings->id : null}}" />
-                                    <div class="form-group col-sm-4">
-                                        <label for="header">{{__('dashboard.header')}}
-                                            <input type="text" class="form-control" name="header" placeholder="{{__('dashboard.header')}}" value="{{isset($settings->header) ? $settings->header : ''}}" />
-                                            @error('header')
-                                            <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
-                                            @enderror
-                                        </label>
-                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="card overflow-hidden">
+                                            <div class="card-content">
+                                                <div class="card-body">
+                                                    <!-- Nav tabs -->
+                                                    <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" id="home-tab-fill" data-toggle="tab" href="#home-fill" role="tab" aria-controls="home-fill" aria-selected="true">@lang('dashboard.main_content')</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" id="profile-tab-fill" data-toggle="tab" href="#profile-fill" role="tab" aria-controls="profile-fill" aria-selected="false">@lang('dashboard.services')</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" id="messages-tab-fill" data-toggle="tab" href="#messages-fill" role="tab" aria-controls="messages-fill" aria-selected="false">@lang('dashboard.about_us')</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" id="settings-tab-fill" data-toggle="tab" href="#settings-fill" role="tab" aria-controls="settings-fill" aria-selected="false">@lang('dashboard.clinics')</a>
+                                                        </li>
+                                                    </ul>
 
-                                    <div class="form-group col-sm-4 styledImageDiv">
-                                        <label for="image">{{__('dashboard.banner_image')}}
-                                            <input style="border: none" type="file" class="form-control" name="image" />
-                                            @error('image')
-                                                <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
-                                            @enderror
-                                        </label>
-                                        <img alt="banner image" title="{{__('dashboard.banner_image')}}" width="50" height="50" src="{{isset($settings->image) ? asset('storage/settings/uploads/'.$settings->image) : ''}}">
-                                    </div>
+                                                    <!-- Tab panes -->
+                                                    <div class="tab-content pt-1">
+                                                        <div class="tab-pane active" id="home-fill" role="tabpanel" aria-labelledby="home-tab-fill">
+                                                            <form class="form form-vertical" method="POST" action="{{route('admin.settings.main-section.update')}}" enctype="multipart/form-data">
+                                                                @csrf
+                                                                <div class="row">
+                                                                    <input type="hidden" name="id" value="{{isset($settings->id) ? $settings->id : null}}" />
+                                                                    <div class="form-group col-sm-4">
+                                                                        <label for="header">{{__('dashboard.header')}}
+                                                                            <input type="text" class="form-control" name="header" placeholder="{{__('dashboard.header')}}" value="{{isset($settings->header) ? $settings->header : ''}}" />
+                                                                            @error('header')
+                                                                            <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
+                                                                            @enderror
+                                                                        </label>
+                                                                    </div>
 
-                                    <div class="form-group col-sm-4 styledImageDiv">
-                                        <label for="logo">{{__('dashboard.logo')}}
-                                            <input style="border: none" type="file" class="form-control" name="logo" />
-                                            @error('logo')
-                                                <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
-                                            @enderror
-                                        </label>
-                                        <img alt="logo image" title="{{__('dashboard.logo')}}" width="50" height="50" src="{{isset($settings->logo) ? asset('storage/settings/uploads/'.$settings->logo) : ''}}">
-                                    </div>
+                                                                    <div class="form-group col-sm-4 styledImageDiv">
+                                                                        <label for="image">{{__('dashboard.banner_image')}}
+                                                                            <input style="border: none" type="file" class="form-control" name="image" />
+                                                                            @error('image')
+                                                                            <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
+                                                                            @enderror
+                                                                        </label>
+                                                                        <img alt="banner image" title="{{__('dashboard.banner_image')}}" width="50" height="50" src="{{isset($settings->image) ? asset('storage/settings/uploads/'.$settings->image) : ''}}">
+                                                                    </div>
 
-                                    <div class="form-group col-sm-4">
-                                        <label for="about">{{__('dashboard.about')}}
-                                            <textarea style="resize: none" class="form-control" name="about">{{isset($settings->about) ? $settings->about : ''}}</textarea>
-                                            @error('about')
-                                            <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
-                                            @enderror
-                                        </label>
-                                    </div>
+                                                                    <div class="form-group col-sm-4 styledImageDiv">
+                                                                        <label for="logo">{{__('dashboard.logo')}}
+                                                                            <input style="border: none" type="file" class="form-control" name="logo" />
+                                                                            @error('logo')
+                                                                            <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
+                                                                            @enderror
+                                                                        </label>
+                                                                        <img alt="logo image" title="{{__('dashboard.logo')}}" width="50" height="50" src="{{isset($settings->logo) ? asset('storage/settings/uploads/'.$settings->logo) : ''}}">
+                                                                    </div>
+
+                                                                    <div class="form-group col-sm-4">
+                                                                        <label for="about">{{__('dashboard.about')}}
+                                                                            <textarea style="resize: none" class="form-control" name="about">{{isset($settings->about) ? $settings->about : ''}}</textarea>
+                                                                            @error('about')
+                                                                            <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
+                                                                            @enderror
+                                                                        </label>
+                                                                    </div>
 
 
 
-                                    <div class="col-12">
-                                        <button type="submit" class="btn btn-primary mr-1 mb-1">{{__('dashboard.edit')}}</button>
+                                                                    <div class="col-12">
+                                                                        <button type="submit" class="btn btn-primary mr-1 mb-1">{{__('dashboard.edit')}}</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+
+                                                        </div>
+                                                        <div class="tab-pane" id="profile-fill" role="tabpanel" aria-labelledby="profile-tab-fill">
+
+                                                        </div>
+                                                        <div class="tab-pane" id="messages-fill" role="tabpanel" aria-labelledby="messages-tab-fill">
+                                                            <p>
+                                                                Biscuit powder jelly beans. Lollipop candy canes croissant icing chocolate cake. Cake fruitcake powder
+                                                                pudding pastry.
+                                                            </p>
+                                                        </div>
+                                                        <div class="tab-pane" id="settings-fill" role="tabpanel" aria-labelledby="settings-tab-fill">
+                                                            <p>
+                                                                Tootsie roll oat cake I love bear claw I love caramels caramels halvah chocolate bar. Cotton candy
+                                                                gummi
+                                                                bears pudding pie apple pie cookie. Cheesecake jujubes lemon drops danish dessert I love caramels
+                                                                powder.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </form>
+                            </section>
                         </div>
                     </div>
                 </div>
