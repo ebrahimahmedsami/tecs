@@ -73,6 +73,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 Route::get('contact-us-view',[ContactsController::class,'contact_us_view'])->name('contactUs.contact-us-view');
                 Route::post('contact-us-delete/{id?}',[ContactsController::class,'contact_us_delete'])->name('contactUs.contact-us-delete');
 
+
+                // Notifications
+                Route::get('mark-all-read',[ReservationsController::class,'mark_all_read'])->name('user.mark-all-read');
+
             });
 
 

@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Clinic;
 use App\Models\Patient;
 use App\Models\Reservation;
+use App\Notifications\ReservationNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -55,13 +57,14 @@ class ReservationsController extends Controller
             $patient->clinics()->sync([$clinic->id]);
         }
 
-        Reservation::create([
+        $reservation = Reservation::create([
            'patient_id' => $patient->id,
            'clinic_id' => $clinic->id,
            'date' => $data['modal_date'],
            'type' => $data['modal_type'],
            'specialization_id' => $data['modal_specialization_id'],
         ]);
+        Notification::send($clinic->user,new ReservationNotification($reservation));
         return response()->json(['success'=>__('home.success_reservation')],200);
 
     }

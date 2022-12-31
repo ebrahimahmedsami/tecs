@@ -186,7 +186,7 @@ return [
     'twitter_link' => 'Twitter Link',
     'instagram_link' => 'Instagram Link',
     'message' => 'Message',
-    '' => '',
+    'read_all' => 'Mark All As Read',
     '' => '',
     '' => '',
     '' => '',

@@ -51,9 +51,6 @@
                                                             <a class="nav-link" id="messages-tab-fill" data-toggle="tab" href="#messages-fill" role="tab" aria-controls="messages-fill" aria-selected="false">@lang('dashboard.about_us')</a>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a class="nav-link" id="settings-tab-fill" data-toggle="tab" href="#settings-fill" role="tab" aria-controls="settings-fill" aria-selected="false">@lang('dashboard.clinics')</a>
-                                                        </li>
-                                                        <li class="nav-item">
                                                             <a class="nav-link" id="settings-tab-fill" data-toggle="tab" href="#footer-fill" role="tab" aria-controls="footer-fill" aria-selected="false">@lang('dashboard.footer')</a>
                                                         </li>
                                                     </ul>
@@ -119,14 +116,6 @@
                                                             <p>
                                                                 Biscuit powder jelly beans. Lollipop candy canes croissant icing chocolate cake. Cake fruitcake powder
                                                                 pudding pastry.
-                                                            </p>
-                                                        </div>
-                                                        <div class="tab-pane" id="settings-fill" role="tabpanel" aria-labelledby="settings-tab-fill">
-                                                            <p>
-                                                                Tootsie roll oat cake I love bear claw I love caramels caramels halvah chocolate bar. Cotton candy
-                                                                gummi
-                                                                bears pudding pie apple pie cookie. Cheesecake jujubes lemon drops danish dessert I love caramels
-                                                                powder.
                                                             </p>
                                                         </div>
                                                         <div class="tab-pane" id="footer-fill" role="tabpanel" aria-labelledby="footer-tab-fill">

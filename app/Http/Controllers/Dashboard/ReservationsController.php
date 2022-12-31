@@ -129,7 +129,7 @@ class ReservationsController extends Controller
         if ($reservation){
             $reservation->delete();
         }
-        return back()->with(['success' => __('dashboard.item deleted successfully')]);
+        return redirect()->back()->with(['success' => __('dashboard.item deleted successfully')]);
     }
 
 
@@ -164,5 +164,10 @@ class ReservationsController extends Controller
         return response()->json(['data' => 'status changed',200]);
     }
 
+
+    public function mark_all_read(){
+        auth()->user()->unreadNotifications->markAsRead();
+        return redirect()->back()->with(['success' => __('dashboard.item deleted successfully')]);
+    }
 
 }

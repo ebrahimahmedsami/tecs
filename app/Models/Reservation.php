@@ -16,7 +16,8 @@ class Reservation extends Model
         return $this->type == 0 ? __('dashboard.reserve_type_select') :  __('dashboard.discovery_type_select');
     }
     public function  getStatusTextAttribute(){
-        return reservation_status()[$this->status];
+        if ($this->status || $this->status == 0)
+            return reservation_status()[$this->status];
     }
     public function getSpecializationAttribute(){
         return Specializaition::where('id',$this->specialization_id)->first()->name;
