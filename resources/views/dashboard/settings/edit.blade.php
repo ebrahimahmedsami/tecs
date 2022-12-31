@@ -45,6 +45,9 @@
                                                         <li class="nav-item">
                                                             <a class="nav-link" id="settings-tab-fill" data-toggle="tab" href="#settings-fill" role="tab" aria-controls="settings-fill" aria-selected="false">@lang('dashboard.clinics')</a>
                                                         </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" id="settings-tab-fill" data-toggle="tab" href="#footer-fill" role="tab" aria-controls="footer-fill" aria-selected="false">@lang('dashboard.footer')</a>
+                                                        </li>
                                                     </ul>
 
                                                     <!-- Tab panes -->
@@ -117,6 +120,44 @@
                                                                 bears pudding pie apple pie cookie. Cheesecake jujubes lemon drops danish dessert I love caramels
                                                                 powder.
                                                             </p>
+                                                        </div>
+                                                        <div class="tab-pane" id="footer-fill" role="tabpanel" aria-labelledby="footer-tab-fill">
+                                                            <form class="form form-vertical" method="POST" action="{{route('admin.settings.footer.update')}}" enctype="multipart/form-data">
+                                                                @csrf
+                                                                <div class="row">
+                                                                    <input type="hidden" name="id" value="{{isset($settings->id) ? $settings->id : null}}" />
+                                                                    <div class="form-group col-sm-4">
+                                                                        <label for="header">{{__('dashboard.facebook_link')}}
+                                                                            <input type="text" class="form-control" name="facebook_link" placeholder="{{__('dashboard.facebook_link')}}" value="{{isset($settings->facebook_link) ? $settings->facebook_link : ''}}" />
+                                                                            @error('facebook_link')
+                                                                            <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
+                                                                            @enderror
+                                                                        </label>
+                                                                    </div>
+
+                                                                    <div class="form-group col-sm-4">
+                                                                        <label for="header">{{__('dashboard.twitter_link')}}
+                                                                            <input type="text" class="form-control" name="twitter_link" placeholder="{{__('dashboard.twitter_link')}}" value="{{isset($settings->twitter_link) ? $settings->twitter_link : ''}}" />
+                                                                            @error('twitter_link')
+                                                                            <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
+                                                                            @enderror
+                                                                        </label>
+                                                                    </div>
+
+                                                                    <div class="form-group col-sm-4">
+                                                                        <label for="header">{{__('dashboard.instagram_link')}}
+                                                                            <input type="text" class="form-control" name="instagram_link" placeholder="{{__('dashboard.instagram_link')}}" value="{{isset($settings->instagram_link) ? $settings->instagram_link : ''}}" />
+                                                                            @error('instagram_link')
+                                                                            <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
+                                                                            @enderror
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <button type="submit" class="btn btn-primary mr-1 mb-1">{{__('dashboard.edit')}}</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+
                                                         </div>
                                                     </div>
                                                 </div>

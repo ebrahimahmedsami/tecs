@@ -66,6 +66,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 //Settings
                 Route::get('settings/main-section', [SettingsController::class,'main_section'])->name('settings.main-section');
                 Route::post('settings/main-section/update', [SettingsController::class,'main_section_update'])->name('settings.main-section.update');
+                Route::post('settings/footer/update', [SettingsController::class,'footer_update'])->name('settings.footer.update');
 
             });
 
