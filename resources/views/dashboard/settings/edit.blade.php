@@ -4,7 +4,15 @@
 @endsection
 @section('styles')
     <style>
-
+        .nav.nav-tabs{
+            background: #f8f8f8;
+        }
+        .nav.nav-tabs .nav-item .nav-link.active{
+            color: #eece00 !important;
+        }
+        .nav.nav-tabs .nav-item .nav-link.active:after{
+            background: -webkit-linear-gradient(120deg, #eece00, rgba(115, 103, 240, 0.5)) !important;
+        }
     </style>
 @endsection
 <!-- BEGIN: Content-->
@@ -127,7 +135,7 @@
                                                                 <div class="row">
                                                                     <input type="hidden" name="id" value="{{isset($settings->id) ? $settings->id : null}}" />
                                                                     <div class="form-group col-sm-4">
-                                                                        <label for="header">{{__('dashboard.facebook_link')}}
+                                                                        <label for="header">{{__('dashboard.facebook_link')}} <i class="fab fa-facebook text-primary"></i>
                                                                             <input type="text" class="form-control" name="facebook_link" placeholder="{{__('dashboard.facebook_link')}}" value="{{isset($settings->facebook_link) ? $settings->facebook_link : ''}}" />
                                                                             @error('facebook_link')
                                                                             <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
@@ -136,7 +144,7 @@
                                                                     </div>
 
                                                                     <div class="form-group col-sm-4">
-                                                                        <label for="header">{{__('dashboard.twitter_link')}}
+                                                                        <label for="header">{{__('dashboard.twitter_link')}} <i class="fab fa-twitter text-info"></i>
                                                                             <input type="text" class="form-control" name="twitter_link" placeholder="{{__('dashboard.twitter_link')}}" value="{{isset($settings->twitter_link) ? $settings->twitter_link : ''}}" />
                                                                             @error('twitter_link')
                                                                             <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
@@ -145,7 +153,7 @@
                                                                     </div>
 
                                                                     <div class="form-group col-sm-4">
-                                                                        <label for="header">{{__('dashboard.instagram_link')}}
+                                                                        <label for="header">{{__('dashboard.instagram_link')}} <i class="fab fa-instagram text-danger"></i>
                                                                             <input type="text" class="form-control" name="instagram_link" placeholder="{{__('dashboard.instagram_link')}}" value="{{isset($settings->instagram_link) ? $settings->instagram_link : ''}}" />
                                                                             @error('instagram_link')
                                                                             <span style="font-size: 12px;" class="text-danger">{{$message}}</span>

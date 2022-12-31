@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dashboard\AuthController;
 use App\Http\Controllers\Dashboard\ClinicsController;
+use App\Http\Controllers\Dashboard\ContactsController;
 use App\Http\Controllers\Dashboard\DoctorsController;
 use App\Http\Controllers\Dashboard\HomeController;
 use App\Http\Controllers\Dashboard\PatientsController;
@@ -68,6 +69,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 Route::post('settings/main-section/update', [SettingsController::class,'main_section_update'])->name('settings.main-section.update');
                 Route::post('settings/footer/update', [SettingsController::class,'footer_update'])->name('settings.footer.update');
 
+                // Contact Us
+                Route::get('contact-us-view',[ContactsController::class,'contact_us_view'])->name('contactUs.contact-us-view');
+                Route::post('contact-us-delete/{id?}',[ContactsController::class,'contact_us_delete'])->name('contactUs.contact-us-delete');
+
             });
 
 
@@ -78,5 +83,5 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     //home routes
     Route::get('checkPatientExistence',[\App\Http\Controllers\Front\ReservationsController::class,'checkPatientExistence'])->name('home.checkPatientExistence');
     Route::post('storeReservation',[\App\Http\Controllers\Front\ReservationsController::class,'storeReservation'])->name('home.storeReservation');
-    Route::post('send-contact-us',[\App\Http\Controllers\Dashboard\ContactsController::class,'save_contact_us'])->name('home.send-contact-us');
+    Route::post('send-contact-us',[ContactsController::class,'save_contact_us'])->name('home.send-contact-us');
 });

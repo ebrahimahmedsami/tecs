@@ -185,6 +185,7 @@ return [
     'facebook_link' => 'Facebook Link',
     'twitter_link' => 'Twitter Link',
     'instagram_link' => 'Instagram Link',
+    'message' => 'Message',
     '' => '',
     '' => '',
     '' => '',
