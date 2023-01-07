@@ -1,0 +1,32 @@
+<?php
+
+namespace DummyNamespace;
+
+use League\Fractal\TransformerAbstract;
+use App\Dummy;
+use App\Item;
+
+class DummyClass extends TransformerAbstract
+{
+    protected $availableIncludes = ['item'];
+    
+    /**
+     * @param \App\Dummy $dummy
+     * @return array
+     */
+    public function transform(Dummy $dummy)
+    {
+        return [
+            'id' => (int) $dummy->id,
+        ];
+    }
+
+    /**
+     * @param \App\Dummy $dummy
+     * @return \League\Fractal\Resource\Collection
+     */
+    public function includeItem(Dummy $dummy)
+    {
+        return $this->collection($dummy->item, new ItemTransformer);
+    }
+}

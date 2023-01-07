@@ -1,0 +1,53 @@
+<?php
+
+namespace DummyNamespace;
+
+use DummyModel;
+use Yajra\DataTables\Services\DataTable;
+
+class DummyClass extends DataTable
+{
+    /**
+     * Build DataTable class.
+     *
+     * @param mixed $query Results from query() method.
+     * @return \Yajra\DataTables\DataTableAbstract
+     */
+    public function dataTable($query)
+    {
+        return datatables()
+            ->eloquent($query)
+            ->addColumn('action', 'DummyAction');
+    }
+
+    /**
+     * Get query source of dataTable.
+     *
+     * @param \DummyModel $model
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function query(ModelName $model)
+    {
+        return $model->newQuery();
+    }
+
+    /**
+     * Optional method if you want to use html builder.
+     *
+     * @return \Yajra\DataTables\Html\Builder
+     */
+    public function htmlBuilder()
+    {
+        return DummyBuilder::make();
+    }
+
+    /**
+     * Get filename for export.
+     *
+     * @return string
+     */
+    protected function filename()
+    {
+        return 'DummyFilename_' . date('YmdHis');
+    }
+}

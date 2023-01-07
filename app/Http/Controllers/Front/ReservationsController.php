@@ -62,6 +62,7 @@ class ReservationsController extends Controller
            'clinic_id' => $clinic->id,
            'date' => $data['modal_date'],
            'type' => $data['modal_type'],
+           'status' => 0,
            'specialization_id' => $data['modal_specialization_id'],
         ]);
         Notification::send($clinic->user,new ReservationNotification($reservation));

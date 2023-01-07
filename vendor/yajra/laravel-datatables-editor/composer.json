@@ -1,0 +1,51 @@
+{
+  "name": "yajra/laravel-datatables-editor",
+  "description": "Laravel DataTables Editor plugin for Laravel 5.5+.",
+  "keywords": [
+    "laravel",
+    "dataTables",
+    "editor",
+    "jquery",
+    "html",
+    "js"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Arjay Angeles",
+      "email": "aqangeles@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "illuminate/console": "*",
+    "illuminate/database": "*",
+    "illuminate/http": "*",
+    "illuminate/validation": "*"
+  },
+  "require-dev": {
+    "orchestra/testbench": "~3.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Yajra\\DataTables\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Yajra\\DataTables\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    },
+    "laravel": {
+      "providers": [
+        "Yajra\\DataTables\\EditorServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}

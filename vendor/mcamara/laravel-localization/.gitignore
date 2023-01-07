@@ -1,0 +1,8 @@
+/.buildpath
+/.project
+/.settings
+/vendor
+composer.lock
+composer.phar
+Thumbs.db
+phpunit.xml
