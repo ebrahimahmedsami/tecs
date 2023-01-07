@@ -35,6 +35,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
             Route::get('login',[AuthController::class,'index'])->name('login')->middleware('guest');
             Route::post('login', [AuthController::class, 'login'])->name('startSession');
 
+            Route::get('get_clinic_specializations', [ReservationsController::class,'get_clinic_specializations'])->name('get_clinic_specializations');
 
             Route::group(['middleware' => ['auth','ckeckBlocked']],function (){
                 //Home
@@ -60,7 +61,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 //Reservations
                 Route::resource('reservations', ReservationsController::class);
                 Route::get('today_reservations', [ReservationsController::class,'today_reservations'])->name('today_reservations');
-                Route::get('get_clinic_specializations', [ReservationsController::class,'get_clinic_specializations'])->name('get_clinic_specializations');
                 Route::post('/reservations/change_status', [ReservationsController::class,'change_status'])->name('change_status');
 
 
