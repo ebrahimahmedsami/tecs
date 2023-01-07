@@ -46,6 +46,8 @@
                 <li class="nav-item"><a class="nav-link" href="#about">@lang('dashboard.about')</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">@lang('dashboard.contact_us')</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{route('admin.login')}}">@lang('dashboard.login')</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL('en') }}" data-language="en"><i class="flag-icon flag-icon-us"></i> English</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL('ar') }}" data-language="en"><i class="flag-icon flag-icon-us"></i> العربية</a></li>
             </ul>
         </div>
     </div>
