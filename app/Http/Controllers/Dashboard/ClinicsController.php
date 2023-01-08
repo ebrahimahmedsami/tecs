@@ -36,7 +36,7 @@ class ClinicsController extends Controller
     public function create()
     {
         $doctors = Doctor::all();
-        $roles = Role::where('name','!=','super_admin')->get();
+        $roles = Role::where('name','!=','super_admin')->where('name','!=','supervisor')->get();
         return view('dashboard.clinics.add',compact('doctors','roles'));
     }
 
@@ -102,7 +102,7 @@ class ClinicsController extends Controller
     {
         $clinic = Clinic::where('id',$id)->with('user')->first();
         $doctors = Doctor::all();
-        $roles = Role::where('name','!=','super_admin')->get();
+        $roles = Role::where('name','!=','super_admin')->where('name','!=','supervisor')->get();
         return view('dashboard.clinics.edit',compact('clinic','doctors','roles'));
     }
 
