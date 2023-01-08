@@ -48,6 +48,20 @@ class User extends Authenticatable
     }
 
     public function clinic(){
-        return $this->belongsTo(Clinic::class,'type_id','id');
+        return $this->belongsTo(Clinic::class,'type_id','id')->withCount(['patients'])
+            ->withCount([
+                'reservations',
+                'reservations as disclosure_count' => function ($query) {
+                    $query->where('type', (string)0);
+                },'reservations as discovery_count' => function ($query) {
+                    $query->where('type', (string)1);
+                }])
+            ->withCount([
+                'today_reservations',
+                'today_reservations as disclosure_today_count' => function ($query) {
+                    $query->where('type', (string)0);
+                },'today_reservations as discovery_today_count' => function ($query) {
+                    $query->where('type', (string)1);
+                }]);
     }
 }
