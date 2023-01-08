@@ -28,7 +28,10 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         if (Schema::hasTable('settings')){
-            View::share(['settings'=>Setting::first(),'services'=>SettingService::all()]);
+            View::share(['settings'=>Setting::first()]);
+        }
+        if (Schema::hasTable('setting_services')){
+            View::share(['services'=>SettingService::all()]);
         }
     }
 }
