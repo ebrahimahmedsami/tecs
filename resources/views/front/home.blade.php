@@ -55,8 +55,8 @@
 <!-- Masthead-->
 <header class="masthead">
     <div class="container">
-        <div class="masthead-subheading text-black">{{isset($settings->header) ? strtoupper($settings->header) : '--'}}</div>
-        <div class="masthead-heading text-uppercase text-black">{{isset($settings->about) ? ucfirst($settings->about) : '--'}}</div>
+        <div class="masthead-subheading">{{isset($settings->header) ? strtoupper($settings->header) : '--'}}</div>
+        <div class="masthead-heading text-uppercase">{{isset($settings->about) ? ucfirst($settings->about) : '--'}}</div>
         <a class="btn btn-primary btn-xl text-uppercase" id="reserve-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">{{__('home.reserve with us')}}</a>
     </div>
 </header>
