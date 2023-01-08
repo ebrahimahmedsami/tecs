@@ -113,10 +113,32 @@
 
                                                         </div>
                                                         <div class="tab-pane" id="messages-fill" role="tabpanel" aria-labelledby="messages-tab-fill">
-                                                            <p>
-                                                                Biscuit powder jelly beans. Lollipop candy canes croissant icing chocolate cake. Cake fruitcake powder
-                                                                pudding pastry.
-                                                            </p>
+                                                            <form class="form form-vertical" method="POST" action="{{route('admin.settings.about.update')}}" enctype="multipart/form-data">
+                                                                @csrf
+                                                                <div class="row">
+                                                                    <input type="hidden" name="id" value="{{isset($settings->id) ? $settings->id : null}}" />
+                                                                    <div class="form-group col-sm-4">
+                                                                        <label for="header">{{__('dashboard.about_text_ar')}}
+                                                                            <textarea class="form-control" name="about_text_ar">{{isset($settings->about_text_ar) ? $settings->about_text_ar : ''}}</textarea>
+                                                                            @error('about_text_ar')
+                                                                                <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
+                                                                            @enderror
+                                                                        </label>
+                                                                    </div>
+
+                                                                    <div class="form-group col-sm-4">
+                                                                        <label for="header">{{__('dashboard.about_text_en')}}
+                                                                            <textarea class="form-control" name="about_text_en">{{isset($settings->about_text_en) ? $settings->about_text_en : ''}}</textarea>
+                                                                            @error('about_text_en')
+                                                                            <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
+                                                                            @enderror
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <button type="submit" class="btn btn-primary mr-1 mb-1">{{__('dashboard.edit')}}</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                         <div class="tab-pane" id="footer-fill" role="tabpanel" aria-labelledby="footer-tab-fill">
                                                             <form class="form form-vertical" method="POST" action="{{route('admin.settings.footer.update')}}" enctype="multipart/form-data">

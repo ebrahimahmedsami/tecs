@@ -57,7 +57,7 @@ class SettingsController extends Controller
             'twitter_link' => 'url',
             'instagram_link' => 'url',
         ]);
-        # Main Setting Data
+        # Footer Data
         Setting::updateOrCreate(
             ['id' =>  $request->get('id')],
             [
@@ -68,5 +68,21 @@ class SettingsController extends Controller
         );
         return redirect()->back()->with(['success' => __('dashboard.settings_edited_successfully')]);
 
+    }
+
+    public function about_update(Request $request){
+        $request->validate([
+            'about_text_ar' => 'required|string',
+            'about_text_en' => 'required|string',
+        ]);
+        # About Data
+        Setting::updateOrCreate(
+            ['id' =>  $request->get('id')],
+            [
+                'about_text_ar' => $request->about_text_ar,
+                'about_text_en' => $request->about_text_en,
+            ]
+        );
+        return redirect()->back()->with(['success' => __('dashboard.settings_edited_successfully')]);
     }
 }
