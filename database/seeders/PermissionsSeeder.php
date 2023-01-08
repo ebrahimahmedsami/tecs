@@ -26,6 +26,7 @@ class PermissionsSeeder extends Seeder
         DB::table('users')->truncate();
         DB::table('settings')->truncate();
         DB::table('role_has_permissions')->truncate();
+        DB::table('model_has_roles')->truncate();
         Schema::enableForeignKeyConstraints();
 
         # Clinic Permissions
@@ -87,17 +88,21 @@ class PermissionsSeeder extends Seeder
             ['guard_name' => 'web', 'name' => 'contact us delete'],
         ];
 
-        # Admin Role
-        $role = Role::create([
-            'name' => 'super_admin'
-        ]);
 
+
+        ###################################################################3
 
 
         # Create First Settings
         Setting::create([
            'header' => 'welcome in tecs',
            'about' => 'about tecs',
+        ]);
+
+        #################################################################
+        # Admin Role
+        $role = Role::create([
+            'name' => 'super_admin'
         ]);
 
         # Admin User
@@ -113,6 +118,26 @@ class PermissionsSeeder extends Seeder
         $allPermissions = Permission::all();
         $role->syncPermissions($allPermissions);
         $user->assignRole($role);
+
+
+
+        #######################################################################
+
+        # Supervisor Role
+        $supervisor_role = Role::create([
+            'name' => 'supervisor'
+        ]);
+        $supervisor_user = User::create([
+            'name' => 'supervisor',
+            'email' => 'supervisor@gmail.com',
+            'password' => bcrypt('123456'),
+            'email_verified_at' => now(),
+            'type_type' => 0,
+            'type_id' => 0,
+        ]);
+        $supervisor_user->assignRole($supervisor_role);
+
+        ###################################################################3
 
 
         # Clinic Role
