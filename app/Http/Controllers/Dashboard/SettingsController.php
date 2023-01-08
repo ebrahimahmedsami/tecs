@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Models\SettingService;
 use App\Traits\FileUpload;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class SettingsController extends Controller
@@ -13,7 +15,8 @@ class SettingsController extends Controller
     use FileUpload;
     public function main_section(){
         $settings = Setting::first();
-        return view('dashboard.settings.edit',compact('settings'));
+        $services  =SettingService::all();
+        return view('dashboard.settings.edit',compact('settings','services'));
     }
 
     public function main_section_update(Request $request){
@@ -83,6 +86,26 @@ class SettingsController extends Controller
                 'about_text_en' => $request->about_text_en,
             ]
         );
+        return redirect()->back()->with(['success' => __('dashboard.settings_edited_successfully')]);
+    }
+
+    public function services_update(Request $request){
+        $request->validate([
+            'services_title' => 'array',
+            'services_title.*' => 'required',
+            'services_icon' => 'array',
+            'services_icon.*' => 'required',
+            'services_text' => 'array',
+            'services_text.*' => 'required',
+        ]);
+        DB::table('setting_services')->truncate();
+        foreach ($request->get('services_title') as $key=>$value){
+            SettingService::create([
+               'title' => $request->get('services_title')[$key],
+               'icon' => $request->get('services_icon')[$key],
+               'text' => $request->get('services_text')[$key],
+            ]);
+        }
         return redirect()->back()->with(['success' => __('dashboard.settings_edited_successfully')]);
     }
 }

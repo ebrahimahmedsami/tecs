@@ -69,37 +69,21 @@
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">@lang('dashboard.service')</h2>
-            <h3 class="section-subheading text-muted">كل ما يخص الخدمات وما تقدمه الشركه</h3>
+            <h3 class="section-subheading text-muted">@lang('dashboard.service_text')</h3>
         </div>
         <div class="row text-center">
-            <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                        </span>
-                <h4 class="my-3">الإعلانات والتسويق</h4>
-                <p class="text-muted">تعتبر الإعلانات أحد جوانب التسويق؛ وعلى الرغم من أن عملية التسويق تعتبر نهجاً كلياً يمكن من خلاله التحدث مع العملاء عن علامتك التجارية، عادة ما يكون الإعلان شكلاً مدفوعاً من أشكال الرسائل المصممة لتشجيع المبيعات؛ وقد تكون الإعلانات مقدمة على المدى القصير للترويج لعروض خاصة أو مستمرة، إلا أنها عادة ما تحتاج إلى استثمار مالي؛ وإذا كنت على علم بأن الإعلانات قد تقدم المساعدة لمشروعك ولكن غير متأكد من النقطة التي يتعين عليك البدء منها، اطلع على نصائح التسويق الواردة أدناه للتعرف على الخيارلإحتياجاتك الأنسب لاحتياجات وموازنتك.</p>
-            </div>
-            <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-                        </span>
-                <h4 class="my-3">تصميم اللوجوهات والبانر</h4>
-                <p class="text-muted">هو الهوية المميزة لاي مشروع او منشأة تجارية . وهو يعبر عن طبيعة وماهية هذه المنشأة ويعطي لمحة عنها وشعار الموقع أول ما يلفت نظر العميل أو زائر الموقع . حيث أن الشعار كلما كان متميزاً ومتناسقاً مع طبيعة المنشأة كلما كان له تأثير أكبر لدى الزبائن والعملاء وليس المهم فقط أن يتميز المصمم باتقانه للعمل على برامج التصميم المختلفة وانما الاهم ان يكون لديه المقدرة على التفكير والابداع وتشكيل الفكرة المناسبة لخلق شعار يتوافق مع طبيعة نشاط الموقع . وهذا ما يتطلبه تصميم شعار او لوجو ناجح . وحياة هوست من هذا المنطلق تقدم هذه الخدمة لعملائها في تصميم الشعارات للمواقع والمؤسسات معتمدة على فريق مصممين مبدع قادر على خلق الفكرة وابتكارها وتطبيقها بصورة أفضل من المتوقع.</p>
-            </div>
-            <div class="col-md-4">
-                        <span class="fa-stack fa-4x">
-                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
-                        </span>
-                <h4 class="my-3">تصميم التطبيقات والمواقع</h4>
-                <p class="text-muted">صميم المواقع او تصميم مواقع الانترنت هو عملية تجميع عناصر وتخطيط محتويات الوسائط المتعددة بواسطه عدة لغات وبرامج لاخراج تصميم مناسب للعرض
-
-                    على متصفحات الانترنت بطريقة صحيحة وسهلة الاستخدام لرواد وبالتالى يكون الموقع قد ادى الغرض الذى انشأ من اجله حيث يحتاج كل موقع لـ
-
-                    استضافة المواقع الالكترونية لكي تضع بيانات الموقع في مساحة تخزين تمتاز بالحماية والامان لحماية بياناتك من السرقة من قبل قرصنة الانترنت.</p>
-            </div>
+            @if(isset($services))
+                @foreach($services as $service)
+                    <div class="col-md-4">
+                                <span class="fa-stack fa-4x">
+                                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                                    <i class="{{$service->icon}} fa-stack-1x fa-inverse"></i>
+                                </span>
+                        <h4 class="my-3">{{$service->title}}</h4>
+                        <p class="text-muted">{{$service->text}}</p>
+                    </div>
+                @endforeach
+            @endif
         </div>
     </div>
 </section>
@@ -108,16 +92,16 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{{asset('frontAssets/assets/img/logos/microsoft.svg')}}" alt="..." aria-label="Microsoft Logo" /></a>
+                <a href="javascript::void(0)"><img class="img-fluid img-brand d-block mx-auto" src="{{asset('frontAssets/assets/img/logos/microsoft.svg')}}" alt="..." aria-label="Microsoft Logo" /></a>
             </div>
             <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{{asset('frontAssets/assets/img/logos/google.svg')}}" alt="..." aria-label="Google Logo" /></a>
+                <a href="javascript::void(0)"><img class="img-fluid img-brand d-block mx-auto" src="{{asset('frontAssets/assets/img/logos/google.svg')}}" alt="..." aria-label="Google Logo" /></a>
             </div>
             <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{{asset('frontAssets/assets/img/logos/facebook.svg')}}" alt="..." aria-label="Facebook Logo" /></a>
+                <a href="javascript::void(0)"><img class="img-fluid img-brand d-block mx-auto" src="{{asset('frontAssets/assets/img/logos/facebook.svg')}}" alt="..." aria-label="Facebook Logo" /></a>
             </div>
             <div class="col-md-3 col-sm-6 my-3">
-                <a href="#!"><img class="img-fluid img-brand d-block mx-auto" src="{{asset('frontAssets/assets/img/logos/ibm.svg')}}" alt="..." aria-label="IBM Logo" /></a>
+                <a href="javascript::void(0)"><img class="img-fluid img-brand d-block mx-auto" src="{{asset('frontAssets/assets/img/logos/ibm.svg')}}" alt="..." aria-label="IBM Logo" /></a>
             </div>
         </div>
     </div>

@@ -69,6 +69,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 Route::post('settings/main-section/update', [SettingsController::class,'main_section_update'])->name('settings.main-section.update');
                 Route::post('settings/footer/update', [SettingsController::class,'footer_update'])->name('settings.footer.update');
                 Route::post('settings/about/update', [SettingsController::class,'about_update'])->name('settings.about.update');
+                Route::post('settings/services/update', [SettingsController::class,'services_update'])->name('settings.services.update');
 
                 // Contact Us
                 Route::get('contact-us-view',[ContactsController::class,'contact_us_view'])->name('contactUs.contact-us-view');

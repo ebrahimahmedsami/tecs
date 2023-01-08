@@ -13,6 +13,18 @@
         .nav.nav-tabs .nav-item .nav-link.active:after{
             background: -webkit-linear-gradient(120deg, #eece00, rgba(115, 103, 240, 0.5)) !important;
         }
+        .services_data{
+            background: #f8f8f8;
+            padding: 5px;
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 5px;
+        }
+        .services_data .icons{
+            color: #eece00;
+            background: #626262;
+            padding: 5px;
+        }
     </style>
 @endsection
 <!-- BEGIN: Content-->
@@ -100,8 +112,6 @@
                                                                         </label>
                                                                     </div>
 
-
-
                                                                     <div class="col-12">
                                                                         <button type="submit" class="btn btn-primary mr-1 mb-1">{{__('dashboard.edit')}}</button>
                                                                     </div>
@@ -110,7 +120,63 @@
 
                                                         </div>
                                                         <div class="tab-pane" id="profile-fill" role="tabpanel" aria-labelledby="profile-tab-fill">
+                                                            <form class="form form-vertical" method="POST" action="{{route('admin.settings.services.update')}}" enctype="multipart/form-data">
+                                                                    @csrf
+                                                                    <input type="hidden" name="id" value="{{isset($settings->id) ? $settings->id : null}}" />
+                                                                    <div class="row targetDiv" id="div0">
+                                                                        <div class="col-md-12">
+                                                                            <div id="group1" class="fvrduplicate">
+                                                                                <div class="row entry">
 
+                                                                                        <div class="col-xs-12 col-md-2">
+                                                                                            <div class="form-group">
+                                                                                                <label>@lang('dashboard.title')</label>
+                                                                                                <input class="form-control" name="services_title[]" type="text" placeholder="{{__('dashboard.title')}}">
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-xs-12 col-md-2">
+                                                                                            <div class="form-group">
+                                                                                                <label>@lang('dashboard.icon')</label>
+                                                                                                <input class="form-control" name="services_icon[]" type="text" placeholder="{{__('dashboard.icon')}}">
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-xs-12 col-md-2">
+                                                                                            <div class="form-group">
+                                                                                                <label>@lang('dashboard.text')</label>
+                                                                                                <textarea class="form-control" name="services_text[]"></textarea>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="col-xs-12 col-md-2">
+                                                                                            <div class="form-group">
+                                                                                                <label>&nbsp;</label>
+                                                                                                <button type="button" class="btn btn-success btn-sm btn-add">
+                                                                                                    <i class="fa fa-plus" aria-hidden="true">+</i>
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    <div class="col-xs-12 col-md-4">
+                                                                                        @foreach($services as $service)
+                                                                                            <div class="services_data">
+                                                                                                <span>{{$service->title}}</span>
+                                                                                                <span><i class="{{$service->icon}} icons"></i></span>
+                                                                                                <span>{{$service->text}}</span>
+                                                                                            </div>
+                                                                                        @endforeach
+
+                                                                                    </div>
+
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                <div class="col-12">
+                                                                    <button type="submit" class="btn btn-primary mr-1 mb-1">{{__('dashboard.edit')}}</button>
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                         <div class="tab-pane" id="messages-fill" role="tabpanel" aria-labelledby="messages-tab-fill">
                                                             <form class="form form-vertical" method="POST" action="{{route('admin.settings.about.update')}}" enctype="multipart/form-data">
@@ -200,6 +266,21 @@
                     placeholder: "{{__('dashboard.choose_specialization')}}",
                 }
             )
+
+            $(document).on('click', '.btn-add', function(e) {
+                e.preventDefault();
+                var controlForm = $(this).closest('.fvrduplicate'),
+                    currentEntry = $(this).parents('.entry:first'),
+                    newEntry = $(currentEntry.clone()).appendTo(controlForm);
+                newEntry.find('input').val('');
+                controlForm.find('.entry:not(:last) .btn-add')
+                    .removeClass('btn-add').addClass('btn-remove')
+                    .removeClass('btn-success').addClass('btn-danger')
+                    .html('<i class="fa fa-minus" aria-hidden="true">-</i>');
+            }).on('click', '.btn-remove', function(e) {
+                $(this).closest('.entry').remove();
+                return false;
+            });
         })
     </script>
 @endsection

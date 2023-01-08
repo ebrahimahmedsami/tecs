@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Setting;
+use App\Models\SettingService;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -27,7 +28,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         if (Schema::hasTable('settings')){
-            View::share('settings',Setting::first());
+            View::share(['settings'=>Setting::first(),'services'=>SettingService::all()]);
         }
     }
 }
