@@ -62,6 +62,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 Route::resource('reservations', ReservationsController::class);
                 Route::get('today_reservations', [ReservationsController::class,'today_reservations'])->name('today_reservations');
                 Route::post('/reservations/change_status', [ReservationsController::class,'change_status'])->name('change_status');
+                Route::post('/reservations/update_note', [ReservationsController::class,'update_note'])->name('reservations.update_note');
 
 
                 //Settings

@@ -22,9 +22,17 @@ class ReservationsController extends Controller
     {
         if (\request()->ajax()) {
             if (auth()->user()->clinic){
-                $data = optional(optional(auth()->user())->clinic)->reservations->load(['patient','clinic']);
+                $data = optional(optional(auth()->user())->clinic)->reservations()
+                    ->ofPatient(\request()->get('patient_name'))
+                    ->ofType(\request()->get('type'))
+                    ->get()
+                    ->load(['patient','clinic']);
             }else{
-                $data =Reservation::orderBy('id','desc')->with(['patient','clinic'])->get();
+                $data = Reservation::orderBy('id','desc')
+                    ->ofPatient(\request()->get('patient_name'))
+                    ->ofType(\request()->get('type'))
+                    ->with(['patient','clinic'])
+                    ->get();
             }
             return Datatables::of($data)->make(true);
         }
@@ -170,6 +178,14 @@ class ReservationsController extends Controller
             $reservation->update(['status' => $request->status]);
         }
         return response()->json(['data' => 'status changed',200]);
+    }
+
+    public function update_note(Request $request){
+        $reservation = Reservation::where('id',$request->id)->first();
+        if ($reservation){
+            $reservation->update(['note' => $request->note]);
+        }
+        return response()->json(['data' => 'note changed',200]);
     }
 
 

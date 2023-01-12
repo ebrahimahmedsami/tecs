@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
     use HasFactory;
-    protected $fillable = ['patient_id','clinic_id','date','type','specialization_id','status'];
+    protected $fillable = ['patient_id','clinic_id','date','type','specialization_id','status','note'];
     protected $appends = ['type_text','specialization','status_text'];
 
     public function  getTypeTextAttribute(){
@@ -38,8 +38,29 @@ class Reservation extends Model
         }
         $builder->whereDate('date',$value);
     }
+
     public function scopeOfStatus(Builder $builder,$value){
         $value = is_array($value) ? $value : [$value];
         $builder->whereIn('status',$value);
+    }
+
+    public function scopeOfType(Builder $builder,$value){
+        if ($value ==  NULL && $value != 0){
+            return $builder;
+        }
+
+        $value = $value ?? ["0","1"];
+        $value = is_array($value) ? $value : [$value];
+        $builder->whereIn('type',$value);
+    }
+
+    public function scopeOfPatient(Builder $builder,$value){
+        if (empty($value)){
+            return $builder;
+        }
+        $builder->whereHas('patient',function (Builder $builder) use ($value){
+            $builder->where('name_en', 'like', '%' . $value . '%')
+            ->orWhere('name_ar', 'like', '%' . $value . '%');
+        });
     }
 }
