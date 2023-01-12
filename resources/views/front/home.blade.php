@@ -26,9 +26,6 @@
             height: 37px !important;
             padding-top: 4px !important;
         }
-        .select2-container--open .select2-dropdown{
-            left: -8px !important;
-        }
         @import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
 
         header.masthead{
