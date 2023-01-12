@@ -7,6 +7,7 @@ use App\Models\Clinic;
 use App\Models\Patient;
 use App\Models\Reservation;
 use App\Notifications\ReservationNotification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Validator;
@@ -19,7 +20,7 @@ class ReservationsController extends Controller
         parse_str($request->get('data'), $data);
         $patient = Patient::where('national_id',$data['modal_national_id'])->first();
         $validator = Validator::make($data, [
-            'modal_national_id' => 'required',
+            'modal_national_id' => 'required:digits:14',
             'modal_date' => 'required',
             'modal_type' => 'required',
             'modal_clinic_id' => 'required',
@@ -42,6 +43,13 @@ class ReservationsController extends Controller
             return response()->json(['error_capacity'=>__('dashboard.number of reservations exceeded')],422);
         }
 
+        if ($clinic->holidays()->count() > 0){
+            $date_day_name = lcfirst(Carbon::parse($data['modal_date'])->format('l'));
+            $holidays = $clinic->holidays->pluck('day')->toArray();
+            if (in_array($date_day_name,$holidays)){
+                return response()->json(['error_capacity'=>__('dashboard.clinic_holiday')],422);
+            }
+        }
 
         # If New Patient
         if (empty($patient)){

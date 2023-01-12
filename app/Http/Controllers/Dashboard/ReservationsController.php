@@ -58,13 +58,21 @@ class ReservationsController extends Controller
     {
         $clinic = Clinic::find($request->clinic_id);
         if (!$clinic)
-            return redirect()->route('admin.reservations.index')->with(['success' =>__('dashboard.there is no such this data')]);
+            return redirect()->route('admin.reservations.index')->with(['danger' =>__('dashboard.there is no such this data')]);
 
         $todayCapacity = $clinic->reservations()->ofGetReservationsToday($request->date)->ofStatus([0,1])->count();
 
         if ($todayCapacity >= $clinic->today_capacity)
-            return redirect()->route('admin.reservations.index')->with(['success' =>__('dashboard.number of reservations exceeded')]);
+            return redirect()->route('admin.reservations.index')->with(['danger' =>__('dashboard.number of reservations exceeded')]);
 
+
+        if ($clinic->holidays()->count() > 0){
+            $date_day_name = lcfirst(Carbon::parse($request->date)->format('l'));
+            $holidays = $clinic->holidays->pluck('day')->toArray();
+            if (in_array($date_day_name,$holidays)){
+                return redirect()->route('admin.reservations.index')->with(['danger' =>__('dashboard.clinic_holiday')]);
+            }
+        }
         Reservation::create($request->validated());
         return redirect()->route('admin.reservations.index')->with(['success' => __('dashboard.item added successfully')]);
     }

@@ -155,6 +155,18 @@
                                             @enderror
                                         </label>
                                     </div>
+                                    <div class="form-group col-sm-3">
+                                        <label style="width: 100%" for="holidays">{{__('dashboard.clinic_holidays')}}
+                                            <select multiple class="form-control select2 holidays" name="day[]">
+                                                @foreach(clinic_holidays() as $key=>$value)
+                                                    <option @if(in_array($key,$clinic->holidays->pluck('day')->toArray())) selected @endif value="{{$key}}">{{$value}}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('day')
+                                            <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
+                                            @enderror
+                                        </label>
+                                    </div>
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-primary mr-1 mb-1">{{__('dashboard.edit')}}</button>
                                     </div>
@@ -176,6 +188,8 @@
                 }
             )
             $('.role_id').select2({placeholder: "{{__('dashboard.choose_role')}}",})
+            $('.holidays').select2({placeholder: "{{__('dashboard.choose_days')}}",})
+
         })
     </script>
 @endsection

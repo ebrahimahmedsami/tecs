@@ -153,6 +153,18 @@
                                             @enderror
                                         </label>
                                     </div>
+                                    <div class="form-group col-sm-3">
+                                        <label style="width: 100%" for="holidays">{{__('dashboard.clinic_holidays')}}
+                                            <select multiple class="form-control select2 holidays" name="day[]">
+                                                @foreach(clinic_holidays() as $key=>$value)
+                                                    <option value="{{$key}}">{{$value}}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('day')
+                                            <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
+                                            @enderror
+                                        </label>
+                                    </div>
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-primary mr-1 mb-1">{{__('dashboard.submit')}}</button>
                                     </div>
@@ -170,6 +182,7 @@
         $(document).ready(function () {
             $('.doctor').select2({placeholder: "{{__('dashboard.choose_doctor')}}",})
             $('.role_id').select2({placeholder: "{{__('dashboard.choose_role')}}",})
+            $('.holidays').select2({placeholder: "{{__('dashboard.choose_days')}}",})
         })
     </script>
 @endsection

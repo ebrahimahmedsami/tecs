@@ -29,6 +29,7 @@ if (!function_exists('reservation_types')){
             ];
         }
     }
+
     if (!function_exists('get_patient_data_table')) {
         function get_patient_data_table($patient)
         {
@@ -56,6 +57,21 @@ if (!function_exists('reservation_types')){
                 '</tr>'.
               '</tbody>'.
             '</table>';
+        }
+    }
+
+    if (!function_exists('clinic_holidays')) {
+        function clinic_holidays()
+        {
+            return [
+                'saturday' => __('dashboard.saturday'),
+                'sunday' => __('dashboard.sunday'),
+                'monday' => __('dashboard.monday'),
+                'tuesday' => __('dashboard.tuesday'),
+                'wednesday' => __('dashboard.wednesday'),
+                'thursday' => __('dashboard.thursday'),
+                'friday' => __('dashboard.friday'),
+            ];
         }
     }
 }

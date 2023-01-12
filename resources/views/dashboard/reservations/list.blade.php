@@ -24,7 +24,9 @@
                                     <h4 class="card-title">{{__('dashboard.reserve_list')}}</h4>
                                 </div>
                                 @if(\Session::get('success'))
-                                    <x-dashboard.layouts.message />
+                                    <x-dashboard.layouts.message title="success" />
+                                @elseif(\Session::get('danger'))
+                                    <x-dashboard.layouts.message title="danger" />
                                 @endif
                                 <div class="card-content">
                                     <div class="card-body card-dashboard">

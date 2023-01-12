@@ -37,6 +37,7 @@ class ClinicsRequest extends FormRequest
             'time_to' => ['required'],
             'role_id' => [request()->method() == 'POST' ? 'required' : 'nullable',Rule::exists('roles','id')],
             'address' => ['nullable','max:255'],
+            'day' => ['required','array'],
             'password' => [request()->method() == 'POST' ? 'required' : 'nullable','max:100','min:6','confirmed'],
         ];
     }

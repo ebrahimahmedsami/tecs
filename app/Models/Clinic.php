@@ -48,6 +48,11 @@ class Clinic extends Model
         return $this->belongsToMany(Patient::class, 'clinic_patients', 'clinic_id', 'patient_id');
     }
 
+    public function holidays(){
+        return $this->hasMany(ClinicHoliday::class,'clinic_id');
+    }
+
+
     public function scopeOfStats(){
         return $this->withCount(['patients'])
             ->withCount([

@@ -66,6 +66,16 @@ class ClinicsController extends Controller
                 ]);
 
                 if ($clinic){
+                    if ($request->filled('day')){
+                        $days = [];
+                        $holidays = $request->input('day');
+                        foreach($holidays as $holiday){
+                            $days[] = [
+                                'day' => $holiday
+                            ];
+                        }
+                        $clinic->holidays()->createMany($days);
+                    }
                     $user = User::create([
                         'name' => $clinic->name_en,
                         'email' => $clinic->email,
@@ -100,7 +110,7 @@ class ClinicsController extends Controller
      */
     public function edit($id)
     {
-        $clinic = Clinic::where('id',$id)->with('user')->first();
+        $clinic = Clinic::where('id',$id)->with(['user','holidays'])->first();
         $doctors = Doctor::all();
         $roles = Role::where('name','!=','super_admin')->where('name','!=','supervisor')->get();
         return view('dashboard.clinics.edit',compact('clinic','doctors','roles'));
@@ -133,6 +143,18 @@ class ClinicsController extends Controller
             ]);
 
             if ($clinic){
+
+                if ($request->filled('day')){
+                    $clinic->holidays()->delete();
+                    $days = [];
+                    $holidays = $request->input('day');
+                    foreach($holidays as $holiday){
+                        $days[] = [
+                            'day' => $holiday
+                        ];
+                    }
+                    $clinic->holidays()->createMany($days);
+                }
                 $clinic->user->update([
                     'name' => $clinic->name_en,
                     'email' => $clinic->email,
@@ -166,6 +188,7 @@ class ClinicsController extends Controller
             return back()->with(['danger' => __('dashboard.error_delete_clinic')]);
         }
         $clinic->user()->delete();
+        $clinic->holidays()->delete();
         $clinic->delete();
         return back()->with(['success' => __('dashboard.item deleted successfully')]);
     }
