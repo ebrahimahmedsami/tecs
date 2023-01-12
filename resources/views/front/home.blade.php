@@ -27,7 +27,7 @@
             padding-top: 4px !important;
         }
         .select2-container--open .select2-dropdown{
-            left: -21px !important;
+            left: -19px !important;
         }
         @import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
 
