@@ -10,11 +10,10 @@ class HomeController extends Controller
 {
     public function index(){
 
+        $clinic = new Clinic();
         if (auth()->user()->clinic){
-            $clinics = auth()->user()->clinic->ofStats()->first();
-        }else{
-            $clinics = Clinic::ofStats()->get();
+            $clinic = auth()->user()->clinic;
         }
-        return view('dashboard.index',compact('clinics'));
+        return view('dashboard.index',compact('clinic'));
     }
 }

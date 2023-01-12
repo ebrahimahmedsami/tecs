@@ -26,7 +26,7 @@
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <h1 class="mb-2 text-white">{{__('dashboard.hello')}} {{auth()->user()->clinic ? optional(optional(auth()->user())->clinic)->name : auth()->user()->name}}</h1>
+                                            <h1 class="mb-2 text-white">{{__('dashboard.hello')}} {{optional($clinic)->name ?? auth()->user()->name}}</h1>
                                             <p class="m-auto w-75">{{__('dashboard.welcome_message')}}</p>
                                         </div>
                                     </div>
@@ -41,7 +41,7 @@
                                             <i class="feather icon-users text-primary font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="text-bold-700 mt-1 mb-25">{{auth()->user()->clinic ? optional(optional(auth()->user())->clinic)->patients_count : '--'}}</h2>
+                                    <h2 class="text-bold-700 mt-1 mb-25">{{optional($clinic)->patients_count ?? '--'}}</h2>
                                     <p class="mb-0">{{__('dashboard.patients_count')}}</p>
                                 </div>
                                 <div class="card-content">
@@ -57,7 +57,7 @@
                                             <i class="feather icon-package text-warning font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="text-bold-700 mt-1 mb-25">{{auth()->user()->clinic ? optional(optional(auth()->user())->clinic)->reservations_count : '--'}}</h2>
+                                    <h2 class="text-bold-700 mt-1 mb-25">{{optional($clinic)->reservations_count ?? '--'}}</h2>
                                     <p class="mb-0">{{__('dashboard.discovery_disclousre_count')}}</p>
                                 </div>
                                 <div class="card-content">
@@ -75,7 +75,7 @@
                                             <i class="feather icon-package text-warning font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="text-bold-700 mt-1 mb-25">{{auth()->user()->clinic ? optional(optional(auth()->user())->clinic)->disclosure_count : '--'}}</h2>
+                                    <h2 class="text-bold-700 mt-1 mb-25">{{optional($clinic)->disclosure_count ?? '--'}}</h2>
                                     <p class="mb-0">{{__('dashboard.reservations_count')}}</p>
                                 </div>
                                 <div class="card-content">
@@ -91,7 +91,23 @@
                                             <i class="feather icon-package text-warning font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="text-bold-700 mt-1 mb-25">{{auth()->user()->clinic ? optional(optional(auth()->user())->clinic)->discovery_count : '--'}}</h2>
+                                    <h2 class="text-bold-700 mt-1 mb-25">{{optional($clinic)->disclosure_today_count ?? '--'}}</h2>
+                                    <p class="mb-0">{{__('dashboard.today_reservations_count')}}</p>
+                                </div>
+                                <div class="card-content">
+                                    <div id="orders-received-chart11"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="card">
+                                <div class="card-header d-flex flex-column align-items-start pb-0">
+                                    <div class="avatar bg-rgba-warning p-50 m-0">
+                                        <div class="avatar-content">
+                                            <i class="feather icon-package text-warning font-medium-5"></i>
+                                        </div>
+                                    </div>
+                                    <h2 class="text-bold-700 mt-1 mb-25">{{optional($clinic)->discovery_count ?? '--'}}</h2>
                                     <p class="mb-0">{{__('dashboard.discovery_count')}}</p>
                                 </div>
                                 <div class="card-content">
@@ -107,27 +123,11 @@
                                             <i class="feather icon-package text-warning font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="text-bold-700 mt-1 mb-25">{{auth()->user()->clinic ? optional(optional(auth()->user())->clinic)->today_reservations_count : '--'}}</h2>
-                                    <p class="mb-0">{{__('dashboard.reservations_today_count')}}</p>
+                                    <h2 class="text-bold-700 mt-1 mb-25">{{optional($clinic)->discovery_today_count ?? '--'}}</h2>
+                                    <p class="mb-0">{{__('dashboard.today_discovery_count')}}</p>
                                 </div>
                                 <div class="card-content">
-                                    <div id="orders-received-chart2"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6 col-12">
-                            <div class="card">
-                                <div class="card-header d-flex flex-column align-items-start pb-0">
-                                    <div class="avatar bg-rgba-warning p-50 m-0">
-                                        <div class="avatar-content">
-                                            <i class="feather icon-package text-warning font-medium-5"></i>
-                                        </div>
-                                    </div>
-                                    <h2 class="text-bold-700 mt-1 mb-25">{{auth()->user()->clinic ? optional(optional(auth()->user())->clinic)->disclosure_count * optional(optional(auth()->user())->clinic)->disclosure_price: '--'}}</h2>
-                                    <p class="mb-0">{{__('dashboard.reservations_reserve')}}</p>
-                                </div>
-                                <div class="card-content">
-                                    <div id="orders-received-chart3"></div>
+                                    <div id="orders-received-chart12"></div>
                                 </div>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                                             <i class="feather icon-package text-warning font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="text-bold-700 mt-1 mb-25">{{auth()->user()->clinic ? optional(optional(auth()->user())->clinic)->discovery_count * optional(optional(auth()->user())->clinic)->rediscovery_price : '--'}}</h2>
+                                    <h2 class="text-bold-700 mt-1 mb-25">{{optional($clinic)->exists() ? optional($clinic)->discovery_count * optional($clinic)->rediscovery_price : '--'}}</h2>
                                     <p class="mb-0">{{__('dashboard.reservations_discovery')}}</p>
                                 </div>
                                 <div class="card-content">
@@ -149,7 +149,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-lg-3 col-md-6 col-12">
                             <div class="card">
                                 <div class="card-header d-flex flex-column align-items-start pb-0">
@@ -158,7 +157,7 @@
                                             <i class="feather icon-package text-warning font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="text-bold-700 mt-1 mb-25">{{auth()->user()->clinic ? optional(optional(auth()->user())->clinic)->disclosure_today_count * optional(optional(auth()->user())->clinic)->disclosure_price : '--'}}</h2>
+                                    <h2 class="text-bold-700 mt-1 mb-25">{{optional($clinic)->exists() ? optional($clinic)->disclosure_today_count * optional($clinic)->disclosure_price : '--'}}</h2>
                                     <p class="mb-0">{{__('dashboard.reservations_reserve_today')}}</p>
                                 </div>
                                 <div class="card-content">
@@ -174,11 +173,45 @@
                                             <i class="feather icon-package text-warning font-medium-5"></i>
                                         </div>
                                     </div>
-                                    <h2 class="text-bold-700 mt-1 mb-25">{{auth()->user()->clinic ? optional(optional(auth()->user())->clinic)->discovery_today_count * optional(optional(auth()->user())->clinic)->rediscovery_price : '--'}}</h2>
+                                    <h2 class="text-bold-700 mt-1 mb-25">{{optional($clinic)->exists() ? optional($clinic)->discovery_today_count * optional($clinic)->rediscovery_price : '--'}}</h2>
                                     <p class="mb-0">{{__('dashboard.reservations_discovery_today')}}</p>
                                 </div>
                                 <div class="card-content">
                                     <div id="orders-received-chart9"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="card">
+                                <div class="card-header d-flex flex-column align-items-start pb-0">
+                                    <div class="avatar bg-rgba-warning p-50 m-0">
+                                        <div class="avatar-content">
+                                            <i class="feather icon-package text-warning font-medium-5"></i>
+                                        </div>
+                                    </div>
+                                    <h2 class="text-bold-700 mt-1 mb-25">{{optional($clinic)->today_reservations_count ?? '--'}}</h2>
+                                    <p class="mb-0">{{__('dashboard.reservations_today_count')}}</p>
+                                </div>
+                                <div class="card-content">
+                                    <div id="orders-received-chart2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-12">
+                            <div class="card">
+                                <div class="card-header d-flex flex-column align-items-start pb-0">
+                                    <div class="avatar bg-rgba-warning p-50 m-0">
+                                        <div class="avatar-content">
+                                            <i class="feather icon-package text-warning font-medium-5"></i>
+                                        </div>
+                                    </div>
+                                    <h2 class="text-bold-700 mt-1 mb-25">{{$clinic->exists() ? optional($clinic)->disclosure_count * optional($clinic)->disclosure_price: '--'}}</h2>
+                                    <p class="mb-0">{{__('dashboard.reservations_reserve')}}</p>
+                                </div>
+                                <div class="card-content">
+                                    <div id="orders-received-chart3"></div>
                                 </div>
                             </div>
                         </div>

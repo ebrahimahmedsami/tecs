@@ -194,6 +194,8 @@ return [
     'icon' => 'Icon' ,
     'text' => 'Description' ,
     'error_delete_doctor' => 'Can\'t Delete Doctor Because Has Clinics',
+    'today_reservations_count' => 'Today Reservations Count' ,
+    'today_discovery_count' => 'Today Discoveries Count' ,
     '' => '',
     '' => '',
     '' => '',

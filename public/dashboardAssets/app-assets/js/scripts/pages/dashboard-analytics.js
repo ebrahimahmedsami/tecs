@@ -134,7 +134,7 @@ $(window).on("load", function () {
       }
     },
     series: [{
-      name: 'Orders',
+      name: '',
       data: [10, 15, 8, 15, 7, 12, 8]
     }],
 
@@ -212,6 +212,20 @@ $(window).on("load", function () {
     );
 
     orderChart9.render();
+
+    var orderChart12 = new ApexCharts(
+        document.querySelector("#orders-received-chart12"),
+        orderChartoptions
+    );
+
+    orderChart12.render();
+
+    var orderChart11 = new ApexCharts(
+        document.querySelector("#orders-received-chart11"),
+        orderChartoptions
+    );
+
+    orderChart11.render();
   // Orders Received Chart ends //
 
 
