@@ -16,8 +16,19 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{asset('frontAssets/css/styles.css')}}" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <style>
+        .select2-container {
+            z-index: 999999 !important;
+        }
+        .select2-container--default .select2-selection--single{
+            height: 37px !important;
+            padding-top: 4px !important;
+        }
+        .select2-container--open .select2-dropdown{
+            left: -21px !important;
+        }
         @import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
 
         header.masthead{
@@ -191,6 +202,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 <!-- Core theme JS-->
 <script src="{{asset('frontAssets/js/scripts.js')}}"></script>
 <script>
@@ -199,6 +212,7 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+
 </script>
 @yield('script')
 </body>

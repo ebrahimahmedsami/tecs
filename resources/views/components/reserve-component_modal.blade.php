@@ -2,7 +2,7 @@
 <?php use App\Models\Clinic;
 $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
 ?>
-<div class=" modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -57,7 +57,7 @@ $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
 
                         <div class="form-group col-6">
                             <label for="modal_clinic_id" class="mb-1">{{__('home.clinic')}}</label>
-                            <select name="modal_clinic_id" id="modal_clinic_id" class="select2 form-control clinic_id">
+                            <select  style="width: 100%" name="modal_clinic_id" id="modal_clinic_id" class="select2 form-control clinic_id">
                                 <option value="" disabled selected>{{__('home.choose one')}}</option>
                                 @foreach($clinics as $clinic)
                                     <option value="{{$clinic->id}}">{{$clinic->name}}</option>
@@ -169,7 +169,13 @@ $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
 </div>
 @section('script')
     <script>
+
         $(document).ready(function (){
+            $('#modal_clinic_id').select2({
+                tags: true,
+                dropdownParent: $("#exampleModal")
+            })
+
             $('#specialization').hide();
             $('#modal_date').attr('disabled',true)
             $('#modal_type').attr('disabled',true)
