@@ -54,6 +54,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
                 //Clinics
                 Route::resource('clinics', ClinicsController::class);
+                Route::get('edit_profile', [ClinicsController::class,'edit_profile'])->name('clinic.edit-profile');
+                Route::post('update_profile', [ClinicsController::class,'update_profile'])->name('clinic.update-profile');
+                Route::post('update_profile_password', [ClinicsController::class,'update_profile_password'])->name('clinic.update-profile-password');
 
                 //Patients
                 Route::resource('patients', PatientsController::class);

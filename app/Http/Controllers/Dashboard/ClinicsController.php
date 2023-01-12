@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClinicsRequest;
+use App\Http\Requests\UpdateProfilePasswordRequest;
+use App\Http\Requests\UpdateProfileRequest;
 use App\Models\Clinic;
 use App\Models\Doctor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -192,4 +195,69 @@ class ClinicsController extends Controller
         $clinic->delete();
         return back()->with(['success' => __('dashboard.item deleted successfully')]);
     }
-}
+
+
+    public function edit_profile(){
+        $clinic = new Clinic();
+        if (auth()->user()->clinic){
+            $clinic = auth()->user()->clinic;
+        }
+        return view('dashboard.clinics.edit_profile',compact('clinic'));
+    }
+
+    public function update_profile(UpdateProfileRequest $request){
+
+        $exception = DB::transaction(function() use ($request) {
+            $clinic = Clinic::find($request->get('id'));
+            $clinic->update([
+                'name_en' => $request->name_en,
+                'name_ar' => $request->name_ar,
+                'phone' => $request->phone,
+                'address' => $request->address,
+                'email' => $request->email,
+                'disclosure_price' => $request->disclosure_price,
+                'rediscovery_price' => $request->rediscovery_price,
+                'today_capacity' => $request->today_capacity,
+                'time_form' => $request->time_form,
+                'time_to' => $request->time_to,
+            ]);
+
+            if ($clinic){
+
+                if ($request->filled('day')){
+                    $clinic->holidays()->delete();
+                    $days = [];
+                    $holidays = $request->input('day');
+                    foreach($holidays as $holiday){
+                        $days[] = [
+                            'day' => $holiday
+                        ];
+                    }
+                    $clinic->holidays()->createMany($days);
+                }
+                $clinic->user->update([
+                    'name' => $clinic->name_en,
+                    'email' => $clinic->email,
+                ]);
+            }
+
+        });
+
+        return redirect()->back()->with(['success' => __('dashboard.item updated successfully')]);
+    }
+
+    public function update_profile_password(UpdateProfilePasswordRequest $request){
+        $clinic = Clinic::find($request->get('id'));
+        if (Hash::check($request->get('old_password'), $clinic->user->password)) {
+                $clinic->user->update([
+                    'password' => bcrypt($request->new_password),
+                ]);
+            return redirect()->back()->with(['success' => __('dashboard.item updated successfully')]);
+
+        }else{
+            return redirect()->back()->with(['danger' => __('dashboard.error_old_password')]);
+        }
+
+    }
+
+    }

@@ -211,8 +211,12 @@ return [
     'note' => 'ملاحظة' ,
     'add_note' => 'إضافة ملاحظة' ,
     'patient_name' => 'اسم المريض' ,
-    '' => '' ,
-    '' => '' ,
-    '' => '' ,
+    'edit_profile_clinic' => 'تعديل بيانات العيادة' ,
+    'general' => 'عام' ,
+    'change_password' => 'تغيير كلمة المرور' ,
+    'old_password' => ' كلمة المرور القديمة' ,
+    'new_password' => ' كلمة المرور الجديدة' ,
+    'confirm_new_password' => ' تأكيد كلمة المرور الجديدة' ,
+    'error_old_password' => 'كلمة المرور القديمة غير صحيحة'
 
 ];
