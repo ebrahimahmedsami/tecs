@@ -43,6 +43,7 @@ class ReservationsController extends Controller
             return response()->json(['error_capacity'=>__('dashboard.number of reservations exceeded')],422);
         }
 
+        # Check Clinic Holidays
         if ($clinic->holidays()->count() > 0){
             $date_day_name = lcfirst(Carbon::parse($data['modal_date'])->format('l'));
             $holidays = $clinic->holidays->pluck('day')->toArray();
@@ -62,8 +63,8 @@ class ReservationsController extends Controller
                 'national_id' => $data['modal_national_id'],
                 'gender' => $data['gender'],
             ]);
-            $patient->clinics()->sync([$clinic->id]);
         }
+        $patient->clinics()->sync([$clinic->id],false);
 
         $reservation = Reservation::create([
            'patient_id' => $patient->id,

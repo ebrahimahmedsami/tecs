@@ -7,6 +7,7 @@ use App\Http\Requests\PatientsRequest;
 use App\Models\Clinic;
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class PatientsController extends Controller
@@ -18,7 +19,6 @@ class PatientsController extends Controller
      */
     public function index()
     {
-
         if (\request()->ajax()) {
             if (auth()->user()->clinic){
                 $data = optional(auth()->user()->clinic)->patients;
@@ -46,18 +46,15 @@ class PatientsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param PatientsRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(PatientsRequest $request)
     {
         $patient = Patient::create($request->validated());
         $request->clinic_id = is_array($request->clinic_id) ? $request->clinic_id : [$request->clinic_id];
-        $patient->clinics()->sync($request->clinic_id);
+        $patient->clinics()->sync($request->clinic_id,false);
         return redirect()->route('admin.patients.index')->with(['success' => __('dashboard.item added successfully')]);
-
     }
 
     /**
@@ -88,12 +85,11 @@ class PatientsController extends Controller
         return view('dashboard.patients.edit',compact('patient','clinics'));
     }
 
+
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param PatientsRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(PatientsRequest $request, $id)
     {
@@ -116,12 +112,21 @@ class PatientsController extends Controller
     public function destroy($id)
     {
         $patient = Patient::where('id',$id)->with('reservations')->first();
-        if ($patient->reservations()->count() > 0){
-            return back()->with(['danger' => __('dashboard.error_delete_patient')]);
-        }
-        if ($patient){
+
+        if (auth()->user()->clinic) {
+            $reservation_on_clinic = $patient->reservations()->where('clinic_id',optional(auth()->user())->clinic->id)->count();
+            if ($reservation_on_clinic > 0){
+                return back()->with(['danger' => __('dashboard.error_delete_patient')]);
+            }
+            DB::table('clinic_patients')->where('clinic_id', optional(auth()->user())->clinic->id)->delete();
+        }else{
+            if ($patient->reservations()->count() > 0){
+                return back()->with(['danger' => __('dashboard.error_delete_patient')]);
+            }
             $patient->delete();
+            $patient->clinics()->detach();
         }
+
         return back()->with(['success' => __('dashboard.item deleted successfully')]);
 
     }

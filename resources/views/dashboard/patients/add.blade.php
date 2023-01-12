@@ -76,16 +76,18 @@
                                     </div>
                                     <div class="form-group col-sm-3">
                                         <label style="width: 100%" for="clinic_id">{{__('dashboard.clinics')}}
-                                            <select class="form-control" name="clinic_id">
-                                                @if(auth()->user()->hasRole('clinic'))
+                                            @if(auth()->user()->hasRole('clinic'))
+                                                <select class="select2 form-control clinic_id" name="clinic_id">
                                                     <option selected value="{{$clinics->id}}">{{$clinics->name}}</option>
-                                                @else
-                                                    <option disabled selected>{{__('dashboard.choose_clinic')}}</option>
+                                                </select>
+                                            @else
+                                                <select multiple class="select2 form-control clinic_id" name="clinic_id[]">
                                                     @foreach($clinics as $value)
                                                         <option value="{{$value->id}}">{{$value->name}}</option>
                                                     @endforeach
-                                                @endif
-                                            </select>
+                                                </select>
+                                            @endif
+
                                             @error('clinic_id')
                                             <span style="font-size: 12px;" class="text-danger">{{$message}}</span>
                                             @enderror
@@ -111,4 +113,16 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function () {
+            $('.clinic_id').select2(
+                {
+                    placeholder: "{{__('dashboard.choose_clinic')}}",
+                }
+            )
+        })
+    </script>
 @endsection
