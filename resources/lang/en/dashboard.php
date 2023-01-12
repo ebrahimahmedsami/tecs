@@ -193,6 +193,7 @@ return [
     'title' => 'Title' ,
     'icon' => 'Icon' ,
     'text' => 'Description' ,
+    'error_delete_doctor' => 'Can\'t Delete Doctor Because Has Clinics',
     '' => '',
     '' => '',
     '' => '',

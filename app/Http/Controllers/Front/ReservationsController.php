@@ -25,7 +25,7 @@ class ReservationsController extends Controller
             'modal_clinic_id' => 'required',
             'modal_specialization_id' => 'required',
             'name_ar' => [Rule::requiredIf(function () use($patient){return !$patient;}),'max:255'],
-            'name_en' => [Rule::requiredIf(function () use($patient){return !$patient;}),'max:255'],
+//            'name_en' => [Rule::requiredIf(function () use($patient){return !$patient;}),'max:255'],
             'phone' => [Rule::requiredIf(function () use($patient){return !$patient;}),'numeric'],
             'address' => [Rule::requiredIf(function () use($patient){return !$patient;}),'max:255'],
             'age' => [Rule::requiredIf(function () use($patient){return !$patient;}),'numeric'],

@@ -78,7 +78,9 @@ $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
                             <h5 class="modal-title">{{__('home.patient data')}}</h5>
                             <span class="text-danger mb-2">({{__('home.new_patient')}})</span>
                             <div class="form-group col-6">
-                                <label for="modal_name_ar" class="mb-1">{{__('home.name ar')}}</label>
+                                <label for="modal_name_ar" class="mb-1">{{__('home.name ar')}}
+                                    <span class="text-danger">*</span>
+                                </label>
                                 <div class="position-relative has-icon-left">
                                     <input type="text" id="modal_name_ar" class="form-control" name="name_ar" placeholder="{{__('home.name ar')}}">
                                     <div class="form-control-position">
@@ -100,7 +102,9 @@ $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
                             </div>
 
                             <div class="form-group col-6">
-                                <label for="modal_phone" class="mb-1">{{__('home.phone')}}</label>
+                                <label for="modal_phone" class="mb-1">{{__('home.phone')}}
+                                    <span class="text-danger">*</span>
+                                </label>
                                 <div class="position-relative has-icon-left">
                                     <input type="number" id="modal_phone" class="form-control" name="phone" placeholder="{{__('home.phone')}}">
                                     <div class="form-control-position">
@@ -111,7 +115,9 @@ $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
                             </div>
 
                             <div class="form-group col-6">
-                                <label for="modal_address" class="mb-1">{{__('home.address')}}</label>
+                                <label for="modal_address" class="mb-1">{{__('home.address')}}
+                                    <span class="text-danger">*</span>
+                                </label>
                                 <div class="position-relative has-icon-left">
                                     <input type="text" id="modal_address" class="form-control" name="address" placeholder="{{__('home.address')}}">
                                     <div class="form-control-position">
@@ -122,7 +128,9 @@ $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
                             </div>
 
                             <div class="form-group col-6">
-                                <label for="modal_age" class="mb-1">{{__('home.age')}}</label>
+                                <label for="modal_age" class="mb-1">{{__('home.age')}}
+                                    <span class="text-danger">*</span>
+                                </label>
                                 <div class="position-relative has-icon-left">
                                     <input type="number" id="modal_age" class="form-control" name="age" placeholder="{{__('home.age')}}">
                                     <div class="form-control-position">
@@ -134,7 +142,9 @@ $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
 
                             <div class="form-group col-6">
                                 <label
-                                    for="modal_gender" class="mb-1">{{__('home.gender')}}</label>
+                                    for="modal_gender" class="mb-1">{{__('home.gender')}}
+                                    <span class="text-danger">*</span>
+                                </label>
                                 <select name="gender" id="modal_gender"
                                         class="select2 form-control">
                                     <option selected disabled>{{__('home.choose one')}}</option>
@@ -168,6 +178,15 @@ $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
                 getSpecializations($('#modal_clinic_id').val());
             });
 
+            $('#exampleModal').on('hidden.bs.modal', function () {
+                $('.modal-patient-data').hide()
+                $('.modal-patient-old-data').hide()
+                $('#modal_date').val('').prop('disabled',true)
+                $('#modal_type').val('').prop('disabled',true)
+                $('#modal_clinic_id').val('').prop('disabled',true)
+                $('#specialization').hide().val('').prop('disabled',true)
+            })
+
             // Get Clinic Specializations
             function getSpecializations(selectedID = null){
                 $('#specialization_id').empty()
@@ -199,6 +218,7 @@ $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
                     $('#modal_date').prop('disabled',true)
                     $('#modal_type').prop('disabled',true)
                     $('#modal_clinic_id').prop('disabled',true)
+                    $('#specialization').hide().prop('disabled',true)
                     $('#alert-length').show().text("{{__('home.length must be equal 14')}}");
                     $('.modal-patient-data').hide()
                     $('.modal-patient-old-data').hide()
@@ -272,8 +292,8 @@ $clinics = Clinic::ofUnBlocked(Clinic::UN_BLOCKED)->get();
                                 $('.specialization_id_error').text(errors.modal_specialization_id[0])
                             if (errors.name_ar)
                                 $('.name_ar_error').text(errors.name_ar[0])
-                            if (errors.name_en)
-                                $('.name_en_error').text(errors.name_en[0])
+                            // if (errors.name_en)
+                            //     $('.name_en_error').text(errors.name_en[0])
                             if (errors.phone)
                                 $('.phone_error').text(errors.phone[0])
                             if (errors.address)

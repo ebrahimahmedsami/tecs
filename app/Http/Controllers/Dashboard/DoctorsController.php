@@ -99,6 +99,9 @@ class DoctorsController extends Controller
      */
     public function destroy(Doctor $doctor)
     {
+        if ($doctor->clinics()->count() > 0){
+            return back()->with(['danger' => __('dashboard.error_delete_doctor')]);
+        }
         $doctor->specilizations()->detach();
         $doctor->delete();
         return back()->with(['success' => __('dashboard.item deleted successfully')]);
