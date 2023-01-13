@@ -145,7 +145,7 @@
     <div class="container">
         <div class="text-center">
             <h2 class="section-heading text-uppercase">@lang('dashboard.about_us')</h2>
-            <h3 class="section-subheading text-muted">{{isset($settings->about_text) ? strtoupper($settings->about_text) : '--'}}</h3>
+            <h3 style="width: 50%;margin: auto;" class="section-subheading text-muted">{{isset($settings->about_text) ? strtoupper($settings->about_text) : '--'}}</h3>
         </div>
     </div>
 </section>
