@@ -56,24 +56,91 @@
     </div>
 </section>
 <!-- Portfolio Grid-->
-<div style="border-top: 1px solid #ced4da;border-bottom:  1px solid #ced4da" class="py-5">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-3 col-sm-6 my-3">
-                <a href="javascript::void(0)"><img class="img-fluid img-brand d-block mx-auto" src="{{asset('frontAssets/assets/img/logos/microsoft.svg')}}" alt="..." aria-label="Microsoft Logo" /></a>
+
+<section class="page-section" style="background: #f6f6f6;">
+    <div class="container mx-auto py-8">
+        <div class="flex flex-col text-center gap-4 mb-8 p-4">
+
+            <h1  style="text-transform:uppercase" class="">@lang('dashboard.our_clinics')</h1>
+
+            <div style="color: #a3a3a3;text-transform:capitalize;letter-spacing: 2px;">@lang('dashboard.our_clinics_text_one')</div>
+
+            <div  style="text-transform:capitalize;letter-spacing: 2px;">@lang('dashboard.our_clinics_text_two')</div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div style="border: 2px dashed #e5dddd;padding: 10px;">
+                    <img src="{{asset('frontAssets/images/doc.png')}}" class="img-thumbnail">
+
+                    <div style="font-weight: bold" class="text-center mt-2">Clinic : EL-Hayah</div>
+
+                    <div class="text-dark text-center mt-2" style="color: #fff !important;background: #ffc800 !important;">DR/Ahmed Yasser</div>
+
+                    <div style="font-size: 14px;" class="text-dark text-center mt-2">All Information About Clinic.</div>
+
+                    <div class="d-flex justify-content-around mt-3 mb-3">
+                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-twitter fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-linkedin fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-dribbble fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3 col-sm-6 my-3">
-                <a href="javascript::void(0)"><img class="img-fluid img-brand d-block mx-auto" src="{{asset('frontAssets/assets/img/logos/google.svg')}}" alt="..." aria-label="Google Logo" /></a>
+            <div class="col-sm-3">
+                <div style="border: 2px dashed #e5dddd;padding: 10px;">
+                    <img src="{{asset('frontAssets/images/doc.png')}}" class="img-thumbnail">
+
+                    <div style="font-weight: bold" class="text-center mt-2">Clinic : EL-Hayah</div>
+
+                    <div class="text-dark text-center mt-2" style="color: #fff !important;background: #ffc800 !important;">DR/Ahmed Yasser</div>
+
+                    <div style="font-size: 14px;" class="text-dark text-center mt-2">All Information About Clinic.</div>
+
+                    <div class="d-flex justify-content-around mt-3 mb-3">
+                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-twitter fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-linkedin fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-dribbble fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3 col-sm-6 my-3">
-                <a href="javascript::void(0)"><img class="img-fluid img-brand d-block mx-auto" src="{{asset('frontAssets/assets/img/logos/facebook.svg')}}" alt="..." aria-label="Facebook Logo" /></a>
+            <div class="col-sm-3">
+                <div style="border: 2px dashed #e5dddd;padding: 10px;">
+                    <img src="{{asset('frontAssets/images/doc.png')}}" class="img-thumbnail">
+
+                    <div style="font-weight: bold" class="text-center mt-2">Clinic : EL-Hayah</div>
+
+                    <div class="text-dark text-center mt-2" style="color: #fff !important;background: #ffc800 !important;">DR/Ahmed Yasser</div>
+
+                    <div style="font-size: 14px;" class="text-dark text-center mt-2">All Information About Clinic.</div>
+
+                    <div class="d-flex justify-content-around mt-3 mb-3">
+                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-twitter fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-linkedin fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-dribbble fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3 col-sm-6 my-3">
-                <a href="javascript::void(0)"><img class="img-fluid img-brand d-block mx-auto" src="{{asset('frontAssets/assets/img/logos/ibm.svg')}}" alt="..." aria-label="IBM Logo" /></a>
+            <div class="col-sm-3">
+                <div style="border: 2px dashed #e5dddd;padding: 10px;">
+                    <img src="{{asset('frontAssets/images/doc.png')}}" class="img-thumbnail">
+
+                    <div style="font-weight: bold" class="text-center mt-2">Clinic : EL-Hayah</div>
+
+                    <div class="text-dark text-center mt-2" style="color: #fff !important;background: #ffc800 !important;">DR/Ahmed Yasser</div>
+
+                    <div style="font-size: 14px;" class="text-dark text-center mt-2">All Information About Clinic.</div>
+
+                    <div class="d-flex justify-content-around mt-3 mb-3">
+                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-twitter fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-linkedin fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-dribbble fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                    </div>
+                </div>
             </div>
         </div>
+
     </div>
-</div>
+</section>
 
 <!-- About-->
 <section class="page-section" id="about">
