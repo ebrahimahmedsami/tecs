@@ -69,7 +69,7 @@
 
         </div>
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
                 <div style="border: 2px dashed #e5dddd;padding: 10px;">
                     <img src="{{asset('frontAssets/images/doc.png')}}" class="img-thumbnail">
 
@@ -86,7 +86,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
                 <div style="border: 2px dashed #e5dddd;padding: 10px;">
                     <img src="{{asset('frontAssets/images/doc.png')}}" class="img-thumbnail">
 
@@ -103,7 +103,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
                 <div style="border: 2px dashed #e5dddd;padding: 10px;">
                     <img src="{{asset('frontAssets/images/doc.png')}}" class="img-thumbnail">
 
@@ -120,7 +120,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
                 <div style="border: 2px dashed #e5dddd;padding: 10px;">
                     <img src="{{asset('frontAssets/images/doc.png')}}" class="img-thumbnail">
 
