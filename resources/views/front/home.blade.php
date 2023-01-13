@@ -14,8 +14,8 @@
                 <li class="nav-item"><a class="nav-link" href="#about">@lang('dashboard.about')</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">@lang('dashboard.contact_us')</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{route('admin.login')}}">@lang('dashboard.login')</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL('en') }}" data-language="en"><i class="flag-icon flag-icon-us"></i> English</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL('ar') }}" data-language="en"><i class="flag-icon flag-icon-us"></i> العربية</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL('en') }}" data-language="en"><img title="english" style="width: 20px;" src="{{asset('frontAssets/images/en.png')}}"></a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL('ar') }}" data-language="en"> <img title="arabic" style="width: 20px;" src="{{asset('frontAssets/images/ar.png')}}"></a></li>
             </ul>
         </div>
     </div>
@@ -222,8 +222,8 @@
     <div class="column">
         <a class="footer_title">@lang('dashboard.our_links')</a>
         <a  href="{{route('admin.login')}}">@lang('dashboard.login')</a>
-        <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" data-language="en">English</a>
-        <a href="{{ LaravelLocalization::getLocalizedURL('ar') }}" data-language="en">العربية</a>
+        <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" data-language="en"><img title="english" style="width: 20px;" src="{{asset('frontAssets/images/en.png')}}"></a>
+        <a href="{{ LaravelLocalization::getLocalizedURL('ar') }}" data-language="en"><img title="english" style="width: 20px;" src="{{asset('frontAssets/images/ar.png')}}"></a>
     </div>
     <div class="column">
         <a class="footer_title">@lang('dashboard.latest_news')</a>
