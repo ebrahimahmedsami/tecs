@@ -13,6 +13,7 @@
                 <li class="nav-item"><a class="nav-link" href="#services">@lang('dashboard.service')</a></li>
                 <li class="nav-item"><a class="nav-link" href="#about">@lang('dashboard.about')</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">@lang('dashboard.contact_us')</a></li>
+                <li class="nav-item"><a class="nav-link" href="#clinics">@lang('dashboard.clinics')</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{route('admin.login')}}">@lang('dashboard.login')</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL('en') }}" data-language="en"><img title="english" style="width: 20px;" src="{{asset('frontAssets/images/en.png')}}"></a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{ LaravelLocalization::getLocalizedURL('ar') }}" data-language="en"> <img title="arabic" style="width: 20px;" src="{{asset('frontAssets/images/ar.png')}}"></a></li>
@@ -57,7 +58,7 @@
 </section>
 <!-- Portfolio Grid-->
 
-<section class="page-section" style="background: #f6f6f6;">
+<section id="clinics" class="page-section" style="background: #f6f6f6;">
     <div class="container mx-auto py-8">
         <div class="flex flex-col text-center gap-4 mb-8 p-4 wow bounceInDown" data-wow-duration="2s">
             <h1  style="text-transform:uppercase" class="">@lang('dashboard.our_clinics')</h1>
