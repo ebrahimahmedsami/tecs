@@ -11787,7 +11787,7 @@ section#contact form#contactForm :-ms-input-placeholder {
 
 footer{
     width:100%;
-    background-color:#ecf1fa;
+    background-color:#ffc800;
     padding-top:30px;
     font-family: 'Open Sans', sans-serif;
 }
@@ -11797,7 +11797,7 @@ footer .column{
     display:inline-block;
     vertical-align:top;
     padding:10px;
-    background:#ecf1fa;
+    background:#ffc800;
 }
 
 footer .column .footer_title{
