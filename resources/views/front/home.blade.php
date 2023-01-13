@@ -59,17 +59,13 @@
 
 <section class="page-section" style="background: #f6f6f6;">
     <div class="container mx-auto py-8">
-        <div class="flex flex-col text-center gap-4 mb-8 p-4">
-
+        <div class="flex flex-col text-center gap-4 mb-8 p-4 wow bounceInDown" data-wow-duration="2s">
             <h1  style="text-transform:uppercase" class="">@lang('dashboard.our_clinics')</h1>
-
             <div style="color: #a3a3a3;text-transform:capitalize;letter-spacing: 2px;">@lang('dashboard.our_clinics_text_one')</div>
-
             <div  style="text-transform:capitalize;letter-spacing: 2px;">@lang('dashboard.our_clinics_text_two')</div>
-
         </div>
         <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-2" data-wow-duration="2s">
                 <div style="border: 2px dashed #e5dddd;padding: 10px;">
                     <img src="{{asset('frontAssets/images/doc.png')}}" class="img-thumbnail">
 
@@ -86,7 +82,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-2" data-wow-duration="2s">
                 <div style="border: 2px dashed #e5dddd;padding: 10px;">
                     <img src="{{asset('frontAssets/images/doc.png')}}" class="img-thumbnail">
 
@@ -103,7 +99,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-2" data-wow-duration="2s">
                 <div style="border: 2px dashed #e5dddd;padding: 10px;">
                     <img src="{{asset('frontAssets/images/doc.png')}}" class="img-thumbnail">
 
@@ -120,7 +116,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-2" data-wow-duration="2s">
                 <div style="border: 2px dashed #e5dddd;padding: 10px;">
                     <img src="{{asset('frontAssets/images/doc.png')}}" class="img-thumbnail">
 
@@ -137,6 +133,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
     </div>
