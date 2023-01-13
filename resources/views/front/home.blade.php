@@ -1,45 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{app()->getLocale()=='ar'?'ar':'en'}}" dir="{{app()->getLocale()=='ar'?'rtl':'ltr'}}">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <meta name="csrf-token" content="{{csrf_token()}}" />
-    <title>TECS</title>
-    <!-- Favicon-->
-    <link rel="shortcut icon" type="image/x-icon" href="{{isset($settings->logo) && !empty($settings->logo) ? asset('storage/settings/uploads/'.$settings->logo) : asset('dashboardAssets/app-assets/images/logo/main-logo-black.jpeg')}}">
-    <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="{{asset('frontAssets/css/styles.css')}}" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
-    <style>
-        .select2-container {
-            z-index: 999999 !important;
-        }
-        .select2-container--default .select2-selection--single{
-            height: 37px !important;
-            padding-top: 4px !important;
-        }
-        @import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
-
-        header.masthead{
-            background-image: url({{isset($settings->image) && !empty($settings->image) ? asset('storage/settings/uploads/'.$settings->image) : asset('dashboardAssets/app-assets/images/logo/main-logo-black.jpeg')}}) !important;
-        }
-
-        ul li a,html,.modal-body,.modal-header,.modal-footer{font-family: 'Droid Arabic Kufi', serif !important;font-size:100%;}
-        .modal-header .btn-close{
-            margin: {{app()->getLocale() == 'ar' ? '0 !important' : '-0.5rem -0.5rem -0.5rem auto !important'}};
-        }
-
-    </style>
-</head>
-<body id="page-top">
+@extends('front.layouts.master')
+@section('content')
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
     <div class="container">
@@ -176,41 +136,50 @@
         </form>
     </div>
 </section>
-<!-- Footer-->
-<footer class="footer py-4">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-4 text-lg-start">@lang('home.Copyright') &copy; TECS 2022</div>
-            <div class="col-lg-4 my-3 my-lg-0">
-                <a class="btn btn-dark btn-social mx-2" href="{{isset($settings->twitter_link) ? $settings->twitter_link : ''}}" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="{{isset($settings->facebook_link) ? $settings->facebook_link : ''}}" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-dark btn-social mx-2" href="{{isset($settings->instagram_link) ? $settings->instagram_link : ''}}" aria-label="LinkedIn"><i class="fab fa-instagram"></i></a>
-            </div>
-            <div class="col-lg-4 text-lg-end">
-                <a class="link-dark text-decoration-none me-3" href="javascript::void(0)">@lang('home.Privacy Policy')</a>
-                <a class="link-dark text-decoration-none" href="javascript::void(0)">@lang('home.Terms of Use')</a>
-            </div>
-        </div>
+
+
+<!--FOOTER-->
+<img src="{{asset('frontAssets/images/footer_image.png')}}" class="footer_image">
+<footer>
+    <div class="column">
+        <a class="footer_title">TECS</a>
+        <a>{{isset($settings->about) ? ucfirst($settings->about) : '--'}}</a>
+        <a class="btn btn-dark btn-social mx-2" href="{{isset($settings->twitter_link) ? $settings->twitter_link : ''}}" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a class="btn btn-dark btn-social mx-2" href="{{isset($settings->facebook_link) ? $settings->facebook_link : ''}}" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a class="btn btn-dark btn-social mx-2" href="{{isset($settings->instagram_link) ? $settings->instagram_link : ''}}" aria-label="LinkedIn"><i class="fab fa-instagram"></i></a>
+    </div>
+    <div class="column">
+        <a class="footer_title">@lang('dashboard.touch')</a>
+        <a href="#services">@lang('dashboard.service')</a>
+        <a href="#about">@lang('dashboard.about')</a>
+        <a href="#contact">@lang('dashboard.contact_us')</a>
+    </div>
+    <div class="column">
+        <a class="footer_title">@lang('dashboard.our_links')</a>
+        <a  href="{{route('admin.login')}}">@lang('dashboard.login')</a>
+        <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" data-language="en">English</a>
+        <a href="{{ LaravelLocalization::getLocalizedURL('ar') }}" data-language="en">العربية</a>
+    </div>
+    <div class="column">
+        <a class="footer_title">@lang('dashboard.latest_news')</a>
+        <a href="" title="Lorem ipsum dolor sit amet"><img style="width: 45px" src="{{asset('frontAssets/images/doctor.jpg')}}"></a>
+        <a href="" title="Lorem ipsum dolor sit amet"><img style="width: 45px" src="{{asset('frontAssets/images/doctor.jpg')}}"></a>
+        <a href="" title="Lorem ipsum dolor sit amet"><img style="width: 45px" src="{{asset('frontAssets/images/doctor.jpg')}}"></a>
+        <a href="" title="Lorem ipsum dolor sit amet"><img style="width: 45px" src="{{asset('frontAssets/images/doctor.jpg')}}"></a>
+        <a href="" title="Lorem ipsum dolor sit amet"><img style="width: 45px" src="{{asset('frontAssets/images/doctor.jpg')}}"></a>
+    </div>
+    <div class="column">
+        <a class="footer_title">@lang('dashboard.get_touch')</a>
+        <a title="Address"><i class="fa fa-map-marker"></i> Mansoura - AL-Manzala - EL-Bosrat</a>
+        <a href="emailto:" title="Email"><i class="fa fa-envelope"></i> himasami0000@gmail.com</a>
+        <a href="tel:" title="Contact"><i class="fa fa-phone"></i> +015 509 09724</a>
+    </div>
+
+
+    <div class="sub-footer">
+        @lang('home.Privacy Policy') @lang('home.Terms of Use') || @lang('home.Copyright') &copy; TECS 2022
     </div>
 </footer>
-
 <x-reserve-component_modal />
-<!-- Bootstrap core JS-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-<!-- Core theme JS-->
-<script src="{{asset('frontAssets/js/scripts.js')}}"></script>
-<script>
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-</script>
-@yield('script')
-</body>
-</html>
+@endsection

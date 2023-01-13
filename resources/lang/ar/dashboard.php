@@ -217,6 +217,13 @@ return [
     'old_password' => ' كلمة المرور القديمة' ,
     'new_password' => ' كلمة المرور الجديدة' ,
     'confirm_new_password' => ' تأكيد كلمة المرور الجديدة' ,
-    'error_old_password' => 'كلمة المرور القديمة غير صحيحة'
+    'error_old_password' => 'كلمة المرور القديمة غير صحيحة',
+    'our_links' => 'الروابط',
+    'touch' => 'التواصل معنا',
+    'latest_news' => 'أخر الأخبار',
+    'get_touch' => 'ابق علي تواصل',
+
+
+
 
 ];
