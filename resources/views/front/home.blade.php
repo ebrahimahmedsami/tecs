@@ -141,6 +141,7 @@
 <!--FOOTER-->
 <img src="{{asset('frontAssets/images/footer_image.png')}}" class="footer_image">
 <footer>
+    <div class="container">
     <div class="column">
         <a class="footer_title">TECS</a>
         <a>{{isset($settings->about) ? ucfirst($settings->about) : '--'}}</a>
@@ -174,8 +175,7 @@
         <a href="emailto:" title="Email"><i class="fa fa-envelope"></i> himasami0000@gmail.com</a>
         <a href="tel:" title="Contact"><i class="fa fa-phone"></i> +015 509 09724</a>
     </div>
-
-
+    </div>
     <div class="sub-footer">
         @lang('home.Privacy Policy') @lang('home.Terms of Use') || @lang('home.Copyright') &copy; TECS 2022
     </div>
