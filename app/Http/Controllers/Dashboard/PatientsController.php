@@ -51,8 +51,10 @@ class PatientsController extends Controller
      */
     public function store(PatientsRequest $request)
     {
-        $patient = Patient::create($request->validated());
-        $request->clinic_id = is_array($request->clinic_id) ? $request->clinic_id : [$request->clinic_id];
+        $patient = Patient::where('national_id',$request->get('national_id'))->first();
+        if (empty($patient)){
+            $patient = Patient::create($request->validated());
+        }
         $patient->clinics()->sync($request->clinic_id,false);
         return redirect()->route('admin.patients.index')->with(['success' => __('dashboard.item added successfully')]);
     }

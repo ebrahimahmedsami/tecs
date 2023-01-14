@@ -32,7 +32,11 @@ class PatientsRequest extends FormRequest
             'address' => ['required','max:255'],
             'gender' => ['required','in:0,1'],
             'clinic_id' => ['required'],
-            'national_id' => ['required','digits:14',Rule::unique('patients','national_id')->ignore($this->id)],
+            'national_id' => ['required','digits:14',
+                auth()->user()->clinic ?
+                '' :
+                Rule::unique('patients','national_id')->ignore($this->id)
+            ],
         ];
     }
 }
