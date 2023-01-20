@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\SettingsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +26,12 @@ Route::group(['prefix'=>'auth','controller' => AuthController::class],function (
 Route::group(['middleware'=>'auth:sanctum'],function (){
    Route::post('logout',[AuthController::class,'logout']);
 });
+
+
+# Home
+
+Route::apiResource('settings', SettingsController::class);
+
+
+
 

@@ -11,10 +11,12 @@ use Illuminate\Database\Eloquent\Model;
 class Clinic extends Model
 {
     use HasFactory,Models;
+    public const ANNOUNCE_YES = 1;
+    public const ANNOUNCE_NO = 0;
     public const UN_BLOCKED = 0;
     public const BLOCKED = 1;
     protected $fillable = ['user_id','doctor_id','name_ar','name_en','phone','address','email','disclosure_price','rediscovery_price',
-        'today_capacity','time_form','time_to','is_blocked'];
+        'today_capacity','time_form','time_to','is_blocked','announce'];
     protected $appends = ['name','blocked_text'];
 
     public function getBlockedTextAttribute($key)
@@ -70,7 +72,5 @@ class Clinic extends Model
                     $query->where('type', (string)1);
                 }]);
     }
-
-
 
 }
