@@ -28,6 +28,10 @@ class Clinic extends Model
         $query->where('is_blocked',(string)$value);
     }
 
+    public function scopeOfIsAnnounce($query,$value){
+        $query->where('announce',$value);
+    }
+
     public function user(){
         return $this->morphOne(User::class,'type')->whereMorphedTo('type',Clinic::class);
     }

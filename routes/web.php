@@ -26,9 +26,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
-    Route::get('/', function () {
-        return view('front.home');
-    });
+    Route::get('/', [\App\Http\Controllers\Front\HomeController::class,'index']);
 
     Route::group(['prefix' => 'admin','name' => 'admin.'],function (){
         Route::name('admin.')->group(function (){

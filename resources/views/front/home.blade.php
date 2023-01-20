@@ -66,75 +66,46 @@
             <div  style="text-transform:capitalize;letter-spacing: 2px;">@lang('dashboard.our_clinics_text_two')</div>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-12 mb-2" data-wow-duration="2s">
-                <div style="border: 2px dashed #e5dddd;padding: 10px;">
-                    <img src="{{asset('frontAssets/images/doc.png')}}" class="img-thumbnail">
+            @forelse($clinics as $clinic)
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-2" data-wow-duration="2s">
+                    <div style="border: 2px dashed #e5dddd;padding: 10px;">
+                        <img src="{{asset('frontAssets/images/doc.png')}}" class="img-thumbnail">
 
-                    <div style="font-weight: bold" class="text-center mt-2">Clinic : EL-Hayah</div>
+                        <div style="font-weight: bold" class="text-center mt-2">{{$clinic->name}}</div>
 
-                    <div class="text-dark text-center mt-2" style="color: #fff !important;background: #ffc800 !important;">DR/Ahmed Yasser</div>
+                        <div class="text-dark text-center mt-2" style="color: #fff !important;background: #ffc800 !important;">{{optional($clinic->doctor)->name}}</div>
 
-                    <div style="font-size: 14px;" class="text-dark text-center mt-2">All Information About Clinic.</div>
+                        <div style="font-size: 14px;@if(app()->getLocale()=='ar') text-align:right !important; @else text-align:left !important; @endif " class="text-dark text-center mt-2">
+                            <span style="font-weight: bold;padding: 5px;background: #e0e2e2;margin-bottom: 2px" class="d-block"> <i class="fa fa-phone"></i> : {{$clinic->phone}}</span>
+                            <span style="font-weight: bold;padding: 5px;background: #e0e2e2;margin-bottom: 2px" class="d-block"> <i class="fa fa-envelope"></i> : {{$clinic->email}}</span>
+                            <span style="font-weight: bold;padding: 5px;background: #e0e2e2;margin-bottom: 2px" class="d-block"> <i class="fa fa-user"></i> : {{$clinic->today_capacity}} @lang('dashboard.patient')</span>
+                            <span style="font-weight: bold;padding: 5px;background: #e0e2e2;margin-bottom: 2px" class="d-block"> @lang(('dashboard.disclosure_price')) : {{$clinic->disclosure_price}} @lang('dashboard.pound')</span>
+                            <span style="font-weight: bold;padding: 5px;background: #e0e2e2;margin-bottom: 2px" class="d-block"> @lang(('dashboard.rediscovery_price')) : {{$clinic->rediscovery_price}} @lang('dashboard.pound')</span>
+                            <span style="font-weight: bold;padding: 5px;background: #e0e2e2;margin-bottom: 2px" class="d-block"> <i class="fa fa-clock"></i> : {{$clinic->time_form}}</span>
+                            <span style="font-weight: bold;padding: 5px;background: #e0e2e2;margin-bottom: 2px" class="d-block"> <i class="fa fa-clock"></i> : {{$clinic->time_to}}</span>
+                            <span style="font-weight: bold;padding: 5px;background: #e0e2e2;margin-bottom: 2px" class="d-block"> <i class="fa fa-address-card"></i> : {{$clinic->address}}</span>
+                            <div style="background: #ffc800;padding: 10px;">
+                                <h5 class="text-center mb-2">@lang('dashboard.clinic_holidays')</h5>
+                                <div>
+                                    @forelse($clinic->holidays as $holiday)
+                                        <span class="badge badge-danger" style="background: #212529;font-size: 14px;text-transform: capitalize;">{{$holiday->day}}</span>
+                                    @empty
+                                        <span>@lang('dashboard.no_holidays')</span>
+                                    @endforelse
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="d-flex justify-content-around mt-3 mb-3">
-                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-twitter fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-linkedin fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-dribbble fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                        <div class="d-flex justify-content-around mt-3 mb-3">
+                            <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-twitter fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                            <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-linkedin fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                            <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-dribbble fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 mb-2" data-wow-duration="2s">
-                <div style="border: 2px dashed #e5dddd;padding: 10px;">
-                    <img src="{{asset('frontAssets/images/doc.png')}}" class="img-thumbnail">
-
-                    <div style="font-weight: bold" class="text-center mt-2">Clinic : EL-Hayah</div>
-
-                    <div class="text-dark text-center mt-2" style="color: #fff !important;background: #ffc800 !important;">DR/Ahmed Yasser</div>
-
-                    <div style="font-size: 14px;" class="text-dark text-center mt-2">All Information About Clinic.</div>
-
-                    <div class="d-flex justify-content-around mt-3 mb-3">
-                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-twitter fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-linkedin fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-dribbble fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 mb-2" data-wow-duration="2s">
-                <div style="border: 2px dashed #e5dddd;padding: 10px;">
-                    <img src="{{asset('frontAssets/images/doc.png')}}" class="img-thumbnail">
-
-                    <div style="font-weight: bold" class="text-center mt-2">Clinic : EL-Hayah</div>
-
-                    <div class="text-dark text-center mt-2" style="color: #fff !important;background: #ffc800 !important;">DR/Ahmed Yasser</div>
-
-                    <div style="font-size: 14px;" class="text-dark text-center mt-2">All Information About Clinic.</div>
-
-                    <div class="d-flex justify-content-around mt-3 mb-3">
-                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-twitter fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-linkedin fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-dribbble fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 mb-2" data-wow-duration="2s">
-                <div style="border: 2px dashed #e5dddd;padding: 10px;">
-                    <img src="{{asset('frontAssets/images/doc.png')}}" class="img-thumbnail">
-
-                    <div style="font-weight: bold" class="text-center mt-2">Clinic : EL-Hayah</div>
-
-                    <div class="text-dark text-center mt-2" style="color: #fff !important;background: #ffc800 !important;">DR/Ahmed Yasser</div>
-
-                    <div style="font-size: 14px;" class="text-dark text-center mt-2">All Information About Clinic.</div>
-
-                    <div class="d-flex justify-content-around mt-3 mb-3">
-                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-twitter fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-linkedin fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-                        <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-dribbble fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-                    </div>
-                </div>
-            </div>
-
+            @empty
+                @lang('home.no_announce_clinics')
+            @endforelse
         </div>
 
     </div>

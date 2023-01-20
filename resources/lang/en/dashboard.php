@@ -223,7 +223,7 @@ return [
     'our_clinics' => 'Our Clinics',
     'our_clinics_text_one' => 'Some Of Rated Doctors And Clinics',
     'our_clinics_text_two' => 'Join With Us To Have A rating feature like another Clinics!',
-    '' => '',
+    'no_holidays' => 'There Is No Holidays',
     '' => '',
     '' => '',
     '' => '',

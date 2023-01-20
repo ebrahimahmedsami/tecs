@@ -84,5 +84,6 @@ return[
     'Privacy Policy' => 'سياسة الخصوصية',
     'Terms of Use' => 'تعليمات الإستخدام',
     'Copyright' => 'حقوق النشر',
+    'no_announce_clinics' => 'لا يوجد عيادات تحت الإعلان',
 
 ];

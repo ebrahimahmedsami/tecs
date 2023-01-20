@@ -92,7 +92,7 @@ return [
     'Privacy Policy' => 'Privacy Policy',
     'Terms of Use' => 'Terms of Use',
     'Copyright' => 'Copyright',
-    '' => '',
+    'no_announce_clinics' => 'There Is No Clinics Under Announcement',
     '' => '',
     '' => '',
     '' => '',

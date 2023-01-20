@@ -65,6 +65,7 @@ class ClinicsController extends Controller
                    'today_capacity' => $request->today_capacity,
                    'time_form' => $request->time_form,
                    'time_to' => $request->time_to,
+                   'announce' => Clinic::ANNOUNCE_YES,
                    'is_blocked' => isset($request->is_blocked) && $request->is_blocked == "on" ? '1' : '0',
                 ]);
 
