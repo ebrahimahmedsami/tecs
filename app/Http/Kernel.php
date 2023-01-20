@@ -43,6 +43,7 @@ class Kernel extends HttpKernel
              \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            'locale:en,ar',
         ],
     ];
 
@@ -71,5 +72,6 @@ class Kernel extends HttpKernel
         'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'ckeckBlocked' =>\App\Http\Middleware\CkeckIfBlocked::class,
+        'locale' => \App\Http\Middleware\DetectLang::class,
     ];
 }

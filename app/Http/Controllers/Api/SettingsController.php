@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ContactsRequest;
 use App\Http\Resources\SettingsResource;
+use App\Models\Contact;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 
@@ -63,5 +65,10 @@ class SettingsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function save_contact_us(ContactsRequest $request){
+        Contact::create($request->validated());
+        return response()->json(['data' => __('home.send_success')]);
     }
 }

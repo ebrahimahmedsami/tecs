@@ -31,6 +31,7 @@ Route::group(['middleware'=>'auth:sanctum'],function (){
 # Home
 
 Route::apiResource('settings', SettingsController::class);
+Route::post('send-contact-us', [SettingsController::class,'save_contact_us']);
 
 
 
