@@ -88,7 +88,7 @@
                                 <h5 class="text-center mb-2">@lang('dashboard.clinic_holidays')</h5>
                                 <div>
                                     @forelse($clinic->holidays as $holiday)
-                                        <span class="badge badge-danger" style="background: #212529;font-size: 14px;text-transform: capitalize;">{{$holiday->day}}</span>
+                                        <span class="badge badge-danger" style="background: #212529;font-size: 14px;text-transform: capitalize;">{{getDayInArabic($holiday->day)}}</span>
                                     @empty
                                         <span>@lang('dashboard.no_holidays')</span>
                                     @endforelse

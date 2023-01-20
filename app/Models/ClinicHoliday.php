@@ -10,8 +10,4 @@ class ClinicHoliday extends Model
     use HasFactory;
     protected $fillable = ['clinic_id','day'];
 
-    public function getDayAttribute($value){
-        return getDayInArabic($value);
-    }
-
 }
