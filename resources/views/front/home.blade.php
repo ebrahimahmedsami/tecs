@@ -98,8 +98,8 @@
 
                         <div class="d-flex justify-content-around mt-3 mb-3">
                             <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-twitter fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-                            <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-linkedin fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-                            <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-dribbble fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                            <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-instagram fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
+                            <i style="color: #ffc800;background: #212529;padding: 8px;border-radius:25px;" class="fa-brands fa-facebook fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
                         </div>
                     </div>
                 </div>
