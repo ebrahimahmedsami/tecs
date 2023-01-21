@@ -26,7 +26,7 @@ class PatientsRequest extends FormRequest
     {
         return [
             'name_ar' => ['required','max:255'],
-            'name_en' => ['required','max:255'],
+            'name_en' => ['nullable','max:255'],
             'phone' => ['required','numeric'],
             'age' => ['required','numeric'],
             'address' => ['required','max:255'],
